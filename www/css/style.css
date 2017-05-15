@@ -1,5 +1,40 @@
-/**/
+/*사이드 메뉴 헤더 부분*/
 ons-list-header {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    border-bottom: solid gray  !important;
 }
+
+/*사이드 메뉴 내용 부분*/
+ons-list-item{
+    font-size: 15px !important;
+}
+/*사이드 메뉴 로고*/
+ons-list > img{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 70%;
+    height: 50%;
+}
+
+
+/*사이드 메뉴 하단의 로그인 버튼, 버전 정보 버튼*/
+.loginBtn{
+    width: 48%;
+    height: 40px;
+    border: 0px;
+    background-color: white;
+    float: left;
+    margin: 0px;
+    border-right: 1px solid gray;
+}
+
+.versionBtn{
+    display:inline-block; 
+    width: 48%;
+    height: 40px;
+    border: 0px;
+    background-color: white;
+    margin: 0px;
+}
+

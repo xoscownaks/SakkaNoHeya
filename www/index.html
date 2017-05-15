@@ -25,6 +25,7 @@
     <ons-page>
       <ons-list>
       <!--가장 위의 로고, 로그인 부분-->
+      <img src="img/logo.bmp">          
       
       
       <!--My Page-->
@@ -32,37 +33,40 @@
             <ons-list-item onclick="fn.load('home.html')" tappable>
               즐겨찾기
             </ons-list-item>
-            <ons-list-item onclick="fn.load('settings.html')" tappable>
+            <ons-list-item onclick="fn.load('')" tappable>
               선호장르 선택
             </ons-list-item>
-            <ons-list-item onclick="fn.load('about.html')" tappable>
+            <ons-list-item onclick="fn.load('')" tappable>
               포인트
             </ons-list-item>
-            <ons-list-item onclick="fn.load('about.html')" tappable>
+            <ons-list-item onclick="fn.load('')" tappable>
               이용권
             </ons-list-item>
-            <ons-list-item onclick="fn.load('about.html')" tappable>
+            <ons-list-item onclick="fn.load('')" tappable>
               내 블로그
             </ons-list-item>
         
         <!--ITEM-->
-        <ons-list-header>My Page</ons-list-header>
-            <ons-list-item onclick="fn.load('about.html')" tappable>
+        <ons-list-header>ITEM</ons-list-header>
+            <ons-list-item onclick="fn.load('')" tappable>
               이용권 포인트 구매
             </ons-list-item>
         
         <!--고객 센터-->
-        <ons-list-header>My Page</ons-list-header>
-            <ons-list-item onclick="fn.load('about.html')" tappable>
+        <ons-list-header>고객센터</ons-list-header>
+            <ons-list-item onclick="fn.load('')" tappable>
               공지사항
             </ons-list-item>
-            <ons-list-item onclick="fn.load('about.html')" tappable>
+            <ons-list-item onclick="fn.load('')" tappable>
               고객센터
             </ons-list-item>
-            <ons-list-item onclick="fn.load('about.html')" tappable>
+            <ons-list-item onclick="fn.load('')" tappable>
               이벤트
             </ons-list-item>
-        
+ 
+            <button class="loginBtn" onclick="fn.load('')">로그인</button>
+            <button class="versionBtn" onclick="fn.load('')">버전 정보</button>
+           
       </ons-list>
     </ons-page>
   </ons-splitter-side>
@@ -70,23 +74,27 @@
 </ons-splitter>
 
 <ons-template id="home.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
+
+    <div class="navigation-bar navigation-bar--material">
+      <div class="navigation-bar__left navigation-bar--material__left">
+        <span class="toolbar-button toolbar-button--material" onclick="fn.open()">
+          <i class="zmdi zmdi-menu"></i>
+        </span>
       </div>
-      <div class="center">
+      <div class="navigation-bar__center navigation-bar--material__center">
         作家の部屋
       </div>
-    </ons-toolbar>
+      <div class="navigation-bar__right navigation-bar--material__right">
+        <span class="toolbar-button toolbar-button--material">
+          <i class="zmdi zmdi-search"></i>
+        </span>
+      </div>
+    </div>
     <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
     
-      메인 작품들 보일 곳 
+        메인 작품들 보일 곳 
       
     </p>
-  </ons-page>
 </ons-template>
 
 <ons-template id="settings.html">
