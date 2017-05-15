@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
   <script src="components/loader.js"></script>
   <script src="lib/onsenui/js/onsenui.min.js"></script>
-
+    
   <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
@@ -19,6 +19,106 @@
   </script>
 </head>
 <body>
-  
+
+<ons-splitter>
+  <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+    <ons-page>
+      <ons-list>
+      <!--가장 위의 로고, 로그인 부분-->
+      
+      
+      <!--My Page-->
+        <ons-list-header>My Page</ons-list-header>
+            <ons-list-item onclick="fn.load('home.html')" tappable>
+              즐겨찾기
+            </ons-list-item>
+            <ons-list-item onclick="fn.load('settings.html')" tappable>
+              선호장르 선택
+            </ons-list-item>
+            <ons-list-item onclick="fn.load('about.html')" tappable>
+              포인트
+            </ons-list-item>
+            <ons-list-item onclick="fn.load('about.html')" tappable>
+              이용권
+            </ons-list-item>
+            <ons-list-item onclick="fn.load('about.html')" tappable>
+              내 블로그
+            </ons-list-item>
+        
+        <!--ITEM-->
+        <ons-list-header>My Page</ons-list-header>
+            <ons-list-item onclick="fn.load('about.html')" tappable>
+              이용권 포인트 구매
+            </ons-list-item>
+        
+        <!--고객 센터-->
+        <ons-list-header>My Page</ons-list-header>
+            <ons-list-item onclick="fn.load('about.html')" tappable>
+              공지사항
+            </ons-list-item>
+            <ons-list-item onclick="fn.load('about.html')" tappable>
+              고객센터
+            </ons-list-item>
+            <ons-list-item onclick="fn.load('about.html')" tappable>
+              이벤트
+            </ons-list-item>
+        
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+  <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+</ons-splitter>
+
+<ons-template id="home.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        作家の部屋
+      </div>
+    </ons-toolbar>
+    <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+    
+      메인 작품들 보일 곳 
+      
+    </p>
+  </ons-page>
+</ons-template>
+
+<ons-template id="settings.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        로그인
+      </div>
+    </ons-toolbar>
+  </ons-page>
+</ons-template>
+
+<ons-template id="about.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        About
+      </div>
+    </ons-toolbar>
+  </ons-page>
+</ons-template>
+
+<script src="js/app.js"></script>
 </body>
 </html>
