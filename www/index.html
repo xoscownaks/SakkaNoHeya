@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
   <link rel="stylesheet" href="css/style.css">
-
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script>
     ons.ready(function() {
       console.log("Onsen UI is ready!");
@@ -23,11 +23,11 @@
 <ons-splitter>
   <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
     <ons-page>
-      <ons-list>
+      <ons-list id="slide-list">
+      
       <!--가장 위의 로고, 로그인 부분-->
-      <img src="img/logo.bmp">          
-      
-      
+      <img src="img/logo.bmp">            
+
       <!--My Page-->
         <ons-list-header>My Page</ons-list-header>
             <ons-list-item onclick="fn.load('home.html')" tappable>
@@ -75,6 +75,7 @@
 
 <ons-template id="home.html">
 
+    <!--상단 네이게이션 부분 -->
     <div class="navigation-bar navigation-bar--material">
       <div class="navigation-bar__left navigation-bar--material__left">
         <span class="toolbar-button toolbar-button--material" onclick="fn.open()">
@@ -90,12 +91,24 @@
         </span>
       </div>
     </div>
-    <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
     
-        메인 작품들 보일 곳 
-      
-    </p>
+    <!--상단 이미지 슬라이드 부분 -->
+    <!--<ons-carousel  swipeable auto-scroll  id="carousel">
+                <ons-carousel-item >
+                    <img src="http://placehold.it/350x200">
+                </ons-carousel-item>
+                <ons-carousel-item>
+                    <img src="http://placehold.it/350x200">
+                </ons-carousel-item>
+                <ons-carousel-item >
+                    <img src="http://placehold.it/350x200">
+                </ons-carousel-item>
+    </ons-carousel>-->
+    
 </ons-template>
+    
+
+
 
 <ons-template id="settings.html">
   <ons-page>
