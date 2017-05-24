@@ -6,15 +6,22 @@
   <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
   <script src="components/loader.js"></script>
   <script src="lib/onsenui/js/onsenui.min.js"></script>
+  <script src="js/jquery.bxslider.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="jquery.easing.1.3.js"></script>
+  <script src="jquery.fitvids.js"></script>
+  <script src="js/app.js"></script>
     
   <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="css/jquery.bxslider.min.css">
+  
+  
   <script>
     ons.ready(function() {
-      console.log("Onsen UI is ready!");
+
     });
   </script>
 </head>
@@ -26,12 +33,13 @@
       <ons-list id="slide-list">
       
       <!--가장 위의 로고, 로그인 부분-->
-      <img src="img/logo.bmp">            
-
+      <div onclick="fn.load('home.html')">
+        <img class="logo" src="img/logo.bmp">            
+      </div>
       <!--My Page-->
         <ons-list-header>My Page</ons-list-header>
-            <ons-list-item onclick="fn.load('home.html')" tappable>
-              즐겨찾기
+            <ons-list-item onclick="fn.load('')" tappable>
+              관심등록 소설
             </ons-list-item>
             <ons-list-item onclick="fn.load('')" tappable>
               선호장르 선택
@@ -65,7 +73,7 @@
             </ons-list-item>
  
             <button class="loginBtn" onclick="fn.load('')">로그인</button>
-            <button class="versionBtn" onclick="fn.load('')">버전 정보</button>
+            <button class="joinBtn" onclick="fn.load('')">회원가입</button>
            
       </ons-list>
     </ons-page>
@@ -73,73 +81,103 @@
   <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
 </ons-splitter>
 
+
+
+
+
 <ons-template id="home.html">
 
-    <!--상단 네이게이션 부분 -->
-    <div class="navigation-bar navigation-bar--material">
-      <div class="navigation-bar__left navigation-bar--material__left">
-        <span class="toolbar-button toolbar-button--material" onclick="fn.open()">
-          <i class="zmdi zmdi-menu"></i>
-        </span>
-      </div>
-      <div class="navigation-bar__center navigation-bar--material__center">
-        作家の部屋
-      </div>
-      <div class="navigation-bar__right navigation-bar--material__right">
-        <span class="toolbar-button toolbar-button--material">
-          <i class="zmdi zmdi-search"></i>
-        </span>
-      </div>
-    </div>
-    
-    <!--상단 이미지 슬라이드 부분 -->
-    <!--<ons-carousel  swipeable auto-scroll  id="carousel">
-                <ons-carousel-item >
-                    <img src="http://placehold.it/350x200">
-                </ons-carousel-item>
-                <ons-carousel-item>
-                    <img src="http://placehold.it/350x200">
-                </ons-carousel-item>
-                <ons-carousel-item >
-                    <img src="http://placehold.it/350x200">
-                </ons-carousel-item>
-    </ons-carousel>-->
-    
-</ons-template>
-    
-
-
-
-<ons-template id="settings.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">
-        로그인
-      </div>
+    <!--상단 네이게이션 부분 -->    
+     <ons-toolbar>
+          <div class="left">
+            <span class="toolbar-button toolbar-button--material" onclick="fn.open()">
+              <i class="zmdi zmdi-menu"></i>
+            </span>
+          </div>
+          <div class="center">
+            作家の部屋
+          </div>
+          <div class="right">
+            <span class="toolbar-button toolbar-button--material">
+              <i class="zmdi zmdi-search"></i>
+            </span>
+          </div>
     </ons-toolbar>
-  </ons-page>
+    
+    <!--내용 본문 부분 -->
+        <!--상단 이미지 슬라이드 부분 -->
+        <ons-page>
+            <div class="contents" style="width:100%; height:200px">
+                <ons-carousel fullscreen swipeable auto-scroll  id="carousel" height="100px">
+                    <ons-carousel-item>
+                        <div onclick="fn.load('mainNovel.html')">
+                            <img src="https://usercontents-a.styleshare.kr/images/9764328/original" width="100%" height="200px">
+                        </div>
+                    </ons-carousel-item>
+                    <ons-carousel-item>
+                        <img src="http://blogfiles5.naver.net/20151224_146/0608lgy_1450941999879r8EGl_PNG/pikicast-139221813.png" width="100%" height="200px">
+                    </ons-carousel-item>
+                    <ons-carousel-item>
+                        <img src="http://cafefiles.naver.net/MjAxNjA5MjRfMTAw/MDAxNDc0NjcwMDg3MDc0.XcDRqo-hV90XqzfdzdSRyvZlYnN0rACDDfYPK7LtQa8g.2Y1wM6mhEQTZv-AKP92T5ADuCbYsEHggHrT4zo4CvAkg.JPEG.bompot/df708b39b4549041b433543749bbf059.jpg" width="100%" height="200px">
+                    </ons-carousel-item>
+                </ons-carousel>       
+            </div>   
+            <!--중간 인기 또는 요일 별 보여주기 위한 버튼-->       
+            <div style="text-align:center;">
+                <div class="button-bar">
+                    <div class="button-bar__item" onclick="">
+                        <input type="radio" name="segment-a" checked >
+                        <div class="button-bar__button">인기</div>
+                    </div>
+                    <hr size=45 width=1 color=gray align=center noshade>
+                    <div class="button-bar__item" onclick="">
+                        <input type="radio" name="segment-a">
+                        <div class="button-bar__button" disabled>요일 순</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--인기 순 보여주기-->
+            
+            <div id="">
+                <ons-list-header style="border:none !important;">
+                    Today's Best                    
+                </ons-list-header>        
+                <div class="slider1">
+                  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar1"></div>
+                  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar2"></div>
+                  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar3"></div>
+                  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar4"></div>
+                  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar5"></div>
+                  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar6"></div>
+                  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar7"></div>
+                  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar8"></div>
+                  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar9"></div>
+                </div>
+            </div>    
+            
+            <!--요일 별로 보여주기-->
+
+
+
+
+
+
+
+
+        </ons-page>
+        
 </ons-template>
 
-<ons-template id="about.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">
-        About
-      </div>
-    </ons-toolbar>
-  </ons-page>
+
+<!--관심 등록 소설 -->
+<ons-template id="">
+   
+    
+    
 </ons-template>
 
-<script src="js/app.js"></script>
+
+
 </body>
 </html>

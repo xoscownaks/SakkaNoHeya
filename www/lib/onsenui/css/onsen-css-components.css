@@ -5865,7 +5865,6 @@ h4, h5, h6 {
   background-color: transparent;
   border-bottom: 1px solid #ccc;
 }
-
 .navigation-bar {
   font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -5956,16 +5955,17 @@ h4, h5, h6 {
 }
 .navigation-bar__right {
   max-width: 50%;
-  width: 27%;
+  width: 30%;
   text-align: right;
   line-height: 44px;
+
 }
 .navigation-bar__center {
   width: 46%;
   text-align: center;
   line-height: 44px;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: 500;
   color: #1f1f21;
 }
 .navigation-bar__title {
