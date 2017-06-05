@@ -20,11 +20,168 @@
 /***************************************/
 
 /******************************************
- * 상단 슬라이드 메뉴 부분 
+ * 이미지 슬라이드 부분
  * ****************************************/
-
-
-
-  
+    ons.ready(function(){
+        //메인 페이지 상단 부분
+        $('.contents').slick({
+            infinite: true,
+            autoplay:true,
+            autoplaySpeed:4000,
+            arrows:false,
+            pauseOnHover:false
+        });
+        //인기-오늘의 베스트 부분
+        $('.todayBest').slick({
+            infinite: true,
+            autoplay:true,
+            autoplaySpeed:4000,
+            arrows:false,
+            pauseOnHover:false,
+            slidesToShow:3,
+            slidesToScroll:3        
+        });
+        //인기-판타지 베스트 부분
+        $('.fantasyBest').slick({
+            infinite: true,
+            autoplay:true,
+            autoplaySpeed:4000,
+            arrows:false,
+            pauseOnHover:false,
+            slidesToShow:3,
+            slidesToScroll:3        
+        });
+        //인기-로맨스 베스트 부분
+        $(".romanceBest").slick({
+            infinite: true,
+            autoplay:true,
+            autoplaySpeed:4000,
+            arrows:false,
+            pauseOnHover:false,
+            slidesToShow:3,
+            slidesToScroll:3        
+        });
+            
+            
+        //ANDROID 뒤로가기 버튼 활성화 
+        //ons.setDefaultDeviceBackButtonListener(function(){
+        //        window.history.back();
+        //});
+    });
+         
   
 /*************************************************/
+
+    window.bodyChange = function(body){
+        var obj1 = document.getElementById('popular');
+        var obj2 = document.getElementById('week');
+        var monday = document.getElementById('monday');
+        
+        if(body == "popular"){
+            obj1.style.display="block";
+            obj2.style.display="none";
+        }
+        if(body == "week"){
+            obj1.style.display="none";
+            obj2.style.display="block";
+            monday.style.display="block";
+        }
+    }
+    
+    window.weekChange = function(weekend){
+        var monday = document.getElementById('monday');
+        var tuesday = document.getElementById('tuesday');
+        var wednesday = document.getElementById('wednesday');
+        var thursday = document.getElementById('thursday');
+        var friday = document.getElementById('friday');
+        var saturday = document.getElementById('saturday');
+        var sunday = document.getElementById('sunday');
+        
+        if(weekend == "monday"){
+            monday.style.display = "block";
+            tuesday.style.display = "none";
+            wednesday.style.display = "none";
+            thursday.style.display = "none";
+            friday.style.display = "none";
+            saturday.style.display = "none";
+            sunday.style.display = "none";
+        }
+        
+        if(weekend == "tuesday"){
+            monday.style.display = "none";
+            tuesday.style.display = "block";
+            wednesday.style.display = "none";
+            thursday.style.display = "none";
+            friday.style.display = "none";
+            saturday.style.display = "none";
+            sunday.style.display = "none";
+        }
+        
+        if(weekend == "wednesday"){
+            monday.style.display = "none";
+            tuesday.style.display = "none";
+            wednesday.style.display = "block";
+            thursday.style.display = "none";
+            friday.style.display = "none";
+            saturday.style.display = "none";
+            sunday.style.display = "none";
+        }
+        
+        if(weekend == "thursday"){
+            monday.style.display = "none";
+            tuesday.style.display = "none";
+            wednesday.style.display = "none";
+            thursday.style.display = "block";
+            friday.style.display = "none";
+            saturday.style.display = "none";
+            sunday.style.display = "none";
+        }
+        
+        if(weekend == "friday"){
+            monday.style.display = "none";
+            tuesday.style.display = "none";
+            wednesday.style.display = "none";
+            thursday.style.display = "none";
+            friday.style.display = "block";
+            saturday.style.display = "none";
+            sunday.style.display = "none";
+        }
+        
+        if(weekend == "saturday"){
+            monday.style.display = "none";
+            tuesday.style.display = "none";
+            wednesday.style.display = "none";
+            thursday.style.display = "none";
+            friday.style.display = "none";
+            saturday.style.display = "block";
+            sunday.style.display = "none";
+        }
+        
+        if(weekend == "sunday"){
+            monday.style.display = "none";
+            tuesday.style.display = "none";
+            wednesday.style.display = "none";
+            thursday.style.display = "none";
+            friday.style.display = "none";
+            saturday.style.display = "none";
+            sunday.style.display = "block";
+        }
+    }
+
+
+/*********************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

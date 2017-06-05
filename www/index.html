@@ -1,36 +1,39 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-  <script src="components/loader.js"></script>
-  <script src="lib/onsenui/js/onsenui.min.js"></script>
-  <script src="js/app.js"></script>
-    
-  <link rel="stylesheet" href="components/loader.css">
-  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
-  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
-  <link rel="stylesheet" href="css/style.css">
-  
-  
-  <script>
-    ons.ready(function() {
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">-->
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous">
+    </script>
 
-    });
-  </script>
+    <script src="components/loader.js"></script>
+    <script src="lib/onsenui/js/onsenui.min.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript" src="js/slick.min.js"></script>
+    
+    
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+
 </head>
 <body>
 
 <ons-splitter>
-  <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+  <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable swipe-target-width="50px">
     <ons-page>
       <ons-list id="slide-list">
       
       <!--가장 위의 로고, 로그인 부분-->
-      <div onclick="fn.load('home.html')">
+
         <img class="logo" src="img/logo.bmp">            
-      </div>
+
       <!--My Page-->
         <ons-list-header>My Page</ons-list-header>
             <ons-list-item onclick="fn.load('')" tappable>
@@ -41,9 +44,6 @@
             </ons-list-item>
             <ons-list-item onclick="fn.load('')" tappable>
               포인트
-            </ons-list-item>
-            <ons-list-item onclick="fn.load('')" tappable>
-              이용권
             </ons-list-item>
             <ons-list-item onclick="fn.load('')" tappable>
               내 블로그
@@ -67,14 +67,36 @@
               이벤트
             </ons-list-item>
  
-            <button class="loginBtn" onclick="fn.load('')">로그인</button>
+            <button class="loginBtn" onclick="fn.load('login.html')">로그인</button>
             <button class="joinBtn" onclick="fn.load('')">회원가입</button>
            
       </ons-list>
     </ons-page>
   </ons-splitter-side>
-  <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+  <ons-splitter-content id="navigato" page="home.html"></ons-splitter-content>
 </ons-splitter>
+
+
+<!--검색 창-->
+<ons-template id="search.html">
+    <ons-toolbar>
+          <div class="center">
+            <input type="text" id="searchContent" placeholder="검색할 내용" autofocus>
+          </div>
+          <div class="right">
+            <span class="toolbar-button toolbar-button--material" onclick="fn.load('')" style="margin-right:10px;">
+              <i class="zmdi zmdi-search"></i>
+            </span>
+          </div>
+    </ons-toolbar>
+
+
+
+
+</ons-template>
+
+
+
 
 
 
@@ -93,88 +115,208 @@
             作家の部屋
           </div>
           <div class="right">
-            <span class="toolbar-button toolbar-button--material">
+            <span class="toolbar-button toolbar-button--material" onclick="fn.load('search.html')" style="margin-right:10px;">
               <i class="zmdi zmdi-search"></i>
             </span>
           </div>
     </ons-toolbar>
-    
+
     <!--내용 본문 부분 -->
         <!--상단 이미지 슬라이드 부분 -->
         <ons-page>
+            <!--
             <div class="contents" style="width:100%; height:200px">
                 <ons-carousel fullscreen swipeable auto-scroll  id="carousel" height="100px">
                     <ons-carousel-item>
                         <div onclick="fn.load('mainNovel.html')">
-                            <img src="https://usercontents-a.styleshare.kr/images/9764328/original" width="100%" height="200px">
+                            <img src="http://cf.joara.com/banner_file/20170309_091051.png" width="100%" height="200px">
                         </div>
                     </ons-carousel-item>
                     <ons-carousel-item>
                         <img src="http://blogfiles5.naver.net/20151224_146/0608lgy_1450941999879r8EGl_PNG/pikicast-139221813.png" width="100%" height="200px">
                     </ons-carousel-item>
                     <ons-carousel-item>
-                        <img src="http://cafefiles.naver.net/MjAxNjA5MjRfMTAw/MDAxNDc0NjcwMDg3MDc0.XcDRqo-hV90XqzfdzdSRyvZlYnN0rACDDfYPK7LtQa8g.2Y1wM6mhEQTZv-AKP92T5ADuCbYsEHggHrT4zo4CvAkg.JPEG.bompot/df708b39b4549041b433543749bbf059.jpg" width="100%" height="200px">
+                        <img src="http://cf.joara.com/cast_file/20170410_104855.png" width="100%" height="200px">
                     </ons-carousel-item>
                 </ons-carousel>       
-            </div>   
+            </div> -->
             
+            <div class="contents" style="width:100%; height:200px">
+                <div onclick="fn.load('mainNovel.html')"><img src="http://cf.joara.com/banner_file/20170309_091051.png" style="width:100%;height:200px"></div>
+                <img src="http://blogfiles5.naver.net/20151224_146/0608lgy_1450941999879r8EGl_PNG/pikicast-139221813.png" style="width:100%;height:200px">
+                <img src="http://cf.joara.com/cast_file/20170410_104855.png"  style="width:100%;height:200px">
+            </div>
+
+            <!--중간 인기 또는 요일 별 보여주기 위한 버튼-->                
             
+            <div class="tab-bar tab-bar--top tab-bar--top-border">
+              <label class="tab-bar__item tab-bar--top-border__item">
+                <input type="radio" name="top-tab-bar-b"  onclick="bodyChange('popular')" checked="checked">
+                <button class="tab-bar__button tab-bar--top-border__button">
+                  인기
+                </button>
+              </label>
             
-            <!--중간 인기 또는 요일 별 보여주기 위한 버튼-->       
-            <div style="text-align:center;">
-                <div class="button-bar">
-                    <div class="button-bar__item" onclick="popular">
-                        <input type="radio" name="segment-a" checked >
-                        <div class="button-bar__button">인기</div>
-                    </div>
-                    <hr size=45 width=1 color=gray align=center noshade>
-                    <div class="button-bar__item" onclick="week">
-                        <input type="radio" name="segment-a">
-                        <div class="button-bar__button" disabled>요일 순</div>
-                    </div>
-                </div>
+              <label class="tab-bar__item tab-bar--top-border__item">
+                <input type="radio" name="top-tab-bar-b" onclick="bodyChange('week')">
+                <button class="tab-bar__button tab-bar--top-border__button">
+                  요일
+                </button>
+              </label>
+            
             </div>
             
             <!--인기 순 보여주기-->
+
+            <div id="popular" style="height:200px;">
             
-            <div id="popular">
                 <ons-list-header style="border:none !important;">
                     Today's Best                    
                 </ons-list-header>        
-                <ons-list-item>
-                    <ons-row>
-                        <img src="http://placehold.it/100x100&text=FooBar9">
-                        <img src="http://placehold.it/100x100&text=FooBar9">
-                        <img src="http://placehold.it/100x100&text=FooBar9">
-                      
-                    </ons-row>    
-                </ons-list-item>
+                <div class="todayBest">
+                    <div><img src="https://lh3.googleusercontent.com/SATJppvDuNGejDfpRV3KCaAAFdB0DjIw0ZDTsbEEvvrHL5US7eHCGvJPPp6XCWSnTso=w300" style="width:100%; height:100%"></div>
+                    <div><img src="https://pbs.twimg.com/profile_images/724572911860764672/orhYZj6c.jpg" style="width:100%; height:100%"></div>
+                    <div><img src="http://24.media.tumblr.com/f57ccfa1d67cd060f1774149b4ec8c7f/tumblr_mvzbvrAzYZ1qzpegpo7_1280.jpg" style="width:100%; height:100%"></div>
+                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+                </div>
+            
                 
                 <ons-list-header style="border:none !important;">
-                    Genre's Best                    
+                    Fantasy's Best                    
+                </ons-list-header>  
+                
+                <div class="fantasyBest">
+                    <div><img src="https://lh3.googleusercontent.com/SATJppvDuNGejDfpRV3KCaAAFdB0DjIw0ZDTsbEEvvrHL5US7eHCGvJPPp6XCWSnTso=w300" style="width:100%; height:100%"></div>
+                    <div><img src="https://pbs.twimg.com/profile_images/724572911860764672/orhYZj6c.jpg" style="width:100%; height:100%"></div>
+                    <div><img src="http://24.media.tumblr.com/f57ccfa1d67cd060f1774149b4ec8c7f/tumblr_mvzbvrAzYZ1qzpegpo7_1280.jpg" style="width:100%; height:100%"></div>
+                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+                </div>
+
+                <ons-list-header style="border:none !important;">
+                    Romance's Best                    
                 </ons-list-header>        
-                <ons-list-item>
-                    <ons-row>
-                        <img src="http://placehold.it/100x100&text=FooBar9">
-                        <img src="http://placehold.it/100x100&text=FooBar9">
-                        <img src="http://placehold.it/100x100&text=FooBar9">
-                    </ons-row>    
-                </ons-list-item>
+                <div class="romanceBest">
+                    <div><img src="https://lh3.googleusercontent.com/SATJppvDuNGejDfpRV3KCaAAFdB0DjIw0ZDTsbEEvvrHL5US7eHCGvJPPp6XCWSnTso=w300" style="width:100%; height:100%"></div>
+                    <div><img src="https://pbs.twimg.com/profile_images/724572911860764672/orhYZj6c.jpg" style="width:100%; height:100%"></div>
+                    <div><img src="http://24.media.tumblr.com/f57ccfa1d67cd060f1774149b4ec8c7f/tumblr_mvzbvrAzYZ1qzpegpo7_1280.jpg" style="width:100%; height:100%"></div>
+                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+                </div>
             </div>    
             
-            <!--요일 별로 보여주기-->
-
-            <div id="week">
-               
-               
-               
-            </div>    
-
-
-
-
-
-
+            <!--요일 별로 버튼 보여주기 -->
+           <div id="week" style="display:none;">
+                <div class="tab-bar tab-bar--top tab-bar--top-border">
+                  <label class="tab-bar__item tab-bar--top-border__item" onclick="weekChange('monday')">
+                    <input type="radio" name="top-tab-bar-b-week" checked="checked">
+                    <button class="tab-bar__button tab-bar--top-border__button">
+                      월
+                    </button>
+                  </label>
+                
+                  <label class="tab-bar__item tab-bar--top-border__item">
+                    <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('tuesday')">
+                    <button class="tab-bar__button tab-bar--top-border__button">
+                      화
+                    </button>
+                  </label>
+                
+                  <label class="tab-bar__item tab-bar--top-border__item">
+                    <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('wednesday')">
+                    <button class="tab-bar__button tab-bar--top-border__button">
+                      수
+                    </button>
+                  </label>
+                  
+                   <label class="tab-bar__item tab-bar--top-border__item">
+                    <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('thursday')">
+                    <button class="tab-bar__button tab-bar--top-border__button">
+                      목
+                    </button>
+                  </label>
+                  
+                   <label class="tab-bar__item tab-bar--top-border__item">
+                    <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('friday')">
+                    <button class="tab-bar__button tab-bar--top-border__button">
+                      금
+                    </button>
+                  </label>
+                  
+                   <label class="tab-bar__item tab-bar--top-border__item">
+                    <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('saturday')">
+                    <button class="tab-bar__button tab-bar--top-border__button">
+                      토
+                    </button>
+                  </label>
+                  
+                   <label class="tab-bar__item tab-bar--top-border__item">
+                    <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('sunday')">
+                    <button class="tab-bar__button tab-bar--top-border__button">
+                      일
+                    </button>
+                  </label>
+                </div>
+            </div>
+            
+            
+            <!--월요일-->
+            <div id="monday" style="display:none;">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+            </div>
+            <!--화요일-->
+            <div id="tuesday" style="display:none;">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+            </div>
+            <!--수요일-->
+            <div id="wednesday" style="display:none;">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+            </div>
+            <!--목요일-->
+            <div id="thursday" style="display:none;">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+            </div>
+            <!--금요일-->
+            <div id="friday" style="display:none;">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+            </div>
+            <!--토요일-->
+            <div id="saturday" style="display:none;">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+            </div>
+            <!--일요일-->
+            <div id="sunday" style="display:none;">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+                <img src="http://placehold.it/100x100&text=FooBar9">
+            </div>
+            
+            
         </ons-page>
         
 </ons-template>

@@ -3,22 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-  <script src="components/loader.js"></script>
-  <script src="lib/onsenui/js/onsenui.min.js"></script>
-  <script src="js/app.js"></script>
-    
-  <link rel="stylesheet" href="components/loader.css">
-  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
-  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+
+
   <link rel="stylesheet" href="css/mainNovel.css">
+  
 </head>
 <body>
     <ons-page>
     <!-- 특정 소설 페이지 헤더 -->
      <ons-toolbar>
           <div class="left">
-            <i class="fa fa-arrow-left" onclick="history.go(-1)"></i> 
+            <i class="fa fa-arrow-left" onclick="popAndRefresh()"></i> 
           </div>
           <div class="center">
             학교출입금지
@@ -64,6 +59,7 @@
     </div>
     
     <!-- 공지사항, 챕터 리스트 -->
+
     <ul class="main_novel_chapterContainer">
         <!-- 공지사항 -->
         <li class="main_novel_notice">
