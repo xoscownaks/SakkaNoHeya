@@ -21,85 +21,64 @@
     <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/slick.css">
-
+    <link rel="stylesheet" href="css/mainNovel.css">
 </head>
 <body>
 
 <ons-splitter>
-  <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable swipe-target-width="50px">
+  <ons-splitter-side id="menu" side="left" width="220px" collapse >
     <ons-page>
       <ons-list id="slide-list">
       
       <!--가장 위의 로고, 로그인 부분-->
-
-        <img class="logo" src="img/logo.bmp">            
-
+        <div onclick="">
+            <img class="logo" src="img/logo.bmp">            
+        </div>
       <!--My Page-->
         <ons-list-header>My Page</ons-list-header>
-            <ons-list-item onclick="fn.load('')" tappable>
+            <ons-list-item onclick="" tappable>
               관심등록 소설
             </ons-list-item>
-            <ons-list-item onclick="fn.load('')" tappable>
+            <ons-list-item onclick="" tappable>
               선호장르 선택
             </ons-list-item>
-            <ons-list-item onclick="fn.load('')" tappable>
+            <ons-list-item onclick="" tappable>
               포인트
             </ons-list-item>
-            <ons-list-item onclick="fn.load('')" tappable>
+            <ons-list-item onclick="" tappable>
               내 블로그
             </ons-list-item>
         
         <!--ITEM-->
         <ons-list-header>ITEM</ons-list-header>
-            <ons-list-item onclick="fn.load('')" tappable>
-              이용권 포인트 구매
+            <ons-list-item onclick="" tappable>
+              포인트 구매
             </ons-list-item>
         
         <!--고객 센터-->
         <ons-list-header>고객센터</ons-list-header>
-            <ons-list-item onclick="fn.load('')" tappable>
+            <ons-list-item onclick="" tappable>
               공지사항
             </ons-list-item>
-            <ons-list-item onclick="fn.load('')" tappable>
+            <ons-list-item onclick="" tappable>
               고객센터
             </ons-list-item>
-            <ons-list-item onclick="fn.load('')" tappable>
+            <ons-list-item onclick="" tappable>
               이벤트
             </ons-list-item>
  
-            <button class="loginBtn" onclick="fn.load('login.html')">로그인</button>
-            <button class="joinBtn" onclick="fn.load('')">회원가입</button>
+            <button class="loginBtn" onclick="myNavigator.pushPage('login.html')">로그인</button>
+            <button class="joinBtn" onclick="myNavigator.pushPage('join.html')">회원가입</button>
            
       </ons-list>
     </ons-page>
   </ons-splitter-side>
-  <ons-splitter-content id="navigato" page="home.html"></ons-splitter-content>
+  <ons-splitter-content>
+      <ons-navigator id="myNavigator" page="home.html" animation="lift">
+          
+      </ons-navigator>
+  </ons-splitter-content>
 </ons-splitter>
-
-
-<!--검색 창-->
-<ons-template id="search.html">
-    <ons-toolbar>
-          <div class="center">
-            <input type="text" id="searchContent" placeholder="검색할 내용" autofocus>
-          </div>
-          <div class="right">
-            <span class="toolbar-button toolbar-button--material" onclick="fn.load('')" style="margin-right:10px;">
-              <i class="zmdi zmdi-search"></i>
-            </span>
-          </div>
-    </ons-toolbar>
-
-
-
-
-</ons-template>
-
-
-
-
-
-
 
 
 <ons-template id="home.html">
@@ -115,7 +94,7 @@
             作家の部屋
           </div>
           <div class="right">
-            <span class="toolbar-button toolbar-button--material" onclick="fn.load('search.html')" style="margin-right:10px;">
+            <span class="toolbar-button toolbar-button--material" onclick="myNavigator.pushPage('search.html')" style="margin-right:10px;">
               <i class="zmdi zmdi-search"></i>
             </span>
           </div>
@@ -124,25 +103,10 @@
     <!--내용 본문 부분 -->
         <!--상단 이미지 슬라이드 부분 -->
         <ons-page>
-            <!--
-            <div class="contents" style="width:100%; height:200px">
-                <ons-carousel fullscreen swipeable auto-scroll  id="carousel" height="100px">
-                    <ons-carousel-item>
-                        <div onclick="fn.load('mainNovel.html')">
-                            <img src="http://cf.joara.com/banner_file/20170309_091051.png" width="100%" height="200px">
-                        </div>
-                    </ons-carousel-item>
-                    <ons-carousel-item>
-                        <img src="http://blogfiles5.naver.net/20151224_146/0608lgy_1450941999879r8EGl_PNG/pikicast-139221813.png" width="100%" height="200px">
-                    </ons-carousel-item>
-                    <ons-carousel-item>
-                        <img src="http://cf.joara.com/cast_file/20170410_104855.png" width="100%" height="200px">
-                    </ons-carousel-item>
-                </ons-carousel>       
-            </div> -->
+
             
             <div class="contents" style="width:100%; height:200px">
-                <div onclick="fn.load('mainNovel.html')"><img src="http://cf.joara.com/banner_file/20170309_091051.png" style="width:100%;height:200px"></div>
+                <div onclick="myNavigator.pushPage('mainNovel.html')"><img src="http://cf.joara.com/banner_file/20170309_091051.png" style="width:100%;height:200px"></div>
                 <img src="http://blogfiles5.naver.net/20151224_146/0608lgy_1450941999879r8EGl_PNG/pikicast-139221813.png" style="width:100%;height:200px">
                 <img src="http://cf.joara.com/cast_file/20170410_104855.png"  style="width:100%;height:200px">
             </div>
@@ -320,15 +284,6 @@
         </ons-page>
         
 </ons-template>
-
-
-<!--관심 등록 소설 -->
-<ons-template id="">
-   
-    
-    
-</ons-template>
-
 
 
 </body>

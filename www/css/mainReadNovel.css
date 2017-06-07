@@ -1,0 +1,66 @@
+/* This is a CSS file */
+/*상단의 북마크, 관심등록 아이콘 css*/
+
+#novelHeader > .right > .readNovelIcons{
+    margin-top: 5px;
+    margin-right: 15px;
+    margin-left: 5px;
+    margin-bottom:20px;
+    
+}
+
+/*소설 본문 css*/
+#novelArea{
+    position: relative;
+    z-index: 1;
+    margin-right: 1em;
+    margin-left: 1em;
+    
+    width: 90%;
+    height: 100%;
+    line-height: 150%;
+}
+
+/*소설 하단 css*/
+#novelFooter > div{
+    float: left;
+}
+
+/*소설 하단 뷰어설정 css*/
+#novelFooter > #viewSettings{
+    width: 30%;
+}
+
+#novelFooter > #viewSettings > .readNovelIcons{
+    margin-top:10px;
+    margin-left: 10px;
+    margin-bottom:20px;
+
+}
+
+/*소설 하단 댓글 css*/
+#novelFooter > #novelComment{
+    text-align: center;
+    width: 35%;
+}
+
+#novelFooter > #novelComment > .readNovelIcons{
+    margin-top: 10px;
+    margin-right: 15px;
+    margin-left: 10px;
+    margin-bottom:20px;
+
+}
+
+/*소설 하단 회차이동 css*/
+#novelFooter > #novelMove{
+    text-align: center;
+    width: 30%;
+}
+#novelFooter > #novelMove > .readNovelIcons{
+    margin-top: 0px;
+    margin-right: 15px;
+    margin-left: 10px;
+    margin-bottom:20px;
+
+}

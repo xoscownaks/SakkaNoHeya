@@ -1,0 +1,200 @@
+/*아이디나 각 입력창 범위 css*/
+#joinBody > p{
+    margin: 0;
+    padding: none;
+}
+
+/*input입력창*/
+#joinBody > p > input{
+    width: 90%;
+    height: 50px;
+    font-size: 18px;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+
+/*아이디 / 비밀번호 찾기 전환하는 관련 css*/
+.idPw-button-bar {
+    
+  font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 17px;
+  display: table;
+  table-layout: fixed;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  margin: 0;
+  border: none;
+}
+.idPw-button-bar__item {
+  font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 17px;
+  display: table-cell;
+  width: auto;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  position: relative;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  width:100%;
+  height:100px;
+}
+.idPw-button-bar__item > input {
+  position: absolute;
+  overflow: hidden;
+  right: 0px;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  padding: 0;
+  border: 0;
+  opacity: 0.001;
+  z-index: 1;
+  vertical-align: top;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  width:100%;
+  height:100px;
+}
+.idPw-button-bar__item:first-child > .button-bar__button {
+  border-left: 1px solid rgba(18,114,224,0.77);
+  border-right: 1px solid rgba(18,114,224,0.77);
+  -webkit-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  width:100%;
+  height:100px;
+}
+.idPw-button-bar__item:last-child > .button-bar__button {
+  border-right: 1px solid rgba(18,114,224,0.77);
+  -webkit-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  width:100%;
+  height:100px;
+}
+.idPw-button-bar__button {
+  text-align: center;
+  font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 17px;
+  -webkit-border-radius: inherit;
+  border-radius: inherit;
+  background-color: transparent;
+  color: rgba(18,114,224,0.77);
+  border: 0px solid rgba(18,114,224,0.77);
+  border-top: 1px solid rgba(18,114,224,0.77);
+  border-bottom: 1px solid rgba(18,114,224,0.77);
+  border-right: 1px solid rgba(18,114,224,0.77);
+  font-weight: 400;
+  padding: 0 8px;
+  height: 27px;
+  line-height: 27px;
+  font-size: 20px;
+  width: 100%;
+  -webkit-transition: background-color 0.2s linear, color 0.2s linear;
+  -moz-transition: background-color 0.2s linear, color 0.2s linear;
+  -o-transition: background-color 0.2s linear, color 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width:100%;
+  height:50px;
+  padding: 10px 10px 10px 10px;
+}
+.idPw-button-bar__button:active,
+:active + .idPw-button-bar__button {
+  background-color: rgba(18,114,224,0.77);
+  border: 0px solid rgba(18,114,224,0.77);
+  border-top: 1px solid rgba(18,114,224,0.77);
+  border-bottom: 1px solid rgba(18,114,224,0.77);
+  border-right: 1px solid rgba(18,114,224,0.77);
+  height: 27px;
+  line-height: 27px;
+  font-size: 20px;
+  width: 100%;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+  width:100%;
+  height:50px;
+}
+.idPw-button-bar__item.active > .button-bar__button,
+:checked + .idPw-button-bar__button {
+  background-color: rgba(18,114,224,0.77);
+  color: #fff;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+  width:100%;
+  height:50px;
+}
+.idPw-button-bar__button:disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+.idPw-button-bar__button:hover {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+  width:100%;
+  height:50px;
+}
+.idPw-button-bar__button:focus {
+  outline: 0;
+  width:100%;
+  height:50px;
+}
+
+
+/*아이디 찾기 클릭하면 나오는 내용 css */
+.idEmailInput{
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    width: 75%;
+    height: 40px;
+    border: 1px solid gray;
+    -webkit-border-radius: 3px;
+    margin: 5px;
+}
+
+.idPwBtn{
+    width: 100px;
+    font-size: 15px;
+    -webkit-border-radius: 3px;
+    background-color: #e3c152;
+    color: white;
+}
+
+.idPw-cancelSubmit-btn-bar{
+    vertical-align: middle;
+}
+
+
+
+

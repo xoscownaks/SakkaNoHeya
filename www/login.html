@@ -5,25 +5,41 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 </head>
-<body>
+<body style="text-align:center;">
     <!--상단 네이게이션 부분 -->    
      <ons-toolbar>
           <div class="left">
-            <span class="toolbar-button toolbar-button--material" onclick="fn.open()">
-              <i class="zmdi zmdi-menu"></i>
-            </span>
+              <ons-back-button></ons-back-button>
           </div>
           <div class="center">
-            作家の部屋
+            로그인
           </div>
           <div class="right">
-            <span class="toolbar-button toolbar-button--material" onclick="fn.load('search.html')" style="margin-right:10px;">
+            <span class="toolbar-button toolbar-button--material" onclick="myNavigator.pushPage('search.html')" style="margin-right:10px;">
               <i class="zmdi zmdi-search"></i>
             </span>
           </div>
     </ons-toolbar>
     
-    <img src="img/logo.bmp" style="margin:20px; whgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggzgXGGGCGgggggGGGXGCGggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg">
+ 
+    <!--가운데 로고~~~아이디 / 비밀번호 찾기 부분-->
+    <div style="text-align: center; margin-top: 50px;">
+        <img class="logo" src="img/logo.bmp" style="width:70%;height:20%;">
+        <p>
+          <ons-input id="username" modifier="underbar" placeholder="Id" float required ></ons-input>
+        </p>
+        <p>
+          <ons-input id="password" modifier="underbar" type="password" placeholder="Password" required float></ons-input>
+        </p>
+        <p style="margin-top: 50px;">
+          <ons-button onclick="" style="width:100px; height:40px;">로그인</ons-button>
+        </p>
+        <p style="margin-top: 30px;">
+            <ons-button onclick="myNavigator.pushPage('join.html')" modifier="large--quiet">회원가입</ons-button>
+            <ons-button onclick="myNavigator.pushPage('idPwSearch.html')" modifier="large--quiet">아이디 / 비밀번호 찾기</ons-button>
+        </p>
+    </div>
+    
     
 </body>
 </html>
