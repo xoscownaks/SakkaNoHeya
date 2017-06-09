@@ -237,107 +237,170 @@
       document.getElementById('popover').show(target);
     };
 
+        /*************
+         * 추천 기능 함수 true, false에 따라 추천 상태를 구분 
+         * ***********/
+        var good = false;
+        window.isGood = function(){
+            var goodIcon = $('.novelGoodIcon');
+            if(good == false){
+                ons.notification.confirm({
+                title:'',
+                message: '추천 하시겠습니까',
+                buttonLabels:['아니요','예'],
+                callback: function(answer) {
+                  if(answer ==  0)
+                  {
+                    return;
+                  }  
+                  if(answer ==  1)
+                  {
+                    goodIcon.attr('icon','ion-ios-heart');
+                    good = true;
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                  } 
+                }
+              });
+            }
+            if(good == true){
+                ons.notification.confirm({
+                title:'',
+                message: '추천을 취소 하시겠습니까',
+                buttonLabels:['아니요','예'],
+                callback: function(answer) {
+                  if(answer ==  0)
+                  {
+                    return;
+                  }  
+                  if(answer ==  1)
+                  {
+                    goodIcon.attr('icon','ion-ios-heart-outline');
+                    good = false;
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                  } 
+                }
+              });
+            }
+        }
+        
+        
+        /***********************
+         * 관심등록 기능 
+         * ********************/
+        var favorite = false;
+        window.addFavorite = function(){
+            var favoriteIcon = $('.novelFavoriteIcon');
+            if(favorite == false){
+                ons.notification.confirm({
+                title:'',
+                message: '관심도서로 등록하시겠습니까?',
+                buttonLabels:['아니요','예'],
+                callback: function(answer) {
+                  if(answer ==  0)
+                  {
+                    return;
+                  }  
+                  if(answer ==  1)
+                  {
+                    favoriteIcon.attr('icon','ion-android-star');
+                    favorite = true;
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                  } 
+                }
+              });
+            }
+            if(favorite == true){
+                ons.notification.confirm({
+                title:'',
+                message: '관심등록을 취소하시겠습니까?',
+                buttonLabels:['아니요','예'],
+                callback: function(answer) {
+                  if(answer ==  0)
+                  {
+                    return;
+                  }  
+                  if(answer ==  1)
+                  {
+                    favoriteIcon.attr('icon','ion-android-star-outline');
+                    favorite = false;
+                    
+                    
+                    
+                    
+                    
+                    
+                  } 
+                }
+              });
+            }
+        }
+        /************************
+         * 북마크 등록 함수 
+         * *********************/
+        window.bookMark = function(){
+            var bookMarkIcon = $('#novelBookMarkIcon');
+            bookMarkIcon.attr('style','color:orange;');
+            bookMarkIcon.attr('size','40px');
+            alert('북마크 등록');
+              
+              
+            
+        }
+        
+        
     /******************************************
-     * 추천, 관심등록 버튼
-     * ****************************************/
-          function itGood(){
-         var result = $('#good');
-         if(result.hasClass("fa fa-heart-o") == true){
-            $.confirm({
-                useBootstrap: false,
-                 boxWidth: '80%',
-                title: '안내!',
-                content: '추천 하시겠습니까?!',
-                buttons: {
-                    OK: function () {
-                        $.alert('등록되었습니다!');
-                        result.prop('class', 'fa fa-heart info');
-                    },
-                    CANCEL: function () {
-                        return;
-                    },
-                }
-            });
-            }else if(result.hasClass("fa fa-heart-o") == false){
-             $.confirm({
-                 useBootstrap: false,
-                 boxWidth: '80%',
-                title: '안내!',
-                content: '추천 취소하시겠습니까?!',
-                buttons: {
-                    OK: function () {
-                        $.alert('취소되었습니다!');
-                        result.prop('class', 'fa fa-heart-o');
-                    },
-                    CANCEL: function () {
-                        return;
-                    },
-                }
-            });
-        };
-     };
-     
-     function Favorite(){
-         var result = $('#Favorite');
-         if(result.hasClass("fa fa-star-o") == true){
-            $.confirm({
-                useBootstrap: false,
-                 boxWidth: '80%',
-                title: '안내!',
-                content: '선호작품 등록하시겠습니까?',
-                buttons: {
-                    OK: function () {
-                        $.alert('등록되었습니다!');
-                        result.prop('class', 'fa fa-star');
-                    },
-                    CANCEL: function () {
-                        return;
-                    },
-                }
-            });
-            }else if(result.hasClass("fa fa-star-o") == false){
-             $.confirm({
-                 useBootstrap: false,
-                 boxWidth: '80%',
-                title: '안내!',
-                content: '선호작품 등록취소하시겠습니까?',
-                buttons: {
-                    OK: function () {
-                        $.alert('취소되었습니다!');
-                        result.prop('class', 'fa fa-star-o');
-                    },
-                    CANCEL: function () {
-                        return;
-                    },
-                }
-            });
-        };
-     };
-     
-         /******************************************
      * 더보기 클릭시
      * ****************************************/
-        
-        $(window).on('load', function () {
-            load('#js-load', '4');
-            $("#js-btn-wrap .button").on("click", function () {
-                load('#js-load', '4', '#js-btn-wrap');
-            })
-        });
-         
-        function load(id, cnt, btn) {
-            var girls_list = id + " .js-load:not(.active)";
-            var girls_length = $(girls_list).length;
-            var girls_total_cnt;
-            if (cnt < girls_length) {
-                girls_total_cnt = cnt;
-            } else {
-                girls_total_cnt = girls_length;
-                $('.button').hide();
-            }
-            $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
-        }
+    function moreList(){
     
+            var content="";
+            for(var i=0; i<3; i++){
+                content +=
+                "<ons-list-item class='list-item-container'>"+
+                "<ons-row>"+
+                "<ons-col width='75px'>"+"사진"+
+                "</ons-col>"+
+                "<ons-col>"+
+                "<div class='location'>"+
+                "<div>"+"횟수"+"</div><div style='width:60px'>"+"댓글수"+"</div><div>"+"날짜"+"</div>"+
+                "</div>"+
+                "<div class='name'>"+"제목"+
+                "</div>"+
+                "</ons-col>"+
+                "</ons-row>"+
+                "</ons-list-item>";
+            }
+            
+           /*나중에 쓸 js*/ /*content+="<tr id='addbtn'><td colspan='5'><div class='btns'><a href='javascript:moreList();' class='btn'>더보기</a></div>  </td></tr>";*/
+            
+            $(content).appendTo(".chapterListDiv");
+    };   
     
     /***********************************
      * 소설읽는 화면의 뷰어를 설정하는 기능

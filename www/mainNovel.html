@@ -2,28 +2,6 @@
 <html>
 <head>
    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-    <script language="JavaScript" type="text/javascript"
-            src="https://code.jquery.com/jquery-3.2.1.js"
-            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-            crossorigin="anonymous">
-     </script>
-
-    <script language="JavaScript" type="text/javascript" src="components/loader.js"></script>
-    <script language="JavaScript" type="text/javascript" src="lib/onsenui/js/onsenui.min.js"></script>
-    <script language="JavaScript" type="text/javascript" src="js/app.js"></script>
-    <script language="JavaScript" type="text/javascript" src="js/slick.min.js"></script>
-    <script language="JavaScript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
-    <script type="text/javascript" src="js/mainNovel.js"></script>
-
-    <link rel="stylesheet" href="components/loader.css">
- 
-    <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/slick.css">
-    <link rel="stylesheet" href="css/mainNovel.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
     
 </head>
 <body>
@@ -36,13 +14,10 @@
             학교출입금지
           </div>
           <div class="right">
-          
           <!-- 즐겨찾기, 좋아요 버튼 -->
-            <span class="toolbar-button toolbar-button--material">
-                <i class="fa fa-heart-o" id="good" onclick="itGood()"></i>
-                <i class="fa fa-star-o" id="Favorite" onclick="Favorite()"></i>
-                <i class="fa fa-ellipsis-v fa-1g" id="mainNovelDropListIcon" onclick="showPopover(this);"></i>
-            </span>
+                <ons-icon icon="ion-ios-heart-outline" class="novelGoodIcon" onclick="isGood();" size="30px"></ons-icon>
+                <ons-icon icon="ion-android-star-outline" class="novelFavoriteIcon" onclick="addFavorite();" size="30px" style="margin-left:10px;" ></ons-icon>
+                <ons-icon icon="ion-android-more-vertical" onclick="showPopover(this);" size="30px" style="margin-left:10px;margin-right:20px;"></ons-icon>
           </div>
     </ons-toolbar>
     
@@ -119,7 +94,7 @@
             </div>
             
         </li>
-  
+    <div class="chapterListDiv">
     <!-- 챕터 리스트 -->
     <ons-list-item class="list-item-container">
         <ons-row>
@@ -223,105 +198,11 @@
             </ons-col>
         </ons-row>
     </ons-list-item>
-   <div class="details" onclick="addlist()">더보기
-        <i class="fa fa-chevron-down"></i>
     </div>
     </ul>
-<div id="contents">
-  <div id="js-load" class="main">
-    <ul class="lists">
-      <li class="lists__item js-load">test1</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test2</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test3</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test4</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test5</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test6</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test7</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test8</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test9</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test10</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test11</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test12</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test13</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test14</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test15</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test16</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test17</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test18</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test19</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test20</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test21</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test22</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test23</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test24</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test25</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-    </ul>
-    <div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>
-  </div>
-    
-<!-- 작가의 다른 작품 -->
-
-                <ons-list-header style="border:none !important;">
-                   작가의 다른 작품                    
-                </ons-list-header>  
- <div class="differentWork">
-                    <div><img src="https://lh3.googleusercontent.com/SATJppvDuNGejDfpRV3KCaAAFdB0DjIw0ZDTsbEEvvrHL5US7eHCGvJPPp6XCWSnTso=w300" style="width:100%; height:100%"></div>
-                    <div><img src="https://pbs.twimg.com/profile_images/724572911860764672/orhYZj6c.jpg" style="width:100%; height:100%"></div>
-                    <div><img src="http://24.media.tumblr.com/f57ccfa1d67cd060f1774149b4ec8c7f/tumblr_mvzbvrAzYZ1qzpegpo7_1280.jpg" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
-                </div>
-
-<!-- 작가의 다른 작품 -->
-    <ons-list-header style="border:none !important;">관련 추천 작품</ons-list-header>
-    <ons-list-item class="list-item-container-recommend">
-          <ons-row>
-            <ons-col width="70px">
-              <img src="./img/신 생활명품.jpg" class="recommendImg">
-              <div>신 생활명품</div>
-            </ons-col>
-            <ons-col width="70px">
-              <img src="./img/비난의역설.jpg" class="recommendImg">
-              <div>비난의역설</div>
-            </ons-col>
-            <ons-col width="70px">
-              <img src="./img/너였구나.jpg" class="recommendImg">
-              <div>너였구나</div>
-            </ons-col>
-            <ons-col width="70px">
-              <img src="./img/거리두기.jpg" class="recommendImg">
-              <div>거리두기</div>
-            </ons-col>
-          </ons-row>
-          
-        </ons-list-item>
-
+    <div class="details"><a href="javascript:moreList();" class="btn">더보기</a>
+        <i class="fa fa-chevron-down"></i>
+        </div>
     
     <ons-template id="notice.html">
     <ons-page id="notice">

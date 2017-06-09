@@ -1,5 +1,8 @@
 /* This is a CSS file */
 /*상단의 북마크, 관심등록 아이콘 css*/
+#novelHeader{
+    position: relative;
+}
 
 #novelHeader > .right > .readNovelIcons{
     margin-top: 5px;

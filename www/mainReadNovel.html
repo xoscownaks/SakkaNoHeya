@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/mainReadNovel.css">
     
  </head>
-<body  style="text-align:center;background-color:black;">
+<body>
         <ons-toolbar id="novelHeader">
           <div class="left">
               <ons-back-button></ons-back-button> 
@@ -27,13 +27,12 @@
             1화
           </div>
           <div class="right">
-            <ons-icon class="readNovelIcons" size="40px" icon="ion-android-favorite-outline" ></ons-icon>
-            <ons-icon class="readNovelIcons" size="40px" icon="ion-bookmark"></ons-icon>
+            <ons-icon class="novelGoodIcon" size="30px" icon="ion-ios-heart-outline" onclick="isGood()"></ons-icon>
+            <ons-icon class="readNovelIcons" id="novelBookMarkIcon" size="30px" icon="ion-bookmark" onclick="bookMark()" style="margin-left:15px;"></ons-icon>
           </div>
         </ons-toolbar>
-
-            
-        <div id="novelArea">
+        
+        <div id="novelArea">        
             <div id="novelAreaText">
                 소년은 개울가에서 물장난을 하고 있는 소녀를 보자 곧 윤초시네 증손녀라는 걸 알 수 있었다. 
                 벌써 며칠째 소녀는 물장난을 하고 있었다. 
@@ -55,7 +54,7 @@
                 뷰어설정
             </div>
             <div id="novelComment">
-                <ons-icon class="readNovelIcons" size="25px" icon="ion-chatbox-working"></ons-icon>
+                <ons-icon class="readNovelIcons" size="25px" icon="ion-chatbox-working" onclick="myNavigator.pushPage('novelComment.html')"></ons-icon>
         
             </div>
                
