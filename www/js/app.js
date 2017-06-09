@@ -22,6 +22,7 @@
  * 이미지 슬라이드 부분
  * ****************************************/
     ons.ready(function(){
+       
         //메인 페이지 상단 부분
         $('.contents').slick({
             infinite: true,
@@ -70,12 +71,32 @@
             slidesToShow:3,
             slidesToScroll:3        
         });
+        /*이미지 슬라이드 부분에 추가*/ 
+        $(".differentWork").slick({
+            infinite: true,
+            autoplay:true,
+            autoplaySpeed:4000,
+            arrows:false,
+            pauseOnHover:false,
+            slidesToShow:4,
+            slidesToScroll:3        
+        });
+
          //소설 읽기에서 화면을 터치 할시 
         $(document).on('click', '#novelArea', function() {
-            $('#novelHeader').slideToggle(400);
-            $('#novelFooter').slideToggle(400);
+            $('#novelHeader').slideToggle(200);
+            $('#novelFooter').slideToggle(200);
             
-           
+        })
+        //소설읽기 에서 뷰어설정을 누르면 
+        $(document).on('click', '#viewSettings', function() {
+            $('#viewSettingForm').slideToggle(200);
+            
+        })
+        //소설읽기에서 뷰어설정 창에서 X를 누르면 
+        $(document).on('click', '#viewerClose', function() {
+            $('#viewSettingForm').slideToggle(200);
+            
         })
     });
          
@@ -184,9 +205,9 @@
     }
 
 
-/**********
+/***********************************
  * 아이디, 비밀번호 찾기에서 버튼을 누를시 내용을 보이고 숨김
-***********/
+*************************************/
     window.idPwChange = function(idPw){
         var idSearch = document.getElementById("idSearch");
         var pwSearch = document.getElementById("pwSearch");
@@ -204,17 +225,7 @@
      소설 읽는 부분에서 회차 이동 기능 하는 함수 
      ********************************/
     function editSelects(event) {
-      document.getElementById('choose-sel').removeAttribute('modifier');
-      if (event.target.value == 'material' || event.target.value == 'underbar') {
-        document.getElementById('choose-sel').setAttribute('modifier', event.target.value);
-      }
-    }
-    function addOption(event) {
-      const option = document.createElement('option');
-      let text = document.getElementById('optionLabel').value;
-      option.innerText = text;
-      text = '';
-      document.getElementById('dynamic-sel').appendChild(option);
+        alert(event.target.value);
     }
     
 
@@ -227,47 +238,197 @@
     };
 
     /******************************************
-     * 좋아요, 즐겨찾기 버튼
+     * 추천, 관심등록 버튼
      * ****************************************/
-     function itGood(){
+          function itGood(){
          var result = $('#good');
          if(result.hasClass("fa fa-heart-o") == true){
-            var r = confirm("좋아요를 하시겠습니까?");
-            if(r == true){
-                result.prop('class', 'fa fa-heart info');
-            }else if(r == false){
-                return;
-            }    
-         }else if(result.hasClass("fa fa-heart-o") == false){
-             var r = confirm("좋아요를 취소하시겠습니까?");
-             if(r == true){
-                 result.prop('class', 'fa fa-heart-o');
-             }else if(r == false){
-                 return;
-             }
-         }
+            $.confirm({
+                useBootstrap: false,
+                 boxWidth: '80%',
+                title: '안내!',
+                content: '추천 하시겠습니까?!',
+                buttons: {
+                    OK: function () {
+                        $.alert('등록되었습니다!');
+                        result.prop('class', 'fa fa-heart info');
+                    },
+                    CANCEL: function () {
+                        return;
+                    },
+                }
+            });
+            }else if(result.hasClass("fa fa-heart-o") == false){
+             $.confirm({
+                 useBootstrap: false,
+                 boxWidth: '80%',
+                title: '안내!',
+                content: '추천 취소하시겠습니까?!',
+                buttons: {
+                    OK: function () {
+                        $.alert('취소되었습니다!');
+                        result.prop('class', 'fa fa-heart-o');
+                    },
+                    CANCEL: function () {
+                        return;
+                    },
+                }
+            });
+        };
      };
-
-     function bookMark(){
-        var result = $('#bookmark');
+     
+     function Favorite(){
+         var result = $('#Favorite');
          if(result.hasClass("fa fa-star-o") == true){
-            var r = confirm("선호작품 등록하시겠습니까?");
-            if(r == true){
-                result.prop('class', 'fa fa-star');
-            }else if(r == false){
-                return;
-            }    
-         }else{
-             var r = confirm("선호작품 등록취소하시겠습니까??");
-             if(r == true){
-                 result.prop('class', 'fa fa-star-o');
-             }else if(r == false){
-                 return;
-             }
-         }
- };
-
-
+            $.confirm({
+                useBootstrap: false,
+                 boxWidth: '80%',
+                title: '안내!',
+                content: '선호작품 등록하시겠습니까?',
+                buttons: {
+                    OK: function () {
+                        $.alert('등록되었습니다!');
+                        result.prop('class', 'fa fa-star');
+                    },
+                    CANCEL: function () {
+                        return;
+                    },
+                }
+            });
+            }else if(result.hasClass("fa fa-star-o") == false){
+             $.confirm({
+                 useBootstrap: false,
+                 boxWidth: '80%',
+                title: '안내!',
+                content: '선호작품 등록취소하시겠습니까?',
+                buttons: {
+                    OK: function () {
+                        $.alert('취소되었습니다!');
+                        result.prop('class', 'fa fa-star-o');
+                    },
+                    CANCEL: function () {
+                        return;
+                    },
+                }
+            });
+        };
+     };
+     
+         /******************************************
+     * 더보기 클릭시
+     * ****************************************/
+        
+        $(window).on('load', function () {
+            load('#js-load', '4');
+            $("#js-btn-wrap .button").on("click", function () {
+                load('#js-load', '4', '#js-btn-wrap');
+            })
+        });
+         
+        function load(id, cnt, btn) {
+            var girls_list = id + " .js-load:not(.active)";
+            var girls_length = $(girls_list).length;
+            var girls_total_cnt;
+            if (cnt < girls_length) {
+                girls_total_cnt = cnt;
+            } else {
+                girls_total_cnt = girls_length;
+                $('.button').hide();
+            }
+            $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+        }
+    
+    
+    /***********************************
+     * 소설읽는 화면의 뷰어를 설정하는 기능
+     * ***********************************/
+    window.mainReadNovelSettings = function(settings){
+        
+        //초기화
+        if(settings == "init"){
+            $('#novelAreaText').css('font-family','Noto Sans');
+            $('#novelAreaText').css('font-size','20px');
+            $('#novelAreaText').css('line-height','150%');
+            $('#novelAreaText').css('color','black');
+            $('#novelArea').css('background-color','white');
+        }
+        //나눔고딕
+        if(settings == "nanum"){
+             $('#novelAreaText').css('font-family','Nanum Gothic');
+        }
+        //돋움
+        if(settings == "Jeju"){
+            $('#novelAreaText').css('font-family','Jeju Myeongjo');
+        }
+        //궁서
+        if(settings == "Hanna"){
+            $('#novelAreaText').css('font-family','Hanna');
+        }
+        //글씨 크기 20
+        if(settings == "size20"){
+            $('#novelAreaText').css('font-size','20px');
+        }
+        //글씨 크기 22
+        if(settings == "size22"){
+            $('#novelAreaText').css('font-size','22px');
+        }
+        //글씨 크기 24
+        if(settings == "size24"){
+            $('#novelAreaText').css('font-size','24px');
+        }
+        //글씨 크기 26
+        if(settings == "size26"){
+            $('#novelAreaText').css('font-size','26px');
+        }
+        //줄간격 160%
+        if(settings == "line160"){
+            $('#novelAreaText').css('line-height','160%');
+        }
+        //줄간격 170%
+        if(settings == "line170"){
+            $('#novelAreaText').css('line-height','170%');
+        }
+        //줄간격 180%
+        if(settings == "line180"){
+            $('#novelAreaText').css('line-height','180%');
+        }
+        //줄간격 190%
+        if(settings == "line190"){
+            $('#novelAreaText').css('line-height','190%');
+        }
+        //줄간격 200%
+        if(settings == "line200"){
+            $('#novelAreaText').css('line-height','200%');
+        }
+        //글자색 white
+        if(settings == "fontColor-white"){
+            $('#novelAreaText').css('color','white');
+        }
+        //글자색 black
+        if(settings == "fontColor-black"){
+            $('#novelAreaText').css('color','black');
+        }
+        //배경색 white
+        if(settings == "backgroundColor-white"){
+            $('#novelArea').css('background-color','white');
+        }
+        //배경색 255,211,128
+        if(settings == "backgroundColor-255,211,128"){
+            $('#novelArea').css('background-color','rgb(255,212,128)');
+        }
+         //배경색 255,211,128
+        if(settings == "backgroundColor-230,255,230"){
+            $('#novelArea').css('background-color','rgb(230,255,230)');
+        }
+         //배경색 255,211,128
+        if(settings == "backgroundColor-244,204,255"){
+            $('#novelArea').css('background-color','rgb(244,204,255)');
+        }
+        //배경색 255,211,128
+        if(settings == "backgroundColor-black"){
+            $('#novelArea').css('background-color','black');
+        }
+    }
 
 
 

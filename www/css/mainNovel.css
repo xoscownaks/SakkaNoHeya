@@ -91,6 +91,16 @@
   padding: 0 6px;
 }
 
+/* 툴바 오른쪽 아이콘 간격 CSS */
+#bookmark {
+    padding-right: 17px;
+    padding-left: 15px;
+}
+#mainNovelDropListIcon{
+    width: 10px;
+    padding-right: 5px;
+}
+
 /* 내용(챕터, 회차) */
 .list-item-container {
   line-height: 0;
@@ -170,9 +180,9 @@
 }
 /* content부분의 회차보기&조회수&추천&장르&연재현황 */
 .main_novel_novelInfo_contents{
-    width:150px; 
+    width:170px; 
     height:120px; 
-    margin:7px;
+    margin:5px;
 }
 /* content부분의 회차보기 버튼 */
 .main_novel_novelInfo_contents_button {
@@ -468,8 +478,6 @@
   -moz-osx-font-smoothing: grayscale;
   font-weight: 600;
   font-size: 15px;
-  padding: 0;
-  margin: 0;
   list-style-type: none;
   text-align: left;
   overflow: auto;
@@ -477,7 +485,10 @@
   -webkit-overflow-scrolling: touch;
   border-bottom: 1px solid #ccc;
   overflow: hidden;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
+
 .mainNovelDropListItem {
   margin: 0;
   padding: 0;
@@ -589,3 +600,87 @@
   }
 
 
+/* 회차 select CSS */
+select {
+    width: 60px;
+    height: 20px;
+    padding-left: 10px;
+    font-size: 15px;
+    color: #5C5C5C;
+    border: 1px solid #5C5C5C;
+    border-radius: 3px;
+}
+
+/* 회차 버튼 CSS */
+.main_novel_novelInfo_contents_button {
+    -moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    -webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+	background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+	background-color:#8D8D8D;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #5C5C5C;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:10px;
+	font-weight:bold;
+	padding:7px 7px 3px 7px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+.main_novel_novelInfo_contents_button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+	background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+	background-color:#6c7c7c;
+}
+.main_novel_novelInfo_contents_button:active {
+	position:relative;
+	top:1px;
+}
+/* 더보기 CSS */
+.js-load {
+    display: none;
+}
+.js-load.active {
+    display: block;
+}
+.is_comp.js-load:after {
+    display: none;
+}
+.btn-wrap, .lists, .main {
+    display: block;
+}
+.main {
+    max-width: 640px;
+    margin: 0 auto;
+}
+.lists {
+    margin-bottom: 4rem;
+}
+.lists__item {
+    padding: 20px;
+    background: #EEE;
+}
+.lists__item:nth-child(2n) {
+    background: #59b1eb;
+    color: #fff;
+}
+
+.btn-wrap {
+    text-align: center;
+}

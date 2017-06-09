@@ -1,4 +1,33 @@
- <!-- 특정 소설 페이지 헤더 -->
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    <script language="JavaScript" type="text/javascript"
+            src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous">
+     </script>
+
+    <script language="JavaScript" type="text/javascript" src="components/loader.js"></script>
+    <script language="JavaScript" type="text/javascript" src="lib/onsenui/js/onsenui.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/app.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/slick.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+    <script type="text/javascript" src="js/mainNovel.js"></script>
+
+    <link rel="stylesheet" href="components/loader.css">
+ 
+    <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" href="css/mainNovel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+    
+</head>
+<body>
+    <!-- 특정 소설 페이지 헤더 -->
      <ons-toolbar>
           <div class="left">
             <ons-back-button>back</ons-back-button>
@@ -11,23 +40,23 @@
           <!-- 즐겨찾기, 좋아요 버튼 -->
             <span class="toolbar-button toolbar-button--material">
                 <i class="fa fa-heart-o" id="good" onclick="itGood()"></i>
-                <i class="fa fa-star-o" id="bookmark" onclick="bookMark()"></i>
-                <i class="fa fa-ellipsis-v fa-1g" onclick="showPopover(this);"></i>
+                <i class="fa fa-star-o" id="Favorite" onclick="Favorite()"></i>
+                <i class="fa fa-ellipsis-v fa-1g" id="mainNovelDropListIcon" onclick="showPopover(this);"></i>
             </span>
           </div>
     </ons-toolbar>
     
         <!-- 특정 소설 페이지 툴바 드랍다운메뉴-->
-        <ons-popover direction="down" id="popover" style="width:140px" cancelable>
+        <ons-popover direction="down" id="popover" style="width:140px; padding-right:10px;" cancelable>
              <div>
                 <ul class="mainNovelDropList">
-                    <li class="mainNovelDropListItem__item--chevron">
-                        <div class="mainNovelDropListCenter">블로그</div>
+                    <li class="mainNovelDropListItem mainNovelDropListItem--chevron">
+                        <div class="mainNovelDropListCenter" onclick="myNavigator.pushPage('blog.html')">블로그</div>
                     </li>
-                    <li class="mainNovelDropListItem__item--chevron">
+                    <li class="mainNovelDropListItem mainNovelDropListItem--chevron">
                         <div class="mainNovelDropListCenter">리뷰</div>
                     </li>
-                    <li class="mainNovelDropListItem__item--chevron">
+                    <li class="mainNovelDropListItem mainNovelDropListItem--chevron">
                         <div class="mainNovelDropListCenter">배결 설정 보기</div>
                     </li>
                 </ul>
@@ -35,7 +64,7 @@
         </ons-popover>
 
 
-<ons-page>
+
     <!-- 특정 소설 페이지 소설 소개 표시  -->
     <div class="main_novel_novelInfo">
         <table>
@@ -83,7 +112,7 @@
         <!-- 공지사항 -->
         <li class="main_novel_notice" onclick="myNavigator.pushPage('notice.html')">
             <div class="main_novel_notice_left">
-                <img class="list__item__thumbnail" src="./img/notice.png">
+                <img class="list__item__thumbnail" src="http://m.ebse.co.kr/new2014/images/Comm/icon_sidem_notice.png">
             </div>
             <div class="main_novel_notice_center">
                 <div class="list__item__title"><p>오늘의 공지사항을 알려드립니다. 다음주 7화는 휴재를 할 것 같습니 ...</p></div>
@@ -95,7 +124,8 @@
     <ons-list-item class="list-item-container">
         <ons-row>
             <ons-col width="75px">
-                <img src="./img/일러스트6.jpg" class="thumbnail">
+                <img src="data:image/jpeg;base64,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
+                9k=" class="thumbnail">
             </ons-col>
             <ons-col>
                 <div class="location">
@@ -112,7 +142,8 @@
     <ons-list-item class="list-item-container">
         <ons-row>
             <ons-col width="75px">
-                <img src="./img/일러스트5.jpg" class="thumbnail">
+                <img src="http://www.piscomu.com/files/attach/images/29187/256/155/8382c745fc270899365c8f4fd4d07db9.png"
+                class="thumbnail">
             </ons-col>
             <ons-col>
                 <div class="location">
@@ -129,7 +160,8 @@
     <ons-list-item class="list-item-container">
         <ons-row>
             <ons-col width="75px">
-                <img src="./img/일러스트4.jpg" class="thumbnail">
+                <img src="http://res.heraldm.com/phpwas/restmb_idxmake.php?idx=93&simg=%2Fcontent%2Fimage%2F2014%2F07%2F15%2F20140715000616_0.jpg" 
+                class="thumbnail">
             </ons-col>
             <ons-col>
                 <div class="location">
@@ -146,7 +178,7 @@
     <ons-list-item class="list-item-container">
         <ons-row>
             <ons-col width="75px">
-                <img src="./img/일러스트3.jpg" class="thumbnail">
+                <img src="https://i.ytimg.com/vi/0fajEHGdBnQ/hqdefault.jpg" class="thumbnail">
             </ons-col>
             <ons-col>
                 <div class="location">
@@ -163,7 +195,7 @@
     <ons-list-item class="list-item-container">
         <ons-row>
             <ons-col width="75px">
-                <img src="./img/일러스트2.jpg" class="thumbnail">
+                <img src="http://cfile21.uf.tistory.com/image/27451F4B54AF6AA82AED8D" class="thumbnail">
             </ons-col>
             <ons-col>
                 <div class="location">
@@ -179,7 +211,7 @@
     <ons-list-item class="list-item-container" onclick="myNavigator.pushPage('mainReadNovel.html')">
         <ons-row>
             <ons-col width="75px">
-                <img src="./img/일러스트1.jpg" class="thumbnail">
+                <img src="http://www.ablenews.co.kr/news/newsimages/newsimage/c_0_003120150109102258814167.JPG" class="thumbnail">
             </ons-col>
             <ons-col>
                 <div class="location">
@@ -191,18 +223,73 @@
             </ons-col>
         </ons-row>
     </ons-list-item>
-    <div class="details">더보기
+   <div class="details" onclick="addlist()">더보기
         <i class="fa fa-chevron-down"></i>
     </div>
     </ul>
-
-<!-- 작가의 다른 작품 -->
+<div id="contents">
+  <div id="js-load" class="main">
+    <ul class="lists">
+      <li class="lists__item js-load">test1</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test2</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test3</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test4</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test5</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test6</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test7</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test8</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test9</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test10</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test11</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test12</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test13</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test14</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test15</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test16</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test17</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test18</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test19</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test20</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test21</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test22</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test23</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test24</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test25</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+    </ul>
+    <div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>
+  </div>
     
+<!-- 작가의 다른 작품 -->
+
                 <ons-list-header style="border:none !important;">
                    작가의 다른 작품                    
                 </ons-list-header>  
-                
-                 <div class="ex">
+ <div class="differentWork">
                     <div><img src="https://lh3.googleusercontent.com/SATJppvDuNGejDfpRV3KCaAAFdB0DjIw0ZDTsbEEvvrHL5US7eHCGvJPPp6XCWSnTso=w300" style="width:100%; height:100%"></div>
                     <div><img src="https://pbs.twimg.com/profile_images/724572911860764672/orhYZj6c.jpg" style="width:100%; height:100%"></div>
                     <div><img src="http://24.media.tumblr.com/f57ccfa1d67cd060f1774149b4ec8c7f/tumblr_mvzbvrAzYZ1qzpegpo7_1280.jpg" style="width:100%; height:100%"></div>
@@ -210,8 +297,7 @@
                     <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
                     <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
                 </div>
-    >
-        
+
 <!-- 작가의 다른 작품 -->
     <ons-list-header style="border:none !important;">관련 추천 작품</ons-list-header>
     <ons-list-item class="list-item-container-recommend">
@@ -235,8 +321,7 @@
           </ons-row>
           
         </ons-list-item>
-    </ons-page>
-    
+
     
     <ons-template id="notice.html">
     <ons-page id="notice">
@@ -253,23 +338,32 @@
         
    <li class="list__header">
     5월 24일
-  </li>
-    <ons-list-item onclick="myNavigator1.pushPage('tapme.html')" tappable>오늘의 공지사항을 알려드립니다. 다음주 7화는 휴재를 할 것 같습니다 오늘은 공지사항을 완성합니다. ...</ons-list-item>
-  </ons-page>
-    </ons-template>
-    
-    <ons-template id="tapme.html">
-    <ons-page id="tapme">
-    <ons-toolbar>
-          <div class="left">
-            <ons-back-button>back</ons-back-button> 
-          </div>
-          <div class="center">
-            tapme
-          </div>
-          <div class="right">
-          </div>
-    </ons-toolbar>
+   </li>
+    <ons-list-item>
+    오늘의 공지사항을 알려드립니다. 다음주 7화는 휴재를 할 것 같습니다 오늘은 공지사항을 완성합니다. ...
+    </ons-list-item>
+    <li class="list__header">
+    5월 23일
+   </li>
+    <ons-list-item>
+    오늘의 공지사항을 알려드립니다. 다음주 7화는 휴재를 할 것 같습니다 오늘은 공지사항을 완성합니다. ...
+    </ons-list-item>
+    <li class="list__header">
+    5월 22일
+   </li>
+    <ons-list-item>
+    오늘의 공지사항을 알려드립니다. 다음주 7화는 휴재를 할 것 같습니다 오늘은 공지사항을 완성합니다. ...
+    </ons-list-item>
+    <li class="list__header">
+    5월 21일
+   </li>
+    <ons-list-item>
+    오늘의 공지사항을 알려드립니다. 다음주 7화는 휴재를 할 것 같습니다 오늘은 공지사항을 완성합니다. ...
+    </ons-list-item>
     </ons-page>
     </ons-template>
+    
+</body>
+</html>
+
 
