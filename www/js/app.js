@@ -16,13 +16,230 @@
       content.load(page)
         .then(menu.close.bind(menu));
     };
-
-
+    
+    //메뉴 닫기 함수 
+    function menuClose(){
+        var menu = document.getElementById('menu');
+        menu.close();
+    };
 /******************************************
  * 이미지 슬라이드 부분
  * ****************************************/
     ons.ready(function(){
-       
+        //메인 carousel 상단 슬라이드 이미지 가져오기
+        $.ajax({
+                type:"get",
+                url:"http://150.95.130.43/get_novel",
+                success:function(data){                   
+                    for(var i=0; i< 4;i++){
+                        var novel_id = data[i].id;
+                        var body = "<div class='to-top'><img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:200px;'></div>";
+                        $(".contents").slick('slickAdd',body);
+                        
+                        $(".to-top").off().on("click",function(){
+                           myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
+                        });
+                        console.log(body);
+                    }
+    		    }
+        });    
+        
+        //today's best 가져오기
+        $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/today_best",
+                data: {
+            	},
+                success: function (data) {                   
+                    for(var i=0; i< Object.keys(data).length;i++){                     
+                        var novel_id = data[i].id;
+                         var body = "<div class='to-todayBest'><img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:150px;'></div>";
+                        $(".todayBest").slick('slickAdd',body);
+                        $(".to-todayBest").off().on("click",function(){
+                            myNavigator.pushPage('mainNovel.html',{novel_id : novel_id});
+                        })
+                    }
+    		    }
+        });
+        //fantasy's best 가져오기
+        $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/fantasy_best",
+                data: {
+                },
+                success: function (data) {                   
+                    for(var i=0; i< Object.keys(data).length;i++){
+                        var novel_id = data[i].id;
+                        var body = "<div class='to-fantasytBest'>";
+                        body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:150px;'>";
+                        body += "</div>"; 
+                        $(".fantasyBest").slick('slickAdd',body);
+                        
+                        $(".to-fantasytBest").off().on("click",function(){
+                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
+                        })
+                    }
+    		    },
+                error: function (error) {
+                }
+        });
+        //romance's best 가져오기
+        $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/romance_best",
+                data: {
+                },
+                success: function (data) {                   
+                    for(var i=0; i< Object.keys(data).length;i++){
+                        
+                        novel_id = data[i].id;
+                        var body = "<div class='to-romancetBest'>";
+                        body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:150px;'>";
+                        body += "</div>"; 
+                        $(".romanceBest").slick('slickAdd',body);
+                        
+                        $(".to-romancetBest").off().on("click",function(){
+                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
+                        })
+                    }
+        	    },
+                error: function (error) {
+                }
+        });
+        // 요일별 소설 가져오기
+        //월
+        $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/monday",
+                data: {
+                    
+                },
+                success: function (data) {                   
+                    for(var i=0; i< Object.keys(data).length;i++){
+                        var body = "<img class='mondayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                       $('#monday').append(body);
+                       
+                       $(".mondayNovel").off().on("click",function(){
+                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
+                        })
+                    }
+                },
+                error: function (error) {
+                }
+        });
+         //화
+        $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/tuesday",
+                data: {
+                    
+                },
+                success: function (data) {                   
+                    for(var i=0; i< Object.keys(data).length;i++){
+                        var body = "<img class='tuesdayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                       $('#tuesday').append(body);
+                       
+                       $(".tuesdayNovel").off().on("click",function(){
+                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
+                        })
+                    }
+                },
+                error: function (error) {
+                }
+        });
+        //수
+        $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/wednesday",
+                data: {
+                    
+                },
+                success: function (data) {                   
+                    for(var i=0; i< Object.keys(data).length;i++){
+                        var body = "<img class='wednesNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                       $('#wednesday').append(body);
+                       
+                       $(".wednesNovel").off().on("click",function(){
+                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
+                        })
+                    }
+                },
+                error: function (error) {
+                }
+        });
+         //목
+        $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/thursday",
+                data: {
+                    
+                },
+                success: function (data) {                   
+                    for(var i=0; i< Object.keys(data).length;i++){
+                        var body = "<img class='thursdayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                       $('#thursday').append(body);
+                       
+                       $(".thursdayNovel").off().on("click",function(){
+                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
+                        })
+                    }
+                }
+        });
+         //금
+        $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/friday",
+                data: {
+                    
+                },
+                success: function (data) {                   
+                    for(var i=0; i< Object.keys(data).length;i++){
+                        var body = "<img class='fridayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                       $('#friday').append(body);
+                       
+                        $(".fridayNovel").off().on("click",function(){
+                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
+                        })
+                    }
+                }
+        });
+         //토
+        $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/saturday",
+                data: {
+                    
+                },
+                success: function (data) {                   
+                    for(var i=0; i< Object.keys(data).length;i++){
+                        var body = "<img class='saturdayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                       $('#saturday').append(body);
+                       
+                       $(".saturdayNovel").off().on("click",function(){
+                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
+                        })
+                    }
+                }
+        });
+         //일
+        $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/sunday",
+                data: {
+                    
+                },
+                success: function (data) {                   
+                    for(var i=0; i< Object.keys(data).length;i++){
+                        var body = "<img class='sundayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;' onclick=''>";
+                     
+                       $('#sunday').append(body);
+                       $(".sundayNovel").off().on("click",function(){
+                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
+                        })
+                    }
+                }
+        });
+
         //메인 페이지 상단 부분
         $('.contents').slick({
             infinite: true,
@@ -87,17 +304,17 @@
             $('#novelHeader').slideToggle(200);
             $('#novelFooter').slideToggle(200);
             
-        })
+        });
         //소설읽기 에서 뷰어설정을 누르면 
         $(document).on('click', '#viewSettings', function() {
             $('#viewSettingForm').slideToggle(200);
             
-        })
+        });
         //소설읽기에서 뷰어설정 창에서 X를 누르면 
         $(document).on('click', '#viewerClose', function() {
             $('#viewSettingForm').slideToggle(200);
             
-        })
+        });
     });
          
   
@@ -109,10 +326,23 @@
         var obj1 = document.getElementById('popular');
         var obj2 = document.getElementById('week');
         var monday = document.getElementById('monday');
+        var tuesday = document.getElementById('tuesday');
+        var wednesday = document.getElementById('wednesday');
+        var thursday = document.getElementById('thursday');
+        var friday = document.getElementById('friday');
+        var saturday = document.getElementById('saturday');
+        var sunday = document.getElementById('sunday');
         
         if(body == "popular"){
             obj1.style.display="block";
             obj2.style.display="none";
+            monday.style.display="none";
+            tuesday.style.display="none";
+            wednesday.style.display="none";
+            thursday.style.display="none";
+            friday.style.display="none";
+            saturday.style.display="none";
+            sunday.style.display="none";
         }
         if(body == "week"){
             obj1.style.display="none";
@@ -230,13 +460,26 @@
     
 
 
+
+
     /******************************************
      * 특정 소설 페이지 툴바 드랍다운메뉴
      * ****************************************/
-    var showPopover = function(target) {
-      document.getElementById('popover').show(target);
+    var mainNovelShowPopover = function(target) {
+      document.getElementById('mainNovelPopover').show(target);
     };
-
+    
+     /******************************************
+     * 블로그 페이지 툴바 드랍다운메뉴
+     * ****************************************/
+    var blogShowPopover = function(target) {
+      document.getElementById('BlogPopover').show(target);
+    };
+    
+    
+    
+    
+    
         /*************
          * 추천 기능 함수 true, false에 따라 추천 상태를 구분 
          * ***********/

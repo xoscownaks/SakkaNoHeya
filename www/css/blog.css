@@ -1,0 +1,84 @@
+/* This is a CSS file */
+
+/* 블로그 공지 이미지 */
+.blogNoticeImg {
+    width: 100%;
+    height: 250px;
+}
+
+/* 블로그 공지  */
+.blogNoticeTitle {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px 0 0px 35px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1f1f21;
+  text-shadow: none;
+  border-top: none;
+  -webkit-box-shadow: 0px 1px 0px 0px #fff;
+  box-shadow: 0px 1px 0px 0px #fff;
+  min-height: 24px;
+  line-height: 24px;
+  margin-top: -1px;
+  text-transform: uppercase;
+  position: relative;
+  
+}
+.blogNoticeTitle:not(:first-of-type) {
+  border-top: 1px solid #ccc;
+}
+
+.blogNoticeItem {
+    width: 90%;
+    padding: 0 15px 0 18px;
+    word-wrap: break-word;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 블로그 전체글 */
+.blogNoticeContentsTitle {
+    margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px 0 10px 43px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1f1f21;
+  text-shadow: none;
+  border-top: none;
+  -webkit-box-shadow: 0px 1px 0px 0px #fff;
+  box-shadow: 0px 1px 0px 0px #fff;
+  min-height: 24px;
+  line-height: 24px;
+  margin-top: -1px;
+  text-transform: uppercase;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+}
+.blogNoticeContentsTitle:not(:first-of-type) {
+  border-top: 1px solid #ccc;
+}
+.blogNoticeContentsTime {
+     width: 90%;
+    padding: 20px 15px 0 25px;
+}
+
+.blogNoticeContentsImg {
+    width: 90%;
+    height: 150px;
+    padding: 10px 0 8px 18px; 
+    border-bottom: 1px solid #ccc;
+}
+

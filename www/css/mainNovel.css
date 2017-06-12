@@ -1,4 +1,6 @@
 /* This is a CSS file */
+
+
 .main_novel_notice {
   margin: 0;
   padding: 0;
@@ -92,11 +94,11 @@
 }
 
 /* 툴바 오른쪽 아이콘 간격 CSS */
-#bookmark {
-    padding-right: 17px;
-    padding-left: 15px;
+.novelFavoriteIcon {
+    padding-right: 8px;
+    padding-left: 6px;
 }
-#mainNovelDropListIcon{
+.mainNovelDropListIcon{
     width: 10px;
     padding-right: 5px;
 }
@@ -139,12 +141,7 @@
 .keyImg {
     padding: 20px 5px 0 0;
 }
-.details{
-    width: 100%;
-    height: 40px;
-    line-height: 45px;
-    text-align: center;
-}
+
 /*작가의 다른 작품 추천*/
 
 .list-item-container-recommend {
@@ -369,7 +366,7 @@
     background-image: linear-gradient(0deg, #ccc, #ccc 50%, transparent 50%);
   }
 }
-.list__header {
+.noticeList__header {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -378,7 +375,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 10px 0 10px 15px;
+  padding: 10px 0 10px 20px;
   font-size: 15px;
   font-weight: bold;
   color: #1f1f21;
@@ -392,9 +389,31 @@
   margin-top: -1px;
   text-transform: uppercase;
   position: relative;
+  
 }
-.list__header:not(:first-of-type) {
+.noticeList__header:not(:first-of-type) {
   border-top: 1px solid #ccc;
+}
+
+.noticeListItem {
+    padding: 0 5px 0 20px;
+}
+/* 더보기 CSS */
+.details{
+    width: 100%;
+    height: 50px;
+    line-height: 45px;
+    text-align: center;
+}
+.addButton {
+    text-decoration: none;
+}
+.addButtonDiv {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    line-height: 55px;
+    color: #000000;
 }
 
 /* 특정 소설 페이지 드랍다운메뉴 */
@@ -598,6 +617,7 @@
     background-image: -o-linear-gradient(90deg, #ccc, #ccc 50%, transparent 50%);
     background-image: linear-gradient(0deg, #ccc, #ccc 50%, transparent 50%);
   }
+}
 
 
 /* 회차 select CSS */
@@ -652,35 +672,88 @@ select {
 	position:relative;
 	top:1px;
 }
-/* 더보기 CSS */
-.js-load {
-    display: none;
+
+/* 배경설정 헤더 부분 */
+.NovelSettingsHeader {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px 0 10px 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1f1f21;
+  text-shadow: none;
+  border-top: none;
+  border-bottom: 1px solid #ccc;
+  -webkit-box-shadow: 0px 1px 0px 0px #fff;
+  box-shadow: 0px 1px 0px 0px #fff;
+  min-height: 24px;
+  line-height: 24px;
+  margin-top: -1px;
+  text-transform: uppercase;
+  position: relative;
+  background-color: #D2D2D2;
 }
-.js-load.active {
-    display: block;
-}
-.is_comp.js-load:after {
-    display: none;
-}
-.btn-wrap, .lists, .main {
-    display: block;
-}
-.main {
-    max-width: 640px;
-    margin: 0 auto;
-}
-.lists {
-    margin-bottom: 4rem;
-}
-.lists__item {
-    padding: 20px;
-    background: #EEE;
-}
-.lists__item:nth-child(2n) {
-    background: #59b1eb;
-    color: #fff;
+.NovelSettingsHeader:not(:first-of-type) {
+  border-top: 1px solid #ccc;
 }
 
-.btn-wrap {
+/* 배경설정 title 부분 */
+.NovelSettingsHeader > div {
+    display: inline-block;
+}
+
+.NovelSettingsNo {
+    padding-left: 30px;
+}
+
+.NovelSettingstitle {
+    padding-left: 120px;
+}
+
+/* 배경설정 list 부분 */
+.NovelSeetingsListItem {
+    line-height: 0;
+  padding: 0px 0px 0px 5px;
+  border-bottom: 1px solid #ccc;
+}
+.NovelSettingsListNumber {
+    padding-left: 50px;
+}
+
+.NovelSettingsListName {
     text-align: center;
+    padding-left: 120px;
+}
+
+/* 배경설정 detail 부분 */
+.NovelDatailSettingItem {
+  line-height: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.NovelDatailSettingTitle {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    
+    
+}
+
+.NovelDatailSettingImg {
+    width: 90%;
+    height: 300px;
+    padding: 10px 0 25px 18px;
+}
+
+.NovelDatailSettingInfo {
+    width: 90%;
+    padding: 0 15px 0 18px;
+    word-wrap: break-word;
 }

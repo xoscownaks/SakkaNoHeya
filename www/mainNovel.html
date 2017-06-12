@@ -15,14 +15,14 @@
           </div>
           <div class="right">
           <!-- 즐겨찾기, 좋아요 버튼 -->
-                <ons-icon icon="ion-ios-heart-outline" class="novelGoodIcon" onclick="isGood();" size="30px"></ons-icon>
+                <ons-icon icon="ion-android-favorite-outline" class="novelGoodIcon" onclick="isGood();" size="28px"></ons-icon>
                 <ons-icon icon="ion-android-star-outline" class="novelFavoriteIcon" onclick="addFavorite();" size="30px" style="margin-left:10px;" ></ons-icon>
-                <ons-icon icon="ion-android-more-vertical" onclick="showPopover(this);" size="30px" style="margin-left:10px;margin-right:20px;"></ons-icon>
+                <ons-icon icon="ion-android-more-vertical" class="mainNovelDropListIcon" onclick="mainNovelShowPopover(this);" size="30px" style="margin-left:10px;margin-right:20px;"></ons-icon>
           </div>
     </ons-toolbar>
     
         <!-- 특정 소설 페이지 툴바 드랍다운메뉴-->
-        <ons-popover direction="down" id="popover" style="width:140px; padding-right:10px;" cancelable>
+        <ons-popover direction="down" id="mainNovelPopover" style="width:140px; padding-right:10px;" cancelable>
              <div>
                 <ul class="mainNovelDropList">
                     <li class="mainNovelDropListItem mainNovelDropListItem--chevron">
@@ -32,7 +32,7 @@
                         <div class="mainNovelDropListCenter">리뷰</div>
                     </li>
                     <li class="mainNovelDropListItem mainNovelDropListItem--chevron">
-                        <div class="mainNovelDropListCenter">배결 설정 보기</div>
+                        <div class="mainNovelDropListCenter" onclick="myNavigator.pushPage('NovelSettings.html')">배결 설정 보기</div>
                     </li>
                 </ul>
              </div>
@@ -200,12 +200,15 @@
     </ons-list-item>
     </div>
     </ul>
-    <div class="details"><a href="javascript:moreList();" class="btn">더보기</a>
-        <i class="fa fa-chevron-down"></i>
+    <div class="details">
+        <a href="javascript:moreList();" class="addButton">
+        <div class="addButtonDiv">더보기<i class="fa fa-chevron-down"></i></div>
+        </a>
+        
         </div>
     
     <ons-template id="notice.html">
-    <ons-page id="notice">
+    <ons-page>
     <ons-toolbar>
           <div class="left">
             <ons-back-button>back</ons-back-button> 
@@ -217,33 +220,121 @@
           </div>
     </ons-toolbar>
         
-   <li class="list__header">
+   <li class="noticeList__header">
     5월 24일
    </li>
-    <ons-list-item>
+    <ons-list-item class="noticeListItem">
     오늘의 공지사항을 알려드립니다. 다음주 7화는 휴재를 할 것 같습니다 오늘은 공지사항을 완성합니다. ...
     </ons-list-item>
-    <li class="list__header">
+    <li class="noticeList__header">
     5월 23일
    </li>
-    <ons-list-item>
+    <ons-list-item class="noticeListItem">
     오늘의 공지사항을 알려드립니다. 다음주 7화는 휴재를 할 것 같습니다 오늘은 공지사항을 완성합니다. ...
     </ons-list-item>
-    <li class="list__header">
+    <li class="noticeList__header">
     5월 22일
    </li>
-    <ons-list-item>
+    <ons-list-item class="noticeListItem">
     오늘의 공지사항을 알려드립니다. 다음주 7화는 휴재를 할 것 같습니다 오늘은 공지사항을 완성합니다. ...
     </ons-list-item>
-    <li class="list__header">
+    <li class="noticeList__header">
     5월 21일
    </li>
-    <ons-list-item>
+    <ons-list-item class="noticeListItem">
     오늘의 공지사항을 알려드립니다. 다음주 7화는 휴재를 할 것 같습니다 오늘은 공지사항을 완성합니다. ...
     </ons-list-item>
     </ons-page>
     </ons-template>
     
+    <ons-template id="NovelSettings.html">
+        <ons-page>
+            <ons-toolbar>
+          <div class="left">
+            <ons-back-button>back</ons-back-button> 
+          </div>
+          <div class="center">
+            배경 설정
+          </div>
+          <div class="right">
+          </div>
+    </ons-toolbar>
+    <div class="main_novel_novelInfo">
+        <table>
+            <tr>
+                <td><img class="main_novel_novelInfo_contentsImg" src="https://cafeptthumb-phinf.pstatic.net/20140811_115/walterasura2_1407768536387BafOc_JPEG/%C7%D0%B1%B3%C3%E2%C0%D4%B1%DD%C1%F6_%C7%A5%C1%F6_violet.jpg?type=w740"></td>
+                <td>
+                    <div class="main_novel_novelInfo_contents">
+                    <form>회차 &nbsp &nbsp<select id="number">
+                        <option value="1">1화</option>
+                        <option value="2">2화</option>
+                        <option value="3">3화</option>
+                        <option value="4">4화</option>
+                        <option value="5">5화</option>
+                        <option value="6">6화</option>
+                        <option value="7">7화</option>
+                        <option value="8">8화</option>
+                        <option value="9">9화</option>
+                        <option value="10">10화</option>
+                        <option value="11">11화</option>
+                        <option value="12">12화</option>
+                    </select>
+                        &nbsp &nbsp<button class="main_novel_novelInfo_contents_button">보기</button>
+                    </form> 
+                    <p>조회수:249800</p><p>추천:16413</p>
+                    <p>치유 | 무협 | 전쟁</p>
+                    <p>연재 중 | 총 5회 | 전편 무료</p>
+                    </div>    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                <div class="main_novel_novelInfo_contentsEx">
+                    우는 봄날의 천지는 얼마나 기쁘며 일어나 아름다울까?
+                    이것을 믿음 속에서 불러내는 것이 따뜻한 봄바람이다.
+                    인생에 따뜻한 봄바람을 불어 보내는 것은 무엇일까?
+                </div>  
+                </td>
+            </tr>
+        </table>
+    </div>
+        <li class="NovelSettingsHeader">
+             <div class="NovelSettingsNo">No.</div>
+             <div class="NovelSettingstitle">제목</div>
+        </li>
+        <ons-list-item class="NovelSeetingsListItem" onclick="myNavigator.pushPage('NovelDatailSetting.html')">
+            <div class="NovelSettingsListNumber">1</div>
+            <div class="NovelSettingsListName">주인공 설정</div>
+        </ons-list-item>
+        <ons-list-item class="NovelSeetingsListItem" onclick="myNavigator.pushPage('NovelDatailSetting.html')">
+            <div class="NovelSettingsListNumber">2</div>
+            <div class="NovelSettingsListName">여주인공 설정</div>
+        </ons-list-item>
+        </ons-page>
+    </ons-template>
+    
+    <ons-template id="NovelDatailSetting.html">
+    <ons-page>
+    <ons-toolbar>
+          <div class="left">
+            <ons-back-button>back</ons-back-button> 
+          </div>
+          <div class="center">
+            배경 설정
+          </div>
+          <div class="right">
+          </div>
+    </ons-toolbar>
+     <ons-list-item class="NovelDatailSettingItem">
+        <div class="NovelDatailSettingTitle">주인공 설정<애니 레온하트></div>    
+    </ons-list-item>
+    <img class="NovelDatailSettingImg" 
+        src="http://mblogthumb1.phinf.naver.net/20151112_136/dlno19_14472548955169gFVk_JPEG/sp07.jpg?type=w2" />
+    <div class="NovelDatailSettingInfo"><p>엘런 예거가 속한 제104기 훈련병단 동기로, 종합성적 4위로 졸업을 했다. 냉정침착한 성격으로 웬만한 상황에서도 얼굴 표정에 변화가 없다. 체구는 크지 않지만 초기 훈련병 시절 대인격투술이 가장 뛰어났던 걸로 보인다.[2] 자기의 배가 되는 몸집을 자랑하는 라이너 브라운마저도 쉽게 쓰러뜨리는 모습을 보여주기도 했다.엘런 예거가 속한 제104기 훈련병단 동기로, 종합성적 4위로 졸업을 했다. 냉정침착한 성격으로 웬만한 상황에서도 얼굴 표정에 변화가 없다. 체구는 크지 않지만 초기 훈련병 시절 대인격투술이 가장 뛰어났던 걸로 보인다.[2] 자기의 배가 되는 몸집을 자랑하는 라이너 브라운마저도 쉽게 쓰러뜨리는 모습을 보여주기도 했다
+        엘런 예거가 속한 제104기 훈련병단 동기로, 종합성적 4위로 졸업을 했다. 냉정침착한 성격으로 웬만한 상황에서도 얼굴 표정에 변화가 없다. 체구는 크지 않지만 초기 훈련병 시절 대인격투술이 가장 뛰어났던 걸로 보인다.[2] 자기의 배가 되는 몸집을 자랑하는 라이너 브라운마저도 쉽게 쓰러뜨리는 모습을 보여주기도 했다
+    </p></div>
+    </ons-page>
+    </ons-template>
 </body>
 </html>
 

@@ -13,15 +13,16 @@
     <script src="components/loader.js"></script>
     <script src="lib/onsenui/js/onsenui.min.js"></script>
     <script src="js/app.js"></script>
-    <script type="text/javascript" src="js/slick.min.js"></script>
     
     
     <link rel="stylesheet" href="components/loader.css">
     <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/slick.css">
     <link rel="stylesheet" href="css/mainNovel.css">
+    <link rel="stylesheet" type="text/css" href="slick/slick.css">
+    <link rel="stylesheet" href="slick/slick-theme.css">
+    <link rel="stylesheet" href="css/blog.css">
 </head>
 <body>
 
@@ -67,8 +68,8 @@
               이벤트
             </ons-list-item>
  
-            <button class="loginBtn" onclick="myNavigator.pushPage('login.html')">로그인</button>
-            <button class="joinBtn" onclick="myNavigator.pushPage('join.html')">회원가입</button>
+            <button class="loginBtn" onclick="myNavigator.pushPage('login.html');menuClose()">로그인</button>
+            <button class="joinBtn" onclick="myNavigator.pushPage('join.html');menuClose()">회원가입</button>
            
       </ons-list>
     </ons-page>
@@ -106,9 +107,7 @@
 
             
             <div class="contents" style="width:100%; height:200px">
-                <div onclick="myNavigator.pushPage('mainNovel.html')"><img src="http://cf.joara.com/banner_file/20170309_091051.png" style="width:100%;height:200px"></div>
-                <img src="http://blogfiles5.naver.net/20151224_146/0608lgy_1450941999879r8EGl_PNG/pikicast-139221813.png" style="width:100%;height:200px">
-                <img src="http://cf.joara.com/cast_file/20170410_104855.png"  style="width:100%;height:200px">
+               
             </div>
 
             <!--중간 인기 또는 요일 별 보여주기 위한 버튼-->                
@@ -138,12 +137,7 @@
                     Today's Best                    
                 </ons-list-header>        
                 <div class="todayBest">
-                    <div><img src="https://lh3.googleusercontent.com/SATJppvDuNGejDfpRV3KCaAAFdB0DjIw0ZDTsbEEvvrHL5US7eHCGvJPPp6XCWSnTso=w300" style="width:100%; height:100%"></div>
-                    <div><img src="https://pbs.twimg.com/profile_images/724572911860764672/orhYZj6c.jpg" style="width:100%; height:100%"></div>
-                    <div><img src="http://24.media.tumblr.com/f57ccfa1d67cd060f1774149b4ec8c7f/tumblr_mvzbvrAzYZ1qzpegpo7_1280.jpg" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+                  
                 </div>
             
                 
@@ -152,24 +146,14 @@
                 </ons-list-header>  
                 
                 <div class="fantasyBest">
-                    <div><img src="https://lh3.googleusercontent.com/SATJppvDuNGejDfpRV3KCaAAFdB0DjIw0ZDTsbEEvvrHL5US7eHCGvJPPp6XCWSnTso=w300" style="width:100%; height:100%"></div>
-                    <div><img src="https://pbs.twimg.com/profile_images/724572911860764672/orhYZj6c.jpg" style="width:100%; height:100%"></div>
-                    <div><img src="http://24.media.tumblr.com/f57ccfa1d67cd060f1774149b4ec8c7f/tumblr_mvzbvrAzYZ1qzpegpo7_1280.jpg" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+
                 </div>
 
                 <ons-list-header style="border:none !important;">
                     Romance's Best                    
                 </ons-list-header>        
                 <div class="romanceBest">
-                    <div><img src="https://lh3.googleusercontent.com/SATJppvDuNGejDfpRV3KCaAAFdB0DjIw0ZDTsbEEvvrHL5US7eHCGvJPPp6XCWSnTso=w300" style="width:100%; height:100%"></div>
-                    <div><img src="https://pbs.twimg.com/profile_images/724572911860764672/orhYZj6c.jpg" style="width:100%; height:100%"></div>
-                    <div><img src="http://24.media.tumblr.com/f57ccfa1d67cd060f1774149b4ec8c7f/tumblr_mvzbvrAzYZ1qzpegpo7_1280.jpg" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
-                    <div><img src="http://placehold.it/100x100&text=FooBar9" style="width:100%; height:100%"></div>
+
                 </div>
             </div>    
             
@@ -230,54 +214,31 @@
             
             <!--월요일-->
             <div id="monday" style="display:none;">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
+           
             </div>
             <!--화요일-->
             <div id="tuesday" style="display:none;">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
+                
             </div>
             <!--수요일-->
             <div id="wednesday" style="display:none;">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
+                
             </div>
             <!--목요일-->
             <div id="thursday" style="display:none;">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
+                
             </div>
             <!--금요일-->
             <div id="friday" style="display:none;">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
+                
             </div>
             <!--토요일-->
             <div id="saturday" style="display:none;">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
+              
             </div>
             <!--일요일-->
             <div id="sunday" style="display:none;">
-                <img src="http://placehold.it/100x100&text=FooBar9">
-                <img src="http://placehold.it/100x100&text=FooBar9">
+            
             </div>
             
             
@@ -285,6 +246,6 @@
         
 </ons-template>
 
-
+    <script type="text/javascript" src="slick/slick.min.js"></script>
 </body>
 </html>
