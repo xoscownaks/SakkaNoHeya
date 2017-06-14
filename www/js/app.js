@@ -32,14 +32,9 @@
                 url:"http://150.95.130.43/get_novel",
                 success:function(data){                   
                     for(var i=0; i< 4;i++){
-                        var novel_id = data[i].id;
-                        var body = "<div class='to-top'><img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:200px;'></div>";
+                        var body = "<div class='to-top'><img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:200px;' onclick='showNovel("+data[i].id+")'></div>";
                         $(".contents").slick('slickAdd',body);
-                        
-                        $(".to-top").off().on("click",function(){
-                           myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
-                        });
-                        console.log(body);
+                   
                     }
     		    }
         });    
@@ -52,12 +47,9 @@
             	},
                 success: function (data) {                   
                     for(var i=0; i< Object.keys(data).length;i++){                     
-                        var novel_id = data[i].id;
-                         var body = "<div class='to-todayBest'><img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:150px;'></div>";
+                         var body = "<div class='to-todayBest'><img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:150px;' onclick='showNovel("+data[i].id+")'></div>";
                         $(".todayBest").slick('slickAdd',body);
-                        $(".to-todayBest").off().on("click",function(){
-                            myNavigator.pushPage('mainNovel.html',{novel_id : novel_id});
-                        })
+                     
                     }
     		    }
         });
@@ -69,15 +61,12 @@
                 },
                 success: function (data) {                   
                     for(var i=0; i< Object.keys(data).length;i++){
-                        var novel_id = data[i].id;
                         var body = "<div class='to-fantasytBest'>";
-                        body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:150px;'>";
+                        body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:150px;' onclick='showNovel("+data[i].id+")'>";
                         body += "</div>"; 
                         $(".fantasyBest").slick('slickAdd',body);
                         
-                        $(".to-fantasytBest").off().on("click",function(){
-                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
-                        })
+                      
                     }
     		    },
                 error: function (error) {
@@ -92,15 +81,12 @@
                 success: function (data) {                   
                     for(var i=0; i< Object.keys(data).length;i++){
                         
-                        novel_id = data[i].id;
                         var body = "<div class='to-romancetBest'>";
-                        body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:150px;'>";
+                        body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:150px;' onclick='showNovel("+data[i].id+")'>";
                         body += "</div>"; 
                         $(".romanceBest").slick('slickAdd',body);
                         
-                        $(".to-romancetBest").off().on("click",function(){
-                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
-                        })
+                      
                     }
         	    },
                 error: function (error) {
@@ -116,12 +102,9 @@
                 },
                 success: function (data) {                   
                     for(var i=0; i< Object.keys(data).length;i++){
-                        var body = "<img class='mondayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                        var body = "<img class='mondayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;' onclick='showNovel("+data[i].id+")'>";
                        $('#monday').append(body);
                        
-                       $(".mondayNovel").off().on("click",function(){
-                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
-                        })
                     }
                 },
                 error: function (error) {
@@ -136,12 +119,9 @@
                 },
                 success: function (data) {                   
                     for(var i=0; i< Object.keys(data).length;i++){
-                        var body = "<img class='tuesdayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                        var body = "<img class='tuesdayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;' onclick='showNovel("+data[i].id+")'>";
                        $('#tuesday').append(body);
-                       
-                       $(".tuesdayNovel").off().on("click",function(){
-                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
-                        })
+                      
                     }
                 },
                 error: function (error) {
@@ -156,12 +136,9 @@
                 },
                 success: function (data) {                   
                     for(var i=0; i< Object.keys(data).length;i++){
-                        var body = "<img class='wednesNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                        var body = "<img class='wednesNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;' onclick='showNovel("+data[i].id+")'>";
                        $('#wednesday').append(body);
-                       
-                       $(".wednesNovel").off().on("click",function(){
-                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
-                        })
+                      
                     }
                 },
                 error: function (error) {
@@ -176,12 +153,9 @@
                 },
                 success: function (data) {                   
                     for(var i=0; i< Object.keys(data).length;i++){
-                        var body = "<img class='thursdayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                        var body = "<img class='thursdayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;' onclick='showNovel("+data[i].id+")'>";
                        $('#thursday').append(body);
-                       
-                       $(".thursdayNovel").off().on("click",function(){
-                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
-                        })
+                      
                     }
                 }
         });
@@ -194,12 +168,9 @@
                 },
                 success: function (data) {                   
                     for(var i=0; i< Object.keys(data).length;i++){
-                        var body = "<img class='fridayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                        var body = "<img class='fridayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;' onclick='showNovel("+data[i].id+")'>";
                        $('#friday').append(body);
                        
-                        $(".fridayNovel").off().on("click",function(){
-                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
-                        })
                     }
                 }
         });
@@ -212,12 +183,9 @@
                 },
                 success: function (data) {                   
                     for(var i=0; i< Object.keys(data).length;i++){
-                        var body = "<img class='saturdayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;'>";
+                        var body = "<img class='saturdayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;' onclick='showNovel("+data[i].id+")'>";
                        $('#saturday').append(body);
-                       
-                       $(".saturdayNovel").off().on("click",function(){
-                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
-                        })
+                      
                     }
                 }
         });
@@ -230,12 +198,9 @@
                 },
                 success: function (data) {                   
                     for(var i=0; i< Object.keys(data).length;i++){
-                        var body = "<img class='sundayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;' onclick=''>";
-                     
+                        var body = "<img class='sundayNovel' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:50%;height:200px;' onclick='showNovel("+data[i].id+")'>";
                        $('#sunday').append(body);
-                       $(".sundayNovel").off().on("click",function(){
-                            myNavigator.pushPage('mainNovel.html',{novel_id :novel_id});
-                        })
+                     
                     }
                 }
         });
@@ -315,6 +280,7 @@
             $('#viewSettingForm').slideToggle(200);
             
         });
+
     });
          
   
@@ -736,9 +702,139 @@
         }
     }
 
+/**********************************
+ * 검색 창에서 키워드 입력후 검색버튼 누를 시 
+ * **********************************/
+ window.searchContents = function(){
+     var searchContent = document.getElementById('searchContent').value;
+     $.ajax({
+        type: "get",
+        url: "http://150.95.130.43/get_novel/search",
+        data: {
+            searchContent : searchContent
+        },
+        success: function (data) {       
+            var body = "";
+            for(var i =0; i< Object.keys(data).length ;i++){
+                body += "<div class='search-lists' onclick='showNovel("+data[i].novel_id+")'>";
+                    body += "<div class='search-list-top'>";
+                        body += "<div class='search-list-left'>";
+                            body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"'>";
+                        body += "</div>";
+                        body += "<div class='search-list-right'>";
+                            body += "<div class='right-1'>"+data[i].title+"</div>";
+                            body += "<div class='right-2'>"+data[i].name+"</div>";
+                            body += "<div class='right-3'><ons-icon icon='ion-android-arrow-dropright' style='margin-right:5px'></ons-icon>"+data[i].genre+"</div>";
+                        body += "</div>";
+                    body += "</div>";
+                    body += "<div class='search-list-bottom"+i+"'>";  
+                        body += "<ons-icon icon='ion-android-arrow-dropdown'>소개</ons-icon>";
+                        body += "<div class='search-intro-toggle"+i+"' style='display:none;'>"+data[i].summary_intro;
+                        body += "</div>";
+                    body += "</div>";
+                body += "</div>";
+                
+            }
+            $('#search-list-page').html(body);
+        }
+     })
+ }
+/***************************************
+ * 해당 id 의 소설을 가져온다 
+ * ************************************/
+window.showNovel = function(id){
+    myNavigator.pushPage('mainNovel.html');
+
+    $.ajax({
+        type: "get",
+        url: "http://150.95.130.43/get_novel/show_main_novel",
+        data: {
+            id : id
+        },
+        success: function(data){
+            
+            $('.mainNovelToolbar > .center').text(data[0].title);
+            $('.main_novel_novelInfo_contentsImg').attr('src',"http://150.95.130.43/upload/images/"+data[0].cover_img_src);
+            $('.main_novel_novelInfo_contentsEx').text(data[0].intro);
+            
+            
+            var data_id = data[0].id;
+            //모든 에피소드 가져오기 
+            $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/get_episodes",
+                data: {
+                    id : data_id
+                },
+                success: function(data){
+                    for(var i =0; i< Object.keys(data).length ;i++){
+                        var episode_count = i+1;
+                        $('#number').append("<option value='"+episode_count+"'>"+episode_count+"</option>");
+                        
+                        var notice_body = "";
+                        //만약 데이터에있는 에피소드가 공지라면 
+                        if(data[i].is_notice == "1"){
+                            $('.list__item__title').append("<p>"+data[i].episode+"</p>");
+                                notice_body += "<li class='noticeList__header'>";
+                                    notice_body += data[i].created_at;
+                                notice_body += "</li>";
+                                notice_body += "<ons-list-item class='noticeListItem'>";
+                                notice_body += data[i].episode;
+                                notice_body += "</ons-list-item>";
+                                console.log(notice_body);
+                        }
+                        $('#novel-notice-bar').html(body);
+                        //만약 데이터에 있는 에피소드가 공지가 아니라면 
+                        if(data[i].is_notice == "0"){
+                            var body = "<ons-list-item class='list-item-container' onclick='showMainReadNovel("+data[i].id+")'>";
+                                    body += "<ons-row>";
+                                        body += "<ons-col width='75px'>";
+                                            body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' class='thumbnail'>";
+                                        body += "</ons-col>";
+                                        body += "<ons-col>";
+                                            body += "<div class='location'>";
+                                                body += "<div>"+episode_count+"화</div>";
+                                                body += "<div style='width:60px'>댓글</div>";
+                                                body += "<div>"+data[i].created_at+"</div>";
+                                            body += "</div>";
+                                            body += "<div class='name'>";
+                                                body += data[i].episode_title;
+                                            body += "</div>";
+                                        body += "</ons-col>";
+                                        if(data[i].is_charge == "1"){
+                                            body += "<div class='ketImg'><i class='fa fa-lock fa-2x'></i></div>";
+                                        }else{
+                                            body += "";
+                                        }
+                                    body += "</ons-row>";
+                                body += "</ons-list-item>";
+                                $('.chapterListDiv').append(body);
+                        }
+                        
+                    }
+                }
+            })
+     
+        }
+    })
+}
 
 
-
+window.showMainReadNovel = function(id){
+    var id = id;
+    $.ajax({
+        type: "get",
+        url: "http://150.95.130.43/get_novel/get_episode_id",
+        data: {
+            id : id
+        },
+        success: function(data){
+            $('#novelHeader > .center').text(data[0].episode_title);
+            $('#novelAreaText').text(data[0].episode);
+        }
+    })
+    myNavigator.pushPage('mainReadNovel.html');
+}
 
 
 

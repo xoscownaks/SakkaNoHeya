@@ -3,20 +3,43 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+    <link rel="stylesheet" href="css/search.css">
 </head>
 <body>
     <ons-toolbar>
+          <div class="left">
+              <ons-back-button></ons-back-button> 
+          </div>
           <div class="center">
             <input type="text" id="searchContent" placeholder="검색할 내용" autofocus>
           </div>
           <div class="right">
-            <span class="toolbar-button toolbar-button--material" onclick="fn.load('')" style="margin-right:10px;">
-              <i class="zmdi zmdi-search"></i>
+            <span class="toolbar-button toolbar-button--material" onclick="searchContents()" style="margin-right:10px;">
+              <ons-icon icon="md-search"></ons-icon>
             </span>
           </div>
     </ons-toolbar>
     
-    
+    <ons-page id="search-list-page">
+       <!--<div class="search-lists">
+            <div class="search-list-top">
+                <div class="search-list-left">
+                    <img src="http://via.placeholder.com/150x150">
+                </div>
+                <div class="search-list-right">
+                    <div class="right-1">무한 레벨업 in 무림<br></div>
+                    <div class="right-2">한기<br></div>
+                    <div class="right-3"><ons-icon icon="ion-android-arrow-dropright" style="margin-right:5px"></ons-icon>무협</div>
+                </div>
+            </div>
+            <div class="search-list-bottom">
+                <ons-icon icon="ion-android-arrow-dropdown">소개</ons-icon>
+                <div class="search-intro-toggle" style="display:none;">
+                    소개글 입니다.
+                </div>
+            </div>
+
+        </div>-->
+    </ons-page>    
 </body>
 </html>

@@ -1,0 +1,39 @@
+/* This is a CSS file */
+
+.search-lists{
+    height: 180px;
+    border: 1px solid gray;
+    margin-bottom: 30px;
+}
+
+
+.search-list-top{
+    height: 150px;
+}
+
+.search-list-bottom{
+    border: 1px solid gray;
+    height: 30px;
+}
+
+.search-list-left{
+    float: left;
+}
+.search-list-left > img{
+    width: 150px;
+    height: 150px;
+}
+
+
+.search-list-right > .right-1{
+    font-size:20px;
+}
+.search-list-right > .right-2{
+    font-size:15px;
+}
+.search-list-right > .right-3{
+    font-size:15px;
+    color:gray;
+    margin-right:5px;
+    margin-top:10px;
+}
