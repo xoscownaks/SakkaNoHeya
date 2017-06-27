@@ -32,12 +32,42 @@
                 url:"http://150.95.130.43/get_novel",
                 success:function(data){                   
                     for(var i=0; i< 4;i++){
-                        var body = "<div class='to-top'><img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:200px;' onclick='showNovel("+data[i].id+")'></div>";
-                        $(".contents").slick('slickAdd',body);
-                   
-                    }
-    		    }
-        });    
+                        // var body = "<div class='to-top'><img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:200px;' onclick='showNovel("+data[i].id+")'></div>";
+                        // $(".contents").slick('slickAdd',body);
+
+                        var body = "<div class='test1'>";
+                                body += "<div id='align-left'>";
+                                    body += "<div id='text1'>";
+                                        body += data[i].title;
+                                    body += "</div>";
+                                    body += "<div id='text2'>";
+                                        body += data[i].summary_intro;
+                                    body += "</div>";
+                                    body += "<div id='text3'>";
+                                        if(data[i].genre == 'fantasy'){
+                                            body += '판타지';
+                                        }else if(data[i].genre == 'romance'){
+                                            body += '로맨스';
+                                        }else if(data[i].genre == 'scifi'){
+                                            body += 'SF';
+                                        }else if(data[i].genre == 'martial'){
+                                            body += '무협';
+                                        }else if(data[i].genre == 'detective'){
+                                            body += '추리';
+                                        }else if(data[i].genre == 'horror'){
+                                            body += '호러';
+                                        }
+                                    body += "</div>";
+                                body += "</div>";
+                                body += "<div id='align-right'>";
+                                    body += "<img name='effect' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"'";
+                                body += "</div>";
+                            body += "</div>";
+                            $(".contents").slick('slickAdd',body);
+
+                    }//for-end
+    		    }//success-end
+        });//ajax-en    
         
         //today's best 가져오기
         $.ajax({
@@ -280,7 +310,19 @@
             $('#viewSettingForm').slideToggle(200);
             
         });
+        //
+        $(document).on('click', '.point-list', function() {
+            var choosePoint = $('.point-list:active').text();
+            $('#buyPointLb').text(choosePoint);
+            
+        });
+        if(!localStorage.getItem('current_id')){
+            $('#showPoint').text('0');
+        }
+        
 
+        
+           
     });
          
   
@@ -416,16 +458,97 @@
             pwSearch.style.display="block";
         }
     }
-    
-    /**************************************
-     소설 읽는 부분에서 회차 이동 기능 하는 함수 
-     ********************************/
-    function editSelects(event) {
-        alert(event.target.value);
+
+/**********************************
+ * id 찾기
+ * **********************************/    
+window.idSearch = function(){
+    var emailFocus = document.getElementById("idSearchEmailInput");
+    var emailJoin = emailFocus.value;
+    var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if(emailJoin == ""){
+        alert("이메일을 입력하세요.");
+        emailFocus.focus();
+        return;
+    }else if(!regEmail.test(emailJoin)){
+        alert("이메일 주소를 똑바로 입력해 주세요.");
+        emailFocus.focus();
+        return;
+    }else{
+        $.ajax({
+            type : "get",
+            url : "http://150.95.130.43/get_novel/idSearch",
+            data : {
+                email : emailJoin  
+            },
+            success: function(data){
+                alert("아이디는 "+ data[0].user_id + "입니다.");
+            },
+            error : function(jqXHR, textStatus, errorThrown){
+                alert("아이디를 찾지 못했습니다."+ textStatus + " : " + errorThrown);
+            }
+        })
     }
-    
+}
 
-
+/**********************************
+* 비밀번호 찾기
+* **********************************/
+window.pwSearch = function(){
+    var idFocus = document.getElementById("pwSearchIdInput");
+    var idJoin = idFocus.value;
+    var emailFocus = document.getElementById("pwSearchEmailInput");
+    var emailJoin = emailFocus.value;
+    var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if(idJoin == ""){
+        alert("아이디를 입력하세요.");
+        idFocus.focus();
+        return;
+    }else if(emailJoin == ""){
+        alert("이메일을 입력하세요.");
+        emailFocus.focus();
+        return;
+    }else if(!regEmail.test(emailJoin)){
+        alert("이메일 주소를 똑바로 입력해 주세요.");
+        emailFocus.focus();
+        return;
+    }else{
+        $.ajax({
+            type : "get",
+            url : "http://150.95.130.43/get_novel/pwSearch",
+            data : {
+                id : idJoin,
+                email : emailJoin  
+            },
+            success: function(data){
+                alert("비밀번호는 "+ data[0].password + "입니다.");
+            },
+            error : function(jqXHR, textStatus, errorThrown){
+                alert("해당 이메일과 아이디의 비밀번호를 찾지 못했습니다."+ textStatus + " : " + errorThrown);
+            }
+        })
+    }
+}
+/**********************************
+ * 로그아웃 하기
+ * **********************************/   
+ window.logoutClick = function(){
+    localStorage.clear();
+    $('#slide-top').children().first().remove();
+    $('#slide-top').prepend("<img class='logo' src='img/logo.bmp'>");
+    $('#showPoint').text('0');
+    alert("로그아웃 되었습니다.");
+    document.getElementById("loginBtn").style.display = "";
+    document.getElementById("joinBtn").style.display = "";
+    document.getElementById("logoutBtn").style.display = "none";
+    menuClose();
+ }
+/**********************************
+ * 아이디, 비밀번호 찾기 취소 버튼
+ * **********************************/  
+window.searchCancel = function(){
+    myNavigator.popPage();
+}
 
 
     /******************************************
@@ -516,58 +639,82 @@
         /***********************
          * 관심등록 기능 
          * ********************/
+        
         var favorite = false;
-        window.addFavorite = function(){
-            var favoriteIcon = $('.novelFavoriteIcon');
-            if(favorite == false){
-                ons.notification.confirm({
-                title:'',
-                message: '관심도서로 등록하시겠습니까?',
-                buttonLabels:['아니요','예'],
-                callback: function(answer) {
-                  if(answer ==  0)
-                  {
-                    return;
-                  }  
-                  if(answer ==  1)
-                  {
-                    favoriteIcon.attr('icon','ion-android-star');
-                    favorite = true;
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                  } 
+        window.addFavorite = function(id){
+            var user_id = localStorage.getItem('current_id');
+            var novel_id = id;
+            var favoriteIcon = $('#novelFavoriteIcon');
+            if(user_id == null){
+                alert('로그인이 필요합니다.');
+            }else{
+                if(favorite == false){
+                    ons.notification.confirm({
+                    title:'',
+                    message: '관심도서로 등록하시겠습니까?',
+                    buttonLabels:['아니요','예'],
+                    callback: function(answer) {
+                    if(answer ==  0)
+                    {
+                        return;
+                    }  
+                    if(answer ==  1)
+                    {
+                        favoriteIcon.attr('icon','ion-android-star');
+                        favorite = true;
+                        //현재 사용자 아이디와 소설의 번호를 가져와 db에 저장한다.
+                
+                        $.ajax({
+                            type:'get',
+                            url:"http://150.95.130.43/set_novel/add_favorite",
+                            data:{
+                                user_id : user_id,
+                                novel_id: novel_id
+                            },
+                            success:function(data){
+                                
+                            }
+                        });             
+                        
+                      } 
+                    }
+                  });
                 }
-              });
-            }
-            if(favorite == true){
-                ons.notification.confirm({
-                title:'',
-                message: '관심등록을 취소하시겠습니까?',
-                buttonLabels:['아니요','예'],
-                callback: function(answer) {
-                  if(answer ==  0)
-                  {
-                    return;
-                  }  
-                  if(answer ==  1)
-                  {
-                    favoriteIcon.attr('icon','ion-android-star-outline');
-                    favorite = false;
-                    
-                    
-                    
-                    
-                    
-                    
-                  } 
+                if(favorite == true){
+                    ons.notification.confirm({
+                        title:'',
+                        message: '관심등록을 취소하시겠습니까?',
+                        buttonLabels:['아니요','예'],
+                        callback: function(answer){
+                        if(answer ==  0)
+                        {   
+                            return;
+                        }  
+                        if(answer ==  1)
+                        {
+                            favoriteIcon.attr('icon','ion-android-star-outline');
+                            favorite = false;
+                            //사용자id와 해당 소설id를 갖고 db의 데이터를 삭제 
+                            $.ajax({
+                                type:'get',
+                                url:"http://150.95.130.43/set_novel/delete_favorite",
+                                data:{
+                                    user_id : user_id,
+                                    novel_id : novel_id
+                                },
+                                success:function(data){
+                                    
+                                    
+                                }
+                                
+                            })//ajax-end
+                                  
+                        
+                    }//if-end
+                    }//callback-fucntion-end
+                  });//ons-notification-end
                 }
-              });
-            }
+            }//else-end
         }
         /************************
          * 북마크 등록 함수 
@@ -583,34 +730,57 @@
         }
         
         
-    /******************************************
+  /******************************************
      * 더보기 클릭시
      * ****************************************/
-    function moreList(){
+function moreList(id){
+    $.ajax({
+        type:"get",
+        url: "http://150.95.130.43/get_novel",
+        data: {
+            id : id
+        },
+        success: function(data){
+            var noticeid = data[0].id;
+            $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/get_episodes",
+                data: {
+                    id : noticeid
+                },
+                success: function(data){
+                    var content="";
+                    for(var j =5; j< Object.keys(data).length ;j++){
+                        if(data[j].is_notice == "0" ){            
+                        var episode_count = j+1;
+                            content +=
+                            "<ons-list-item class='list-item-container' onclick='showMainReadNovel("+data[j].id+")'>"+
+                            "<ons-row>"+
+                            "<ons-col width='75px'><img class='thumbnail' src='http://150.95.130.43/upload/images/"+data[j].cover_img_src+"'>"+
+                            "</ons-col>"+
+                            "<ons-col>"+
+                            "<div class='location'>"+
+                            "<div>"+episode_count+"화"+"</div><div style='width:60px'>"+"댓글"+"</div><div>"+data[j].created_at+"</div>"+
+                            "</div>"+
+                            "<div class='name'>"+data[j].episode_title+
+                            "</div>"+
+                            "</ons-col>"+
+                            "</ons-row>"+
+                            "</ons-list-item>";
+                        }//if-end
+                    }//for-end
+                /*나중에 쓸 js*/ /*content+="<tr id='addbtn'><td colspan='5'><div class='btns'><a href='javascript:moreList();' class='btn'>더보기</a></div>  </td></tr>";*/
+                    
+                $(content).appendTo(".chapterListDiv");
     
-            var content="";
-            for(var i=0; i<3; i++){
-                content +=
-                "<ons-list-item class='list-item-container'>"+
-                "<ons-row>"+
-                "<ons-col width='75px'>"+"사진"+
-                "</ons-col>"+
-                "<ons-col>"+
-                "<div class='location'>"+
-                "<div>"+"횟수"+"</div><div style='width:60px'>"+"댓글수"+"</div><div>"+"날짜"+"</div>"+
-                "</div>"+
-                "<div class='name'>"+"제목"+
-                "</div>"+
-                "</ons-col>"+
-                "</ons-row>"+
-                "</ons-list-item>";
-            }
             
-           /*나중에 쓸 js*/ /*content+="<tr id='addbtn'><td colspan='5'><div class='btns'><a href='javascript:moreList();' class='btn'>더보기</a></div>  </td></tr>";*/
+                }//success-end
             
-            $(content).appendTo(".chapterListDiv");
-    };   
-    
+            })//ajax-end
+            
+        }//success-end
+    })//ajax-end
+}
     /***********************************
      * 소설읽는 화면의 뷰어를 설정하는 기능
      * ***********************************/
@@ -716,23 +886,35 @@
         success: function (data) {       
             var body = "";
             for(var i =0; i< Object.keys(data).length ;i++){
-                body += "<div class='search-lists' onclick='showNovel("+data[i].novel_id+")'>";
-                    body += "<div class='search-list-top'>";
+                body += "<div class='search-lists' style='height:150px' onclick='showNovel("+data[i].novel_id+")'>";
+                  
                         body += "<div class='search-list-left'>";
                             body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"'>";
                         body += "</div>";
-                        body += "<div class='search-list-right'>";
+                        body += "<div class='search-list-right' style='margin-left:10px;'>";
                             body += "<div class='right-1'>"+data[i].title+"</div>";
                             body += "<div class='right-2'>"+data[i].name+"</div>";
-                            body += "<div class='right-3'><ons-icon icon='ion-android-arrow-dropright' style='margin-right:5px'></ons-icon>"+data[i].genre+"</div>";
-                        body += "</div>";
-                    body += "</div>";
-                    body += "<div class='search-list-bottom"+i+"'>";  
-                        body += "<ons-icon icon='ion-android-arrow-dropdown'>소개</ons-icon>";
-                        body += "<div class='search-intro-toggle"+i+"' style='display:none;'>"+data[i].summary_intro;
-                        body += "</div>";
-                    body += "</div>";
-                body += "</div>";
+                            if(data[i].genre == 'fantasy'){
+                                body += "<div class='right-3'> 장르: 판타지</div>";
+                            }
+                            else if(data[i].genre == 'romance'){
+                                body += "<div class='right-3'> 장르: 로맨스</div>";
+                            }
+                            else if(data[i].genre == 'scifi'){
+                                body += "<div class='right-3'> 장르: SF</div>";
+                            }
+                            else if(data[i].genre == 'horror'){
+                                body += "<div class='right-3'> 장르: 호러</div>";                            
+                            }
+                            else if(data[i].genre == 'martial'){
+                                body += "<div class='right-3'> 장르: 무협</div>";  
+                            }
+                            else if(data[i].genre == 'detective'){
+                                body += "<div class='right-3'> 장르: 추리</div>";  
+                            }
+                            body += "<div class='right-3'>"+data[i].summary_intro+"</div>";
+                        body += "</div>";                
+                body += "</div>";        
                 
             }
             $('#search-list-page').html(body);
@@ -744,7 +926,26 @@
  * ************************************/
 window.showNovel = function(id){
     myNavigator.pushPage('mainNovel.html');
-
+    
+    //현재 소설의 번호와 현재 로그인 되어 있는 사용자의id를 사용해 
+    //사용자의 아이디의 소설이 관심등록 되어 있다면 관심등록 아이콘을 변경 
+    $.ajax({
+            type:'get',
+            url:"http://150.95.130.43/get_novel/favorite_novel",
+            data:{
+                user_id : localStorage.getItem('current_id')
+    
+            },
+            success:function(data){
+                for(var i = 0; i < Object.keys(data).length; i++){
+                    if(data[i].novel_id == id){
+                        favorite = true;
+                        $('#novelFavoriteIcon').attr('icon','ion-android-star');
+                    }
+                }
+            }
+        })
+    //소설의 id 값을 받아와 그 소설의 데이터를 가져와 페이지를 보여준다.
     $.ajax({
         type: "get",
         url: "http://150.95.130.43/get_novel/show_main_novel",
@@ -752,11 +953,29 @@ window.showNovel = function(id){
             id : id
         },
         success: function(data){
-            
-            $('.mainNovelToolbar > .center').text(data[0].title);
+            $("#novelFavoriteIcon").attr("onclick","addFavorite("+data[0].id+")");
+            $('.mainNovelToolbar > .center').html(data[0].title);
             $('.main_novel_novelInfo_contentsImg').attr('src',"http://150.95.130.43/upload/images/"+data[0].cover_img_src);
-            $('.main_novel_novelInfo_contentsEx').text(data[0].intro);
-            
+            $('.main_novel_novelInfo_contentsEx').html(data[0].intro);
+            //현재 db에 영어로 저장되어 있는 장르를 한글로 바꾼다.
+            if(data[0].genre == 'fantasy'){
+                $('.novelGenre').text("장르 : 판타지");
+            }
+            else if(data[0].genre == 'romance'){
+                $('.novelGenre').text("장르 : 로맨스");
+            }
+            else if(data[0].genre == 'scifi'){
+                $('.novelGenre').text("장르 : SF");
+            }
+            else if(data[0].genre == 'horror'){
+                $('.novelGenre').text("장르 : 호러");
+            }
+            else if(data[0].genre == 'martial'){
+                $('.novelGenre').text("장르 : 무협");
+            }
+            else if(data[0].genre == 'detective'){
+                $('.novelGenre').text("장르 : 추리");
+            }
             
             var data_id = data[0].id;
             //모든 에피소드 가져오기 
@@ -767,60 +986,85 @@ window.showNovel = function(id){
                     id : data_id
                 },
                 success: function(data){
-                    for(var i =0; i< Object.keys(data).length ;i++){
-                        var episode_count = i+1;
-                        $('#number').append("<option value='"+episode_count+"'>"+episode_count+"</option>");
-                        
-                        var notice_body = "";
-                        //만약 데이터에있는 에피소드가 공지라면 
-                        if(data[i].is_notice == "1"){
-                            $('.list__item__title').append("<p>"+data[i].episode+"</p>");
-                                notice_body += "<li class='noticeList__header'>";
-                                    notice_body += data[i].created_at;
-                                notice_body += "</li>";
-                                notice_body += "<ons-list-item class='noticeListItem'>";
-                                notice_body += data[i].episode;
-                                notice_body += "</ons-list-item>";
-                                console.log(notice_body);
+                        //모든 회차의 번호를 select문에 출력 
+                        var total_episode_count = 0;
+                        for(var i =0; i< Object.keys(data).length ;i++){
+                            
+                            if(data[i].is_notice == "0"){
+                                total_episode_count = total_episode_count+1;
+                                $('#novelNumber').append("<option value='"+data[i].id+"'>"+total_episode_count+"</option>");
+                            }
+                            
                         }
-                        $('#novel-notice-bar').html(body);
-                        //만약 데이터에 있는 에피소드가 공지가 아니라면 
-                        if(data[i].is_notice == "0"){
-                            var body = "<ons-list-item class='list-item-container' onclick='showMainReadNovel("+data[i].id+")'>";
-                                    body += "<ons-row>";
-                                        body += "<ons-col width='75px'>";
-                                            body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' class='thumbnail'>";
-                                        body += "</ons-col>";
-                                        body += "<ons-col>";
-                                            body += "<div class='location'>";
-                                                body += "<div>"+episode_count+"화</div>";
-                                                body += "<div style='width:60px'>댓글</div>";
-                                                body += "<div>"+data[i].created_at+"</div>";
-                                            body += "</div>";
-                                            body += "<div class='name'>";
-                                                body += data[i].episode_title;
-                                            body += "</div>";
-                                        body += "</ons-col>";
-                                        if(data[i].is_charge == "1"){
-                                            body += "<div class='ketImg'><i class='fa fa-lock fa-2x'></i></div>";
-                                        }else{
-                                            body += "";
-                                        }
-                                    body += "</ons-row>";
-                                body += "</ons-list-item>";
-                                $('.chapterListDiv').append(body);
-                        }
-                        
-                    }
-                }
-            })
+                        $('.episodeCount').prepend ("연재 중 |");
+                        $('.episodeCount').append(" 총 "+total_episode_count+"회");
+
+                        var episode_count = 0;
+                        for(var i =0; i< Object.keys(data).length ;i++){
+                            
+                            //만약 데이터에 있는 에피소드가 공지가 아니라면 
+                            if(data[i].is_notice == "0" ){
+                                episode_count = episode_count+1;                            
+                                
+                                //if(Object.keys(data).length > 6){
+                                        var body = "<ons-list-item class='list-item-container' onclick='showMainReadNovel("+data[i].id+")'>";
+                                        body += "<ons-row>";
+                                            body += "<ons-col width='75px'>";
+                                                body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' class='thumbnail'>";
+                                            body += "</ons-col>";
+                                            body += "<ons-col>";
+                                                body += "<div class='location'>";
+                                                    body += "<div>"+episode_count+"화</div>";
+                                                    body += "<div style='width:60px'>댓글</div>";
+                                                    body += "<div>"+data[i].created_at+"</div>";
+                                                body += "</div>";
+                                                body += "<div class='name'>";
+                                                    body += data[i].episode_title;
+                                                body += "</div>";
+                                            body += "</ons-col>";
+                                            if(data[i].is_charge == "1"){
+                                                body += "<div class='ketImg'><i class='fa fa-lock fa-2x'></i></div>";
+                                            }else{
+                                                body += "";
+                                            }
+                                        body += "</ons-row>";
+                                        body += "</ons-list-item>";
+                                        $('.chapterListDiv').append(body);
+                                        // if(episode_count == 5){
+                                        //     $('.details').append("<a class='addButton' this.onclick=;>"+
+                                        //     "<div class='addButtonDiv' onclick='moreList("+data[i].id+"); this.onclick=null'>더보기<i class='fa fa-chevron-down'></i></div></a>");
+                                        //     break;
+                                        // }
+    
+                                //}                        
+                                           
+                            }//if-end
+                        }//for-end   
+                        //공지사항 리스트 출력 
+                        for(var j =0; j< Object.keys(data).length ;j++){
+                            if(data[j].is_notice == "1" ){
+                                $('.main_novel_notice').attr('onclick', 'showNoticeList('+data[j].id+')');
+                                $('.list__item__title').append("<p class='noticeItem'>"+data[j].episode+"</p>");
+                                    
+                                }
+                                $('#novel-notice-bar').html(body);   
+                        } 
+                        $('.list__item__title > p').each(function(){ // #example안의 각 li 요소들을 돌면서.. 
+                        $(this).detach().prependTo('.list__item__title'); // 해당 li를 떼어내서 #example의 처음에 끼운다. 
+                        $('.noticeItem').nextAll().remove();// 다른 형제 노드 다 삭제
+                    });                                                                                                
+                }//success-end
+            })//ajax-end
      
-        }
-    })
+        }//success-end
+    })//ajax-end
 }
 
 
+
+//소설 읽기 페이지로 넘어가는 함수 매개변수로 소설의 회차 아이디를 입력받는다 
 window.showMainReadNovel = function(id){
+
     var id = id;
     $.ajax({
         type: "get",
@@ -829,12 +1073,427 @@ window.showMainReadNovel = function(id){
             id : id
         },
         success: function(data){
-            $('#novelHeader > .center').text(data[0].episode_title);
-            $('#novelAreaText').text(data[0].episode);
-        }
-    })
+            $('#novelHeader > .center').html(data[0].episode_title);
+            $('#novelAreaText').html(data[0].episode);
+                
+            $('#novelAreaText > span').contents().unwrap();
+
+            var targetId = data[0].id;
+            //에피소드의belong_to_novel로 해당 소설 가져오기
+            $.ajax({
+                type:"get",
+                url:"http://150.95.130.43/get_novel/get_episodes",
+                data:{
+                    id: data[0].belong_to_novel
+                },
+                success: function(data){
+                    //하단의 select에 모든 에피소드를 출력 
+                    var episode_num = 0;
+                    for(var i=0 ; i < Object.keys(data).length ; i++){
+                        if(data[i].is_notice == "0"){
+                            episode_num = episode_num+1
+                            if(data[i].id == targetId){
+                                 $('#showAnotherEpisode').append("<option value='"+data[i].id+"' selected>"+episode_num+"</option>");
+                             }else{
+                                $('#showAnotherEpisode').append("<option value='"+data[i].id+"'>"+episode_num+"</option>");
+                            }
+                        }//if-end
+                    }//for-end
+                }//success-end
+            })//ajax-end
+            
+        }//success-end
+    })//ajax-end
+
     myNavigator.pushPage('mainReadNovel.html');
 }
 
 
 
+
+
+ /**********************************
+ * 회원가입 정보 입력
+ * **********************************/
+ window.JoinClick = function(){
+    var idFocus = document.getElementById("idJoin");
+    var nickFocus = document.getElementById("nickJoin");
+    var pwFocus = document.getElementById("pwJoin");
+    var pwFocusRe = document.getElementById("pwJoinRe");
+    var emailFocus = document.getElementById("emailJoin");
+    var idJoin = idFocus.value;
+    var nickJoin = nickFocus.value;
+    var pwJoin = pwFocus.value;
+    var pwJoinRe = pwFocusRe.value;
+    var emailJoin = emailFocus.value;
+    var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+    if(idJoin == ""){
+    alert("아이디를 입력하세요");
+        idFocus.focus();
+        return ;
+    }else if(nickJoin == ""){
+        alert("닉네임을 입력하세요");    
+        nickFocus.focus();
+    }else if(pwJoin == ""){
+        alert("비밀번호를 입력하세요");
+        pwFocus.focus();
+        return;
+    }else if(pwJoinRe == ""){
+        alert("비밀번호 확인을 입력하세요");
+        pwFocusRe.focus();
+        return;
+    }else if(emailJoin == ""){
+        alert("이메일을 입력하세요");
+        emailFocus.focus();
+        return;
+    }else if(!regEmail.test(emailJoin)){
+        alert("이메일 주소를 형식에 맞게 입력하세요");
+        emailFocus.focus();
+        return;
+    }else if(pwJoin != pwJoinRe){
+        alert("패스워드가 서로 일치하지 않습니다.");
+        pwFocusRe.focus();
+        return;
+    }else{
+          $.ajax({
+              type:"get",
+              url: "http://150.95.130.43/get_novel/idCheck",
+              data: { id : idJoin},
+              success: function(msg){
+                  if(msg == 1){
+                      alert("이미 있는 아이디 입니다.");
+                      idFocus.focus();
+                      return;
+                  }else if(idJoin != "" && nickJoin != "" && pwJoin != "" && pwJoinRe != "" && emailJoin != ""){
+                    var joinInfo = {"user_id" : idJoin, "nickname" : nickJoin, "email" : emailJoin, "user_pw" : pwJoin};
+                    $.ajax({
+                      type: "get",
+                       url: "http://150.95.130.43/get_novel/writeJoin",
+                         data: joinInfo,
+                         success: function(data){
+                             alert('가입되었습니다.');
+                             myNavigator.pushPage('login.html');
+                         },
+                         error : function(jqXHR, textStatus, errorThrown){
+                             alert("가입되지 않았습니다."+ textStatus + " : " + errorThrown);
+                             
+                 }
+          })
+      }
+              }
+          })
+      } 
+      
+     
+ }
+
+
+/**********************************
+ * 로그인 하기
+ * **********************************/
+ window.loginClick = function(){
+        var idFocus = document.getElementById("username");
+        var pwFocus = document.getElementById("password");
+        var idValue = idFocus.value;
+        var pwValue = pwFocus.value;
+        if(idValue == ""){
+            alert("아이디를 입력하세요.");
+            idFocus.focus();
+            return ;
+        }else if(pwValue == ""){
+            alert("비밀번호를 입력하세요.");
+            pwFocus.focus();
+            return;
+        }else if(idValue != "" && pwValue != ""){
+            $.ajax({
+                     type:"get",
+                     url: "http://150.95.130.43/get_novel/userInfo",
+                     data:{
+                         id : idValue,
+                         pw : pwValue
+                     },
+                     success: function(data){
+                            //로컬스토레이지에 사용자id 와 닉네임 저장 
+                            localStorage.setItem('current_id',data[0].user_id);
+                            localStorage.setItem('current_name',data[0].name);
+                            $('#slide-top').children().first().remove();
+                            //로고 있는 부분에 사용자 닉네임 출력 
+                            $('#slide-top').prepend("<div class='slide-top-name'>"+localStorage.getItem('current_name')+"</div>");
+                            
+                            alert("로그인 완료");
+                            
+                            $.ajax({
+                                type:'get',
+                                url:"http://150.95.130.43/get_point/check_point",
+                                data:{
+                                    user_id:localStorage.getItem('current_id')
+                                },
+                                success:function(data){
+                                    $('.showPoint:eq(1)').text(data[0].point);
+                                }
+                            })
+                            
+                            
+                            
+                            
+                            
+                            
+                            document.getElementById("loginBtn").style.display = "none";
+                            document.getElementById("joinBtn").style.display = "none";
+                            document.getElementById("logoutBtn").style.display = "";
+                            myNavigator.pushPage('index.html');
+
+                     }
+            })//ajax-end
+        }//else-end    
+}
+
+/**********************************
+ * 공지 사항버튼을 누를시 표시되는 전체 공지사항
+ * **********************************/
+window.showNoticeList = function(id){
+    myNavigator.pushPage('notice.html');
+    $.ajax({
+        type: "get",
+        url: "http://150.95.130.43/get_novel",
+        data: {
+            id : id
+        },
+        success: function(data){
+        var noticeid = data[0].id;
+            $.ajax({
+                type: "get",
+                url: "http://150.95.130.43/get_novel/get_episodes",
+                data: {
+                    id : noticeid
+                },
+                success: function(data){
+                    for(var j =0; j< Object.keys(data).length ;j++){
+                        if(data[j].is_notice == "1" ){
+                            /*Object.keys(data).length*/
+                        
+                            $('.noticeList').append("<li class='noticeList__header'>"+data[j].created_at+
+                            "</li><ons-list-item class='noticeListItem'><p>"+data[j].episode+"</p></ons-list-item>");
+                
+                        }//if-end
+                    }//for-end
+                }//success-end
+            })//ajax-end        
+        }//success-end
+    })//ajax-end
+}
+
+//선택한 숫자에 따라 해당소설의 회차가 출력
+window.changeEpisode = function(selectedEpi){
+    var selectedEpi = selectedEpi.value;
+    $.ajax({
+        type:"get",
+        url:"http://150.95.130.43/get_novel/get_episode_id",
+        data:{
+            id: selectedEpi
+        },
+        success: function(data){
+            $('#novelHeader > .center').html(data[0].episode_title);
+            $('#novelAreaText').html(data[0].episode);
+            
+        }
+    })
+    
+}
+
+//소설 읽기 에서 뒤로, 앞으로 버튼 클릭시 소설 이동 
+window.moveEpisode = function(data){
+    //뒤로버튼 클릭, 현재 선택된 값의 이전 id값을 가져와 화면에 출력
+    if(data == 'back'){
+        var i = $('#showAnotherEpisode option:selected').prev().val();
+        if(!i){
+            alert("첫 페이지 입니다.");
+            return
+        }else{
+            $.ajax({
+                type:"get",
+                url:"http://150.95.130.43/get_novel/get_episode_id",
+                data:{
+                    id: i
+                },
+                success:function(data){
+                    $('#novelHeader > .center').html(data[0].episode_title);
+                    $('#novelAreaText').html(data[0].episode);
+                    var targetId = data[0].id;
+                    //select문에 모든 회차 출력, 보고있는 회차의 번호를 나타나게한다
+                    $.ajax({
+                        type:"get",
+                        url:"http://150.95.130.43/get_novel/get_episodes",
+                        data:{
+                            id: data[0].belong_to_novel
+                        },
+                        success: function(data){
+                            //하단의 select에 모든 에피소드를 출력 
+                            var episode_num = 0;
+                            for(var i=0 ; i < Object.keys(data).length ; i++){
+                                if(data[i].is_notice == "0"){
+                                    episode_num = episode_num+1
+                                    //전 회차의 id와 일치하면 수행, selected 값을 추가한다.
+                                    if(data[i].id == targetId){
+                                        $("#showAnotherEpisode > option[value="+data[i].id+"]").prop("selected","true");
+                                    }
+                                    //나머지는 selected 속성을 제거 
+                                    else{
+                                        //$("#showAnotherEpisode[value="+ +"]").append("<option value='"+data[i].id+"'>"+episode_num+"</option>");
+                                        $("#showAnotherEpisode").prop("selected","false");
+                                    }
+                                }
+                            }//for-end
+                        }//success-end
+                    })//ajax-end
+                }//success-end
+            })
+        }//else-end
+        //앞으로버튼 클릭, 현재 선택된 값의 다음 id값을 가져와 화면에 출력
+    }//if(back)-end
+    else{
+        var i = $('#showAnotherEpisode option:selected').next().val();
+        if(!i){
+            alert("마지막 페이지 입니다.");
+            return
+        }else{
+            $.ajax({
+                type:"get",
+                url:"http://150.95.130.43/get_novel/get_episode_id",
+                data:{
+                    id: i
+                },
+                success:function(data){
+                    $('#novelHeader > .center').html(data[0].episode_title);
+                    $('#novelAreaText').html(data[0].episode);
+                    var targetId = data[0].id;
+                    //select문에 모든 회차 출력, 보고있는 회차의 번호를 나타나게한다
+                    $.ajax({
+                        type:"get",
+                        url:"http://150.95.130.43/get_novel/get_episodes",
+                        data:{
+                            id: data[0].belong_to_novel
+                        },
+                        success: function(data){
+                            //하단의 select에 모든 에피소드를 출력 
+                            var episode_num = 0;
+                            for(var i=0 ; i < Object.keys(data).length ; i++){
+                                if(data[i].is_notice == "0"){
+                                    episode_num = episode_num+1
+                                    //다음회차의 에피소드 id와 같으면 수행 
+                                    if(data[i].id == targetId){
+                                        $("#showAnotherEpisode > option[value="+data[i].id+"]").prop("selected","true");
+                                    }
+                                    //나머지는 selected 속성을 제거 
+                                    else{
+                                        //$("#showAnotherEpisode[value="+ +"]").append("<option value='"+data[i].id+"'>"+episode_num+"</option>");
+                                        $("#showAnotherEpisode").prop("selected","false");
+                                    }
+                                }
+                            }//for-end
+                        }//success-end
+                    })//ajax-end
+                }//success-end
+            })//ajax-end
+        }//else-end
+    }//else(forward)-end
+}
+
+
+//메인소설의 select문의 회차를 선택후 보기 버튼을 클릭하면 해당 회차를 보여준다.
+window.showMainReadNovelByMainNumber = function(){
+    var a = $("#novelNumber option:selected").val();
+    showMainReadNovel(a);
+}
+
+
+
+//관심등록한 소설들을 출력 
+window.showFavoriteNovel = function(){
+    //로그인 여부 확인 
+    if(localStorage.getItem('current_id') == null){
+        alert('로그인이 필요합니다.');
+    }else{
+        myNavigator.pushPage('favorite.html');
+        var user_id = localStorage.getItem('current_id')
+        //현재 로그인된 사용자의 모든 관심등록된 소설 가져오기
+        $.ajax({
+            type:'get',
+            url:"http://150.95.130.43/get_novel/favorite_novel",
+            data:{
+                user_id:user_id
+            },
+            //소설의 id를 가져온다 
+            success:function(data){
+                
+                for(var i =0 ; i < Object.keys(data).length ; i++){
+                    
+                    $.ajax({
+                        type:'get',
+                        url:"http://150.95.130.43/get_novel/show_main_novel",
+                        async:false,
+                        data:{
+                            id: data[i].novel_id
+                        }, 
+                        success:function(data){
+                            var createEle="";
+                            createEle += "<img src='http://150.95.130.43/upload/images/"+data[0].cover_img_src+"' onclick='showNovel("+data[0].id+")'>";
+                            $('#favorite-list').append(createEle);              
+                        }                        
+                    })//ajax-end
+                }//for-end
+            }//success-end
+        })
+    }
+}
+
+//포인트 구매 페이지로 이동
+window.showPointBuyPage = function(){
+    if(localStorage.getItem('current_id') == null){
+        alert('로그인이 필요합니다.');
+    }else{
+        myNavigator.pushPage('pointBuyPage.html');
+    }
+}
+
+
+//포인트 구매
+window.buyPoint = function(){
+    var point = $(":input:radio[name=pointValue]:checked").val();
+    if(!point){
+        alert('구매할 포인트를 선택하세요');
+        return;
+    }else{
+        ons.notification.confirm({
+            title:'',
+            message: '포인트를 구매하시겠습니까?',
+            buttonLabels:['아니요','예'],
+            callback: function(answer)
+            {
+                //아니요
+                if(answer ==  0)
+                {
+                    return;
+                }  
+                //예
+                if(answer ==  1)
+                {
+                    $.ajax({
+                        type:'get',
+                        url:"http://150.95.130.43/set_point/add_point",
+                        data:{
+                            user_id:localStorage.getItem('current_id'),
+                            point:point
+                        },
+                        success:function(data){
+                            alert('감사합니다.');
+                        }
+                    })//ajax-end
+                        
+                }//if-end 
+            }//callback-end
+        });//confirm-end
+       
+    }    
+}

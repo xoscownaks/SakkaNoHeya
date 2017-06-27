@@ -1,8 +1,9 @@
 /* This is a CSS file */
 
 .search-lists{
-    height: 180px;
+    height: 200px;
     border: 1px solid gray;
+    margin-top: 15px;
     margin-bottom: 30px;
 }
 
@@ -13,7 +14,7 @@
 
 .search-list-bottom{
     border: 1px solid gray;
-    height: 30px;
+    height: 50px;
 }
 
 .search-list-left{
@@ -23,7 +24,9 @@
     width: 150px;
     height: 150px;
 }
-
+.search-list-right{
+    margin-top: 20px;
+}
 
 .search-list-right > .right-1{
     font-size:20px;

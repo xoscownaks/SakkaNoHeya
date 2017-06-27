@@ -32,27 +32,32 @@
       <ons-list id="slide-list">
       
       <!--가장 위의 로고, 로그인 부분-->
-        <div onclick="">
-            <img class="logo" src="img/logo.bmp">            
+        <div id="slide-top">
+            <img class='logo' src='img/logo.bmp'>          
         </div>
       <!--My Page-->
         <ons-list-header>My Page</ons-list-header>
-            <ons-list-item onclick="" tappable>
+            <ons-list-item onclick="menuClose();showFavoriteNovel();" tappable>
               관심등록 소설
             </ons-list-item>
-            <ons-list-item onclick="" tappable>
+            <ons-list-item onclick="myNavigator.pushPage('wantGenre.html');menuClose()" tappable>
               선호장르 선택
             </ons-list-item>
-            <ons-list-item onclick="" tappable>
-              포인트
+            <ons-list-item tappable>
+              <div class="showPoint" style="float:left">
+                  포인트
+              </div>   
+              <div class="showPoint" style="margin-left:70%;">
+                  
+              </div>
             </ons-list-item>
-            <ons-list-item onclick="" tappable>
+            <ons-list-item tappable>
               내 블로그
             </ons-list-item>
         
         <!--ITEM-->
         <ons-list-header>ITEM</ons-list-header>
-            <ons-list-item onclick="" tappable>
+            <ons-list-item onclick="menuClose();showPointBuyPage();" tappable>
               포인트 구매
             </ons-list-item>
         
@@ -68,8 +73,9 @@
               이벤트
             </ons-list-item>
  
-            <button class="loginBtn" onclick="myNavigator.pushPage('login.html');menuClose()">로그인</button>
-            <button class="joinBtn" onclick="myNavigator.pushPage('join.html');menuClose()">회원가입</button>
+        <button id="loginBtn" onclick="myNavigator.pushPage('login.html');menuClose()">로그인</button>
+        <button id="logoutBtn" onclick="logoutClick()" style="display:none">로그아웃</button>
+        <button id="joinBtn" onclick="myNavigator.pushPage('join.html');menuClose()">회원가입</button>
            
       </ons-list>
     </ons-page>
@@ -106,7 +112,7 @@
         <ons-page>
 
             
-            <div class="contents" style="width:100%; height:200px">
+            <div class="contents" > 
                
             </div>
 

@@ -1,0 +1,14 @@
+/* This is a CSS file */
+
+input[type=checkbox]{
+    display: none;
+}
+
+.genreChoose:active{
+    width: 50%;
+    height: 40%;
+}
+
+input[type=checkbox]:checked + img{
+    border: 5px solid orange;
+}

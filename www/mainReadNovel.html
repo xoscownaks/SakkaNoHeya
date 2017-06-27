@@ -32,19 +32,22 @@
           </div>
         </ons-toolbar>
         
-        <div id="novelArea">        
-            <div id="novelAreaText">
-                
-                
-                
-                
-                
-                
-                
-                
+        
+           
+            <div id="novelArea">   
+                <div id="novelAreaText">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </div>
             </div>
-        </div>
 
+        
         <ons-bottom-toolbar id="novelFooter">
             <div id="viewSettings">
                 <ons-icon class="readNovelIcons" size="25px" icon="ion-gear-b"></ons-icon>
@@ -56,15 +59,14 @@
             </div>
                
             <div id="novelMove">
-                <ons-icon class="readNovelIcons" size="40px" icon="ion-arrow-left-b"></ons-icon>
-                <ons-select id="moveAnotherNovel" onchange="editSelects(event)" >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </ons-select>                
-                <ons-icon class="readNovelIcons" size="40px" icon="ion-arrow-right-b"></ons-icon>
+                <ons-icon class="readNovelIcons" size="40px" icon="ion-arrow-left-b" onclick="moveEpisode('back')"></ons-icon>
+                    <select id="showAnotherEpisode" onChange="changeEpisode(this)">
+                       
+                       
+                       
+                       
+                    </select>                
+                <ons-icon class="readNovelIcons" size="40px" icon="ion-arrow-right-b" onclick="moveEpisode('forward')"></ons-icon>
             </div>
         </ons-bottom-toolbar>
         

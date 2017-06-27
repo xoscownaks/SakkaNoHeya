@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="components/loader.css">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="css/pointBuy.css">
+</head>
+<body>
+    <ons-toolbar id="novelHeader">
+        <div class="left">
+          <ons-back-button></ons-back-button> 
+        </div>
+        <div class="center">
+            포인트 구매 
+        </div>
+        <div class="right">
+        
+        </div>
+    </ons-toolbar>
+    <div class="point-menu">
+    
+        <div class="point-list">
+            <input type="radio" name="pointValue" value="200" id="200point">
+            <label for="200point"><pre>200포인트        200$</pre></label>
+        </div>
+        
+        <div class="point-list">
+            <input type="radio" name="pointValue" value="500" id="500point">
+            <label for="500point"><pre>500포인트        500$</pre></label>
+        </div>
+        
+        <div class="point-list">
+            <input type="radio" name="pointValue" value="800" id="800point">
+            <label for="800point"><pre>800포인트        800$</pre></label>
+        </div>
+        
+        <div class="point-list">
+            <input type="radio" name="pointValue" value="1000" id="1000point">
+            <label for="1000point"><pre>1000포인트      1000$</pre></label>
+        </div>
+        <!--
+        <div class="point-list" >
+            <input type="radio" name="pointValue" value="500">
+            500포인트<label> 500$</label>
+        </div>
+        
+        <div class="point-list">
+            <input type="radio" name="pointValue" value="800">
+            800포인트<label> 800$</label>
+        </div>
+        
+        <div class="point-list">
+            <input type="radio" name="pointValue" value="1000">
+            1000포인트<label>1000$</label>
+        </div>-->
+        
+    </div>
+    <hr style="color:gray">
+    <label id="buyPointLb"></label>
+    <ons-button modifier="large--quiet" id="buyPoint" onclick="buyPoint()">구매</ons-button>
+</body>
+</html>

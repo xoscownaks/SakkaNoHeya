@@ -1,0 +1,37 @@
+/* This is a CSS file */
+
+.point-menu{
+    font-size: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.point-list{
+    margin-bottom: 40px;
+}
+
+/*선택한 포인트의 색을 바꾼다*/
+.point-list:hover{
+    background-color: orange;
+}
+
+.point-list > label:eq(1){
+    margin-left: 33%;
+}
+.point-list > input[type=radio] {
+    display: none;
+}
+/*사용자가 선택한 사항 표시 부분*/
+#buyPointLb{
+    text-align: center;
+    font-size: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+/*구매 버튼*/
+#buyPoint{
+    margin-top: 15px;
+    font-size: 35px;
+    color: orange;
+}

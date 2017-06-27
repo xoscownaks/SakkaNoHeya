@@ -184,18 +184,21 @@
 /* content부분의 회차보기 버튼 */
 .main_novel_novelInfo_contents_button {
     text-align: center;
-    font-size: 12px;
-    background-color:#707070; 
+    font-size: 15px;
+    background-color:#000000; 
     color:#FFFFFF;
-    border-radius: 8px;
+    border-radius: 5px;
 }
 /* content부분의 책설명 */
 .main_novel_novelInfo_contentsEx{
+
     border: 1px solid #B8B8B8;
-    font-size: 11px;
-    width 90%; 
+    font-size: 14px;
+    width:93%; 
     height:50px; 
     margin:5px 10px 5px 10px; 
+    overflow: scroll;
+
 }
 
 
@@ -621,8 +624,8 @@
 
 
 /* 회차 select CSS */
-select {
-    width: 60px;
+#novelNumber {
+    width: 55px;
     height: 20px;
     padding-left: 10px;
     font-size: 15px;
@@ -631,47 +634,6 @@ select {
     border-radius: 3px;
 }
 
-/* 회차 버튼 CSS */
-.main_novel_novelInfo_contents_button {
-    -moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
-    -webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
-	box-shadow:inset 0px 1px 3px 0px #91b8b3;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
-	background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
-	background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
-	background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
-	background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
-	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
-	background-color:#8D8D8D;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	border-radius:5px;
-	border:1px solid #5C5C5C;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:10px;
-	font-weight:bold;
-	padding:7px 7px 3px 7px;
-	text-decoration:none;
-	text-shadow:0px -1px 0px #2b665e;
-}
-.main_novel_novelInfo_contents_button:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
-	background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-	background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-	background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-	background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
-	background-color:#6c7c7c;
-}
-.main_novel_novelInfo_contents_button:active {
-	position:relative;
-	top:1px;
-}
 
 /* 배경설정 헤더 부분 */
 .NovelSettingsHeader {
@@ -756,4 +718,44 @@ select {
     width: 90%;
     padding: 0 15px 0 18px;
     word-wrap: break-word;
+}
+
+/* novel info 부분에 css 변경*/
+.main_novel_novelInfo{
+    border: 1px solid #C6C6C6;  
+    width: 95%; 
+    height: 45%; 
+    margin:10px;
+    font-size: 15px;
+}
+/* content부분의 책 이미지 */
+.main_novel_novelInfo_contentsImg {
+    width:115px; 
+    height:150px;
+    margin: 10px 25px 7px 20px;
+}
+/* content부분의 회차보기&조회수&추천&장르&연재현황 */
+.main_novel_novelInfo_contents{
+    width:100%; 
+    height:150px; 
+    margin-top: 9px;
+}
+/* content부분의 회차보기 버튼 */
+.main_novel_novelInfo_contents_button {
+    text-align: center;
+    font-size: 14px;
+    background-color:#000000; 
+    color:#FFFFFF;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 3px 4px 3px 4px;
+}
+/* content부분의 책설명 */
+.main_novel_novelInfo_contentsIntro{
+    border: 1px solid #B8B8B8;
+    font-size: 14px;
+    width 100%; 
+    height:50px; 
+    margin:5px 0 10px 20px;
+     border-radius: 5px; 
 }
