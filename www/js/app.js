@@ -60,7 +60,9 @@
                                     body += "</div>";
                                 body += "</div>";
                                 body += "<div id='align-right'>";
-                                    body += "<img name='effect' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"'";
+                                    //body += "<img name='effect' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"'";
+                                    body += "<img name='effect' src='http://150.95.130.43/upload/images/2017062755THREE_COVER.png'>";
+                                    
                                 body += "</div>";
                             body += "</div>";
                             $(".contents").slick('slickAdd',body);
@@ -1075,7 +1077,8 @@ window.showMainReadNovel = function(id){
         success: function(data){
             $('#novelHeader > .center').html(data[0].episode_title);
             $('#novelAreaText').html(data[0].episode);
-                
+            
+            //웹에서 적용한 tag를 제거 
             $('#novelAreaText > span').contents().unwrap();
 
             var targetId = data[0].id;
