@@ -26,24 +26,26 @@
  * 이미지 슬라이드 부분
  * ****************************************/
     ons.ready(function(){
+        AdaptiveBackgrounds();
         //메인 carousel 상단 슬라이드 이미지 가져오기
         $.ajax({
                 type:"get",
                 url:"http://150.95.130.43/get_novel",
                 success:function(data){                   
                     for(var i=0; i< 4;i++){
+                     
                         // var body = "<div class='to-top'><img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:200px;' onclick='showNovel("+data[i].id+")'></div>";
                         // $(".contents").slick('slickAdd',body);
 
-                        var body = "<div class='test1'>";
-                                body += "<div id='align-left'>";
-                                    body += "<div id='text1'>";
+                        var body = "<div class='topContents'>";
+                                body += "<div class='topContents-align-left'>";
+                                    body += "<div class='topContents-text1'>";
                                         body += data[i].title;
                                     body += "</div>";
-                                    body += "<div id='text2'>";
+                                    body += "<div class='topContents-text2'>";
                                         body += data[i].summary_intro;
                                     body += "</div>";
-                                    body += "<div id='text3'>";
+                                    body += "<div class='topContents-text3'>";
                                         if(data[i].genre == 'fantasy'){
                                             body += '판타지';
                                         }else if(data[i].genre == 'romance'){
@@ -59,9 +61,9 @@
                                         }
                                     body += "</div>";
                                 body += "</div>";
-                                body += "<div id='align-right'>";
-                                    //body += "<img name='effect' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"'";
-                                    body += "<img name='effect' src='http://150.95.130.43/upload/images/2017062755THREE_COVER.png'>";
+                                body += "<div class='topContents-align-right'>";
+                                    body += "<img class='topImg' src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' data-adaptive-background='1' style='height:200px;width:100%;'>";
+                                    //body += "<img name='effect' src='http://150.95.130.43/upload/images/2017062755THREE_COVER.png'>";
                                     
                                 body += "</div>";
                             body += "</div>";
@@ -241,7 +243,7 @@
         $('.contents').slick({
             infinite: true,
             autoplay:true,
-            autoplaySpeed:4000,
+            autoplaySpeed:6000,
             arrows:false,
             pauseOnHover:false
         });
@@ -249,7 +251,7 @@
         $('.todayBest').slick({
             infinite: true,
             autoplay:true,
-            autoplaySpeed:4000,
+            autoplaySpeed:5000,
             arrows:false,
             pauseOnHover:false,
             slidesToShow:3,
@@ -259,7 +261,7 @@
         $('.fantasyBest').slick({
             infinite: true,
             autoplay:true,
-            autoplaySpeed:4000,
+            autoplaySpeed:5000,
             arrows:false,
             pauseOnHover:false,
             slidesToShow:3,
@@ -269,7 +271,7 @@
         $(".romanceBest").slick({
             infinite: true,
             autoplay:true,
-            autoplaySpeed:4000,
+            autoplaySpeed:5000,
             arrows:false,
             pauseOnHover:false,
             slidesToShow:3,
@@ -279,7 +281,7 @@
         $(".novelAnother").slick({
             infinite: true,
             autoplay:true,
-            autoplaySpeed:4000,
+            autoplaySpeed:5000,
             arrows:false,
             pauseOnHover:false,
             slidesToShow:3,
@@ -289,7 +291,7 @@
         $(".differentWork").slick({
             infinite: true,
             autoplay:true,
-            autoplaySpeed:4000,
+            autoplaySpeed:5000,
             arrows:false,
             pauseOnHover:false,
             slidesToShow:4,

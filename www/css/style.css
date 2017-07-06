@@ -4,6 +4,7 @@ ons-list-header {
     font-weight: bold !important;
     border-bottom: solid gray  !important;
 }
+/*
 .test1{ 
     background:
     linear-gradient(
@@ -23,61 +24,36 @@ ons-list-header {
 	
     background-blend-mode: screen;
   
-}
+}*/
 
-#text1,#text2,#text3{
+.topContents-text1,.topContents-text2,.topContents-text3{
     margin-left: 10px;
     width: 100%;
 }
 
-#text1{
-    margin-top: 10px;
+.topContents-text1{
     font-size: 26px;
     font-weight: bold;
 }
-#text2{
+.topContents-text2{
     font-size: 20px;
-    margin-top: 10px;
 }
-#text3{
+.topContents-text3{
     font-size: 18px;
     color: orange;
     font-weight: bold;
     margin-top: 10px;
 }
 
-#align-left{
+.topContents-align-left{
     width: 50%;
     float: left;
 }
 
-#align-right{
+.topContents-align-right{
     width: 50%;
     float: left;
 }
-
-img[name=effect]{
-    height:200px;
-    width:100%;
-    display: inline-block;
-    position: relative;
-}
-img[name=effect]:after{
-    position: absolute;
-    display: block;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(left, rgba(255, 255, 255, 0) 40%, #fff 100%);
-}
-
-
-
-
-
-
 
 
 
