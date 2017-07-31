@@ -161,42 +161,51 @@
 }
 
 
-
+/* content부분 */
 .main_novel_novelInfo{
-    border: 1px solid #C6C6C6;  
-    width: 95%; 
-    height: 40%; 
+    border: 1px solid #C6C6C6;
+    width: 95%;
+    height: 50%;
     margin:10px;
-    font-size: 12px;
+    font-size: 15px;
 }
+
 /* content부분의 책 이미지 */
 .main_novel_novelInfo_contentsImg {
-    width:100px; 
-    height:140px; 
-    margin:7px;
+    width:35%;
+    height:55%;
+    margin: 20px 25px 7px 20px;
+    float: left;
 }
+
 /* content부분의 회차보기&조회수&추천&장르&연재현황 */
 .main_novel_novelInfo_contents{
-    width:170px; 
-    height:120px; 
-    margin:5px;
+    width:50%;
+    height:55%;
+    margin-bottom:25px;
+    margin-top: 20px;
+    float: left;
 }
+
 /* content부분의 회차보기 버튼 */
 .main_novel_novelInfo_contents_button {
     text-align: center;
-    font-size: 15px;
-    background-color:#000000; 
+    font-size: 14px;
+    background-color:#000000;
     color:#FFFFFF;
     border-radius: 5px;
+    text-decoration: none;
+    padding: 3px 4px 3px 4px;
 }
+
+
 /* content부분의 책설명 */
 .main_novel_novelInfo_contentsEx{
-
     border: 1px solid #B8B8B8;
     font-size: 14px;
-    width:93%; 
-    height:50px; 
-    margin:5px 10px 5px 10px; 
+    width:93%;
+    height:20%;
+    margin:0 10px 5px 10px;
     overflow: scroll;
 
 }
@@ -233,7 +242,7 @@
   overflow: hidden;
 }
 
-.main_novel_notice_left {  
+.main_novel_notice_left {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -392,7 +401,7 @@
   margin-top: -1px;
   text-transform: uppercase;
   position: relative;
-  
+
 }
 .noticeList__header:not(:first-of-type) {
   border-top: 1px solid #ccc;
@@ -511,7 +520,9 @@
   border-right: 1px solid #ccc;
 }
 
-.mainNovelDropListItem {
+.mainNovelDropListBlog,
+.mainNovelDropListReview,
+.mainNovelDropListSetting {
   margin: 0;
   padding: 0;
   width: 150px;
@@ -547,32 +558,9 @@
   color: #1f1f21;
   background-color: #fff;
 }
-.mainNovelDropListItem:first-child {
-  -webkit-box-shadow: inset 0px 1px 0px 0px #ccc;
-  box-shadow: inset 0px 1px 0px 0px #ccc;
-  margin-top: 0;
-}
-.mainNovelDropListItem_active:active {
-  background-color: #d9d9d9;
-  -webkit-transition: none;
-  -moz-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-.mainNovelDropListItem--chevron {
-  -webkit-transition: background-color 0.2s linear;
-  -moz-transition: background-color 0.2s linear;
-  -o-transition: background-color 0.2s linear;
-  transition: background-color 0.2s linear;
-  overflow: hidden;
-}
-.mainNovelDropListItem--chevron:hover {
-  -webkit-transition: none;
-  -moz-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-.mainNovelDropListItem--chevron:before {
+
+
+.mainNovelDropListArrow--chevron:before {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -613,14 +601,11 @@
   width: 10px;
   padding-right: 8px;
 }
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .mainNovelDropListItem--chevron:before {
-    background-image: -webkit-linear-gradient(90deg, #ccc, #ccc 50%, transparent 50%);
-    background-image: -moz-linear-gradient(90deg, #ccc, #ccc 50%, transparent 50%);
-    background-image: -o-linear-gradient(90deg, #ccc, #ccc 50%, transparent 50%);
-    background-image: linear-gradient(0deg, #ccc, #ccc 50%, transparent 50%);
-  }
-}
+
+
+
+
+
 
 
 /* 회차 select CSS */
@@ -704,8 +689,8 @@
     text-align: center;
     font-size: 15px;
     font-weight: 600;
-    
-    
+
+
 }
 
 .NovelDatailSettingImg {
@@ -718,44 +703,4 @@
     width: 90%;
     padding: 0 15px 0 18px;
     word-wrap: break-word;
-}
-
-/* novel info 부분에 css 변경*/
-.main_novel_novelInfo{
-    border: 1px solid #C6C6C6;  
-    width: 95%; 
-    height: 45%; 
-    margin:10px;
-    font-size: 15px;
-}
-/* content부분의 책 이미지 */
-.main_novel_novelInfo_contentsImg {
-    width:115px; 
-    height:150px;
-    margin: 10px 25px 7px 20px;
-}
-/* content부분의 회차보기&조회수&추천&장르&연재현황 */
-.main_novel_novelInfo_contents{
-    width:100%; 
-    height:150px; 
-    margin-top: 9px;
-}
-/* content부분의 회차보기 버튼 */
-.main_novel_novelInfo_contents_button {
-    text-align: center;
-    font-size: 14px;
-    background-color:#000000; 
-    color:#FFFFFF;
-    border-radius: 5px;
-    text-decoration: none;
-    padding: 3px 4px 3px 4px;
-}
-/* content부분의 책설명 */
-.main_novel_novelInfo_contentsIntro{
-    border: 1px solid #B8B8B8;
-    font-size: 14px;
-    width 100%; 
-    height:50px; 
-    margin:5px 0 10px 20px;
-     border-radius: 5px; 
 }

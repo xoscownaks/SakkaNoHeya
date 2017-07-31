@@ -1,0 +1,146 @@
+/* This is a CSS file */
+
+/* 카테고리 이름 */
+.blogReadCategoryTitle {
+    font-size: 15px;
+    margin-top: 15px;
+    margin-left: 20px;
+    width: 35%;
+    float: left;
+    color: green;
+}
+
+
+/* 글 제목 */
+.blogReadContentTitle {
+    clear: both;
+    font-size: 30px;
+    margin-left: 15px;
+    width: 90%;
+}
+
+/* 블로거 이미지 */
+.ReadBlogerImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+}
+
+/*블로거 이름*/
+.blogReadBlogerName {
+    font-size: 15px;
+    padding-left: 15px;
+    float: left;
+    width: 40%;
+    height: 50px;
+    line-height: 55px;
+    margin-top: 40px;
+}
+
+/* 게시글 작성 시간 */
+.blogReadContentTime {
+    font-size: 15px;
+    margin-top: 53px;
+    padding-left: 20px;
+    width: 35%;
+    float: left;
+    border-left: 1px solid #ccc;
+}
+
+/* 글 내용 */
+.blogReadContent {
+    clear: both;
+    border-top: 1px solid #ccc;
+    margin: 20px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+/* 같은 카테고리의 다른 글 */
+.blogCategoryOtherWritings {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px 0 10px 20px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #1f1f21;
+  text-shadow: none;
+  -webkit-box-shadow: 0px 1px 0px 0px #fff;
+  box-shadow: 0px 1px 0px 0px #fff;
+  min-height: 24px;
+  line-height: 24px;
+  margin-top: -1px;
+  text-transform: uppercase;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+/* 같은 카테고리의 다른 글 목록 */
+.OtherWritingContent {
+    padding: 10px 0 0 15px;
+    font-size: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 맨위로 버튼 */
+.topGo {
+    width: 95%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 25px;
+}
+
+/* 게시글 좋아요 */
+.blogReadContentLike {
+    font-size: 20px;
+    width: 30%;
+    float: left;
+    display: block;
+    margin: 3px 0 0 20px;
+    position: relative;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 0 0 0;
+    color: rgba(30, 22, 54, 0.6);
+    cursor: default;
+}
+
+/* 게시글 댓글 */
+.blogReadComent {
+    float: left;
+    font-size: 20px;
+    width: 30%;
+    display: block;
+    margin: 3px 0 0 10px;
+    position: relative;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 0 0 0;
+    color: rgba(30, 22, 54, 0.6);
+    cursor: default;
+}
+
+/* 공유버튼 */
+.blogContentShare {
+    font-size: 20px;
+    float: left;
+    display: block;
+    margin: 3px 0 0 35px;
+    position: relative;
+    width: 15% ;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    color: rgba(30, 22, 54, 0.6);
+    cursor: default;
+}

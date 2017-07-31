@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+</head>
+<body>
+    <ons-page>
+
+    <ons-toolbar class="blogContentWriteToolbar">
+          <div class="left">
+            <ons-back-button>back</ons-back-button>
+          </div>
+          <div class="center">
+            카테고리이름
+          </div>
+          <div class="right">
+            <ons-icon icon="ion-compose" size="30px" style="margin-left:10px;margin-right:20px;">
+            <div class="writeButton">등록</div>
+            </ons-icon>
+          </div>
+          </ons-toolbar>
+
+          <form action="">
+              <div class="contentTitleWrite">
+                <textarea name="title" class="contentTitleWriteArea"
+                onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';"
+                placeholder="제목"></textarea>
+              </div>
+              <div class="contentWrite">
+                 <textarea name="comment" class="contentWriteArea"
+                  onkeyup="this.style.height='30px'; this.style.height = this.scrollHeight + '1px';"
+                 placeholder="글을 써 주세요."></textarea>
+              </div>
+          </form>
+
+          <ons-bottom-toolbar id="novelFooter">
+            <div class="fontChoice">
+            <ons-icon icon="ion-social-tumblr" size="30px" style="color:#424141;"></ons-icon>
+            </div>
+            <div class="fontAlign">
+            <ons-icon icon="ion-android-funnel" size="30px" style="color:#424141;"></ons-icon>
+            </div>
+            <div class="photoChoice">
+            <ons-icon icon="ion-images" size="40px" style="color:#424141;"></ons-icon>
+            </div>
+            <div class="linkChoice">
+            <ons-icon icon="ion-link" size="40px" style="color:#424141;"></ons-icon>
+            </div>
+        </ons-bottom-toolbar>
+    </ons-page>
+</body>
+</html>

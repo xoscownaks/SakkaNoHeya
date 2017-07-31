@@ -1,13 +1,176 @@
 /* This is a CSS file */
 
-/* 블로그 공지 이미지 */
-.blogNoticeImg {
-    width: 100%;
-    height: 250px;
+/* 블로그 오늘 방문자 수  */
+.todayHit {
+    float: left;
+    text-align: right;
+    font-size: 12px;
+    width: 25%;
+    margin-top: 10px;
+    margin-left: 165px;
+    padding-left: 15px;
+}
+
+/* 블로그 전체 방문자 수 */
+.totalHit {
+    float: left;
+    font-size: 12px;
+    width: 20%;
+    margin-top: 10px;
+    padding-left: 15px;
+}
+
+/* 블로그 메인 이름 */
+.blogTitle {
+    clear: both;
+    font-size: 30px;
+    width: 90%;
+    padding-left: 20px;
+}
+/* 블로그 메인 이미지 */
+.blogMainImg {
+    margin-top: 5px;
+    width: 97%;
+    height: 30%;
+    margin-left: 5px;
+}
+
+/* 블로그유저 정보 */
+.userBlogInfo {
+
+}
+
+/* 게시물 갯수 */
+.contentNum {
+    float: left;
+    font-size: 12px;
+    width: 28%;
+    margin-top: 10px;
+    padding-left: 15px;
+    text-align: center;
+}
+
+/* 구독자 갯수 */
+.blogLike {
+    float: left;
+    font-size: 12px;
+    width: 28%;
+    margin-top: 10px;
+    padding-left: 15px;
+    text-align: center;
+}
+
+/* 연재수 */
+.NovelNum {
+    float: left;
+    font-size: 12px;
+    width: 28%;
+    margin-top: 10px;
+    padding-left: 15px;
+    text-align: center;
+}
+
+/*블로그유저 사진*/
+.blogerImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+}
+/* 블로그유저 이름 */
+.blogerName {
+    font-size: 30px;
+    padding-left: 15px;
+    float: left;
+    width: 90%;
+    height: 50px;
+    line-height: 55px;
+    margin-top: 10px;
+
+}
+/* 쪽지 보내기 버튼 */
+.msgPostButton {
+    -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    float: left;
+    display: block;
+    margin: 10px 0 10px 20px;
+    font-size: 15px;
+    position: relative;
+    width: 35% ;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 10px 0 0 0;
+    color: rgba(30, 22, 54, 0.6);
+    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+
+/* 게시물 쓰기 버튼 */
+.contentWriteButton {
+    -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    float: left;
+    display: block;
+    margin: 10px 0 10px 10px;
+    font-size: 15px;
+    position: relative;
+    width: 35% ;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 10px 0 0 0;
+    color: rgba(30, 22, 54, 0.6);
+    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+
+/* 환경설정 버튼 */
+.blogPageSetting {
+    -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    float: left;
+    display: block;
+    margin: 10px 0 10px 10px;
+    font-size: 15px;
+    position: relative;
+    width: 15% ;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 8px 0 0 0;
+    color: rgba(30, 22, 54, 0.6);
+    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
 }
 
 /* 블로그 공지  */
 .blogNoticeTitle {
+  clear: both;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -17,11 +180,11 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 10px 0 0px 35px;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   color: #1f1f21;
   text-shadow: none;
-  border-top: none;
+  border-top: 1px solid #ccc;
   -webkit-box-shadow: 0px 1px 0px 0px #fff;
   box-shadow: 0px 1px 0px 0px #fff;
   min-height: 24px;
@@ -29,7 +192,6 @@
   margin-top: -1px;
   text-transform: uppercase;
   position: relative;
-  
 }
 .blogNoticeTitle:not(:first-of-type) {
   border-top: 1px solid #ccc;
@@ -42,7 +204,7 @@
     border-bottom: 1px solid #ccc;
 }
 
-/* 블로그 전체글 */
+/* 블로그 전체글 CSS*/
 .blogNoticeContentsTitle {
     margin: 0;
   padding: 0;
@@ -53,7 +215,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 10px 0 10px 43px;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   color: #1f1f21;
   text-shadow: none;
@@ -70,15 +232,39 @@
 .blogNoticeContentsTitle:not(:first-of-type) {
   border-top: 1px solid #ccc;
 }
-.blogNoticeContentsTime {
-     width: 90%;
-    padding: 20px 15px 0 25px;
+
+/* 블로그 게시물  */
+.blogContentTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0 0 20px;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.2em;
+    height: 2.4em;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
+/* 블로그 게시물 시간 */
+.blogNoticeContentsTime {
+     width: 30%;
+     font-size: 15px;
+     text-align: center;
+     float: right;
+     margin-right: 5px;
+     margin-top: 5px;
+}
+
+/* 블로그 게시물 이미지 */
 .blogNoticeContentsImg {
     width: 90%;
     height: 150px;
-    padding: 10px 0 8px 18px; 
+    padding: 10px 0 8px 18px;
     border-bottom: 1px solid #ccc;
 }
-

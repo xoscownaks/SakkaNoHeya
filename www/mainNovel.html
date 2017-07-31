@@ -25,13 +25,13 @@
         <ons-popover direction="down" id="mainNovelPopover" style="width:140px; padding-right:10px;" cancelable>
              <div>
                 <ul class="mainNovelDropList">
-                    <li class="mainNovelDropListItem mainNovelDropListItem--chevron">
-                        <div class="mainNovelDropListCenter" onclick="myNavigator.pushPage('blog.html')">블로그</div>
+                    <li class="mainNovelDropListBlog mainNovelDropListArrow--chevron">
+                        <div class="mainNovelDropListCenter" onclick="blogMove()">블로그</div>
                     </li>
-                    <li class="mainNovelDropListItem mainNovelDropListItem--chevron">
+                    <li class="mainNovelDropListReview mainNovelDropListArrow--chevron">
                         <div class="mainNovelDropListCenter">리뷰</div>
                     </li>
-                    <li class="mainNovelDropListItem mainNovelDropListItem--chevron">
+                    <li  class="mainNovelDropListSetting mainNovelDropListArrow--chevron">
                         <div class="mainNovelDropListCenter">배결 설정 보기</div>
                     </li>
                 </ul>
@@ -39,34 +39,25 @@
         </ons-popover>
 
 
-    <!-- 특정 소설 페이지 소설 소개 표시  -->
+<!-- 특정 소설 페이지 소설 소개 표시  -->
     <div class="main_novel_novelInfo">
-        <table>
-            <tr>
-                <td><img class="main_novel_novelInfo_contentsImg" ></td>
-                <td>
+                <img class="main_novel_novelInfo_contentsImg" >
                     <div class="main_novel_novelInfo_contents">
                         회차 &nbsp &nbsp
                         <select id="novelNumber">
-                              
+
                         </select>
                             &nbsp &nbsp<button class="main_novel_novelInfo_contents_button" onclick="showMainReadNovelByMainNumber()">보기</button>
                         <p>조회수:2400</p><p>추천:413</p>
                         <p class="novelGenre"></p>
                         <p class="episodeCount"></p>
-                    </div>    
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
+                    </div>
                 <div class="main_novel_novelInfo_contentsEx">
-                   
-                   
-                </div>  
-                </td>
-            </tr>
-        </table>
+
+
+                </div>
     </div>
+
     
     <!-- 공지사항, 챕터 리스트 -->
 

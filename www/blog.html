@@ -5,16 +5,16 @@
 <body>
     <ons-page>
 
-    <ons-toolbar>
+    <ons-toolbar class="blogToolbar">
           <div class="left">
             <ons-back-button>back</ons-back-button>
           </div>
           <div class="center">
-            000님의 블로그
+
           </div>
           <div class="right">
             <ons-icon icon="ion-android-more-vertical" class="mainNovelDropListIcon" onclick="blogShowPopover(this);" size="30px" style="margin-left:10px;margin-right:20px;"></ons-icon>
-            
+
           </div>
           </ons-toolbar>
           <!-- 블로그 페이지 툴바 드랍다운메뉴-->
@@ -33,33 +33,61 @@
                 </ul>
              </div>
         </ons-popover>
-        
-        <img class="blogNoticeImg" src="http://efairplay.img2.kr/www/site_renewal/community/com_boardimg_notice.jpg">
+        <div class="todayHit">
+        <ons-icon icon="ion-ios-paw" size="20px"></ons-icon>&nbsp
+        today 10
+        </div>
+        <div class="totalHit">
+        <ons-icon icon="ion-man" size="20px"></ons-icon>&nbsp
+        total 150
+        </div>
+        <div class="blogTitle">게시판 이름</div>
+        <img class="blogMainImg" src="http://cfile10.uf.tistory.com/image/1465C84B5000D2D92A6B12"><!--블로그 메인 이미지-->
+        <div class="userBlogInfo">
+            <div class="contentNum">
+            <ons-icon icon="ion-ios-copy" size="20px"></ons-icon>&nbsp
+            게시물 수 111개
+            </div>
+            <div class="blogLike">
+            <ons-icon icon="ion-happy-outline" size="20px"></ons-icon>&nbsp
+            구독자 수 100명
+            </div>
+            <div class="NovelNum">
+            <ons-icon icon="ion-ios-book" size="20px"></ons-icon>&nbsp
+            연재편 수 3편
+            </div>
+            <div class="blogerName">
+            <img class="blogerImg" src="http://cfile24.uf.tistory.com/image/127209364FF97791054A1B">&nbsp
+            </div>
+            <div class="msgPostButton">
+            <ons-icon icon="ion-android-mail" size="20px" style="color:#424141;"></ons-icon>&nbsp
+            쪽지 보내기
+            </div>
+            <div class="contentWriteButton" onclick="myNavigator.pushPage('blogContentWrite.html')";>
+            <ons-icon icon="ion-android-create" size="20px" style="color:#424141;"></ons-icon>&nbsp
+            게시물 쓰기
+            </div>
+            <div class="blogPageSetting"><ons-icon icon="ion-android-settings" size="25px" style="color:#424141;"></ons-icon></div>
+        </div>
             <li class="blogNoticeTitle">
                 공지사항
             </li>
            <div class="blogNoticeItem">
            <p>안녕하세요 블로그페이지입니다. 글자도 잘 넘어가고 CSS도 잘 적용되었습니다.</p>
            </div>
-           
             <li class="blogNoticeContentsTitle">
                 <div>전체글<div>
             </li>
+        <div class="blogContent" onclick="myNavigator.pushPage('blogReadContent.html')";>
+        <div class="blogContentTitle">마지막으로 올라온 글입니다.마지막으로 올라온 글입니다.마지막으로 올라온 글입니다.</div>
         <div class="blogNoticeContentsTime">1시간 전</div>
-        <img class="blogNoticeContentsImg" src="http://cfile25.uf.tistory.com/image/2238164A54297116244AD9">    
+        <img class="blogNoticeContentsImg" src="http://cfile25.uf.tistory.com/image/2238164A54297116244AD9">
+        </div>
+        <div class="blogContent">
+        <div class="blogContentTitle">첫번째으로 올라온 글입니다.두번째으로 올라온 글입니다.두번째으로 올라온 글입니다.</div>
         <div class="blogNoticeContentsTime">2시간 전</div>
         <img class="blogNoticeContentsImg" src="https://i.ytimg.com/vi/mAo4Gy1nxdk/maxresdefault.jpg">
-        <div class="blogNoticeContentsTime">3시간 전</div>
-        <img class="blogNoticeContentsImg" src="http://pinetree1.co.kr/mall/shop_image/bkids/20141106_sm_05_500_03.jpg">    
-        <div class="blogNoticeContentsTime">4시간 전</div>
-        <img class="blogNoticeContentsImg" src="http://cfile3.uf.tistory.com/image/2539DC3E5871EC092DB018">    
-        <div class="blogNoticeContentsTime">5시간 전</div>
-        <img class="blogNoticeContentsImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmtxeDa877CiYWG_oeC-QVBCF0uA_LyfPgln78zWjgi0hcfFG2QQ">    
-        <div class="blogNoticeContentsTime">6시간 전</div>
-        <img class="blogNoticeContentsImg" src="https://s-media-cache-ak0.pinimg.com/736x/4b/85/2a/4b852ab42c878a5cd76f868837cb25d9.jpg">    
-        <div class="blogNoticeContentsTime">7시간 전</div>
-        <img class="blogNoticeContentsImg" src="http://cfs3.blog.daum.net/upload_control/download.blog?fhandle=MDNXSTFAZnMzLmJsb2cuZGF1bS5uZXQ6L1BST0ZJTEUvMC8wLmpwZw==&filename=0.jpg">    
-    
+        </div>
 </ons-page>
 </body>
 </html>

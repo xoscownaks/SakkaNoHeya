@@ -26,18 +26,17 @@
  * 이미지 슬라이드 부분
  * ****************************************/
     ons.ready(function(){
-        AdaptiveBackgrounds();
         //메인 carousel 상단 슬라이드 이미지 가져오기
         $.ajax({
                 type:"get",
                 url:"http://150.95.130.43/get_novel",
                 success:function(data){                   
                     for(var i=0; i< 4;i++){
-                     
+                        
                         // var body = "<div class='to-top'><img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' style='width:100%;height:200px;' onclick='showNovel("+data[i].id+")'></div>";
                         // $(".contents").slick('slickAdd',body);
 
-                        var body = "<div class='topContents'>";
+                        var body = "<div class='topContents' onclick='showNovel("+data[i].id+")'>";
                                 body += "<div class='topContents-align-left'>";
                                     body += "<div class='topContents-text1'>";
                                         body += data[i].title;
@@ -481,7 +480,7 @@ window.idSearch = function(){
     }else{
         $.ajax({
             type : "get",
-            url : "http://150.95.130.43/get_novel/idSearch",
+            url : "http://150.95.130.43/get_user/id_search",
             data : {
                 email : emailJoin  
             },
@@ -519,7 +518,7 @@ window.pwSearch = function(){
     }else{
         $.ajax({
             type : "get",
-            url : "http://150.95.130.43/get_novel/pwSearch",
+            url : "http://150.95.130.43/get_user/pw_search",
             data : {
                 id : idJoin,
                 email : emailJoin  
@@ -540,7 +539,7 @@ window.pwSearch = function(){
     localStorage.clear();
     $('#slide-top').children().first().remove();
     $('#slide-top').prepend("<img class='logo' src='img/logo.bmp'>");
-    $('#showPoint').text('0');
+    $('.showPoint:eq(1)').text("");
     alert("로그아웃 되었습니다.");
     document.getElementById("loginBtn").style.display = "";
     document.getElementById("joinBtn").style.display = "";
@@ -569,7 +568,33 @@ window.searchCancel = function(){
       document.getElementById('BlogPopover').show(target);
     };
     
-    
+    //소설의 id값을 받아 해당 작가의 블로그로 이동
+    window.blogMove = function(id){
+        myNavigator.pushPage('blog.html');
+        var novel_id = id;
+        $.ajax({
+            type: "get",
+            url : "http://150.95.130.43/get_novel/UserIdOfNovel",
+            data: {
+                id : novel_id
+            },
+            success: function(data){
+                var userid = data[0].user_id;
+                $.ajax({
+                    type: "get",
+                    url : "http://150.95.130.43/get_user/getUserInfo",
+                    data: {
+                        id : userid
+                    },
+                    success: function(data){
+                    $('.blogToolbar > .center').html(data[0].name+" 님의 블로그");
+                    $('.blogerName').html(data[0].name+" 블로그");
+                    }
+                })
+                
+            }
+        })
+    }
     
     
     
@@ -946,9 +971,9 @@ window.showNovel = function(id){
                         favorite = true;
                         $('#novelFavoriteIcon').attr('icon','ion-android-star');
                     }
-                }
-            }
-        })
+                }//for-end
+            }//success-end
+    })//ajax-end
     //소설의 id 값을 받아와 그 소설의 데이터를 가져와 페이지를 보여준다.
     $.ajax({
         type: "get",
@@ -957,6 +982,7 @@ window.showNovel = function(id){
             id : id
         },
         success: function(data){
+            $(".mainNovelDropListBlog").attr("onclick","blogMove("+data[0].id+")");
             $("#novelFavoriteIcon").attr("onclick","addFavorite("+data[0].id+")");
             $('.mainNovelToolbar > .center').html(data[0].title);
             $('.main_novel_novelInfo_contentsImg').attr('src',"http://150.95.130.43/upload/images/"+data[0].cover_img_src);
@@ -980,7 +1006,8 @@ window.showNovel = function(id){
             else if(data[0].genre == 'detective'){
                 $('.novelGenre').text("장르 : 추리");
             }
-            
+            $('.mainNovelDropListSetting').attr('onclick','showBackgroundSettings('+data[0].id+')');
+
             var data_id = data[0].id;
             //모든 에피소드 가져오기 
             $.ajax({
@@ -1062,6 +1089,8 @@ window.showNovel = function(id){
      
         }//success-end
     })//ajax-end
+    
+    
 }
 
 
@@ -1163,7 +1192,7 @@ window.showMainReadNovel = function(id){
     }else{
           $.ajax({
               type:"get",
-              url: "http://150.95.130.43/get_novel/idCheck",
+              url: "http://150.95.130.43/get_user/id_check",
               data: { id : idJoin},
               success: function(msg){
                   if(msg == 1){
@@ -1174,7 +1203,7 @@ window.showMainReadNovel = function(id){
                     var joinInfo = {"user_id" : idJoin, "nickname" : nickJoin, "email" : emailJoin, "user_pw" : pwJoin};
                     $.ajax({
                       type: "get",
-                       url: "http://150.95.130.43/get_novel/writeJoin",
+                       url: "http://150.95.130.43/get_user/write_join",
                          data: joinInfo,
                          success: function(data){
                              alert('가입되었습니다.');
@@ -1210,13 +1239,12 @@ window.showMainReadNovel = function(id){
             alert("비밀번호를 입력하세요.");
             pwFocus.focus();
             return;
-        }else if(idValue != "" && pwValue != ""){
+        }else{
             $.ajax({
                      type:"get",
-                     url: "http://150.95.130.43/get_novel/userInfo",
+                     url: "http://150.95.130.43/get_user/getUserInfo",
                      data:{
-                         id : idValue,
-                         pw : pwValue
+                         id : idValue
                      },
                      success: function(data){
                             //로컬스토레이지에 사용자id 와 닉네임 저장 
@@ -1230,25 +1258,25 @@ window.showMainReadNovel = function(id){
                             
                             $.ajax({
                                 type:'get',
-                                url:"http://150.95.130.43/get_point/check_point",
+                                url:"http://150.95.130.43/get_point/get_point",
                                 data:{
                                     user_id:localStorage.getItem('current_id')
                                 },
                                 success:function(data){
-                                    $('.showPoint:eq(1)').text(data[0].point);
+                                    console.log(data);
+                                    if(!data[0].point){
+                                        $('.showPoint:eq(1)').text("0");
+                                    }
+                                    else{
+                                        $('.showPoint:eq(1)').text(data[0].point);
+                                    }
                                 }
                             })
-                            
-                            
-                            
-                            
-                            
-                            
+
                             document.getElementById("loginBtn").style.display = "none";
                             document.getElementById("joinBtn").style.display = "none";
                             document.getElementById("logoutBtn").style.display = "";
-                            myNavigator.pushPage('index.html');
-
+                            myNavigator.popPage();
                      }
             })//ajax-end
         }//else-end    
@@ -1486,13 +1514,32 @@ window.buyPoint = function(){
                 {
                     $.ajax({
                         type:'get',
-                        url:"http://150.95.130.43/set_point/add_point",
+                        url:"http://150.95.130.43/set_point/set_point",
                         data:{
                             user_id:localStorage.getItem('current_id'),
                             point:point
                         },
                         success:function(data){
                             alert('감사합니다.');
+                            
+                            $.ajax({
+                                type:'get',
+                                url:"http://150.95.130.43/get_point/get_point",
+                                data:{
+                                    user_id:localStorage.getItem('current_id')
+                                },
+                                success:function(data){
+                                    console.log(data);
+                                    if(data[0].point){
+                                        $('.showPoint:eq(1)').text("0");
+                                    }
+                                    else{
+                                        $('.showPoint:eq(1)').text(data[0].point);
+                                    }
+                                    myNavigator.popPage();
+                                }//success-end
+                            })//ajax-end
+                            
                         }
                     })//ajax-end
                         
@@ -1502,3 +1549,292 @@ window.buyPoint = function(){
        
     }    
 }
+
+/******************************************
+ * 소설의 배경설정 정보를 출력 
+ * ******************************************/
+window.showBackgroundSettings = function(id){
+    myNavigator.pushPage('backgroundSetting.html');
+    
+    //소설의 사건을 가져와 그래프로 출력, 그 사건의 간단한 정보 출력
+    $.ajax({
+        url:"http://150.95.130.43/get_settings/historyGraphInfo",
+        type:'get',
+        success:function(data){
+            //ready함수를 실행하여 data를 갖고 구글api 사용해 그래프 그리기
+            
+            for(var i = 0; i< Object.keys(data).length ; i++){
+                var body = "<div name='event_list' id='"+i+"'><a href='#'>"+data[i].event_name+"</a></div>";
+                $('#timetableList').append(body);
+            }
+            ready(data);
+            history_info(data);
+        }//success-end
+    });//ajax-end 
+                                                                                                                                                                                                                         
+    //소설의 배경설정의 인물들을 가져온다
+    $.ajax({
+        url:"http://150.95.130.43/get_settings/charactersInfo",
+        type:'get',
+        success:function(data){ 
+            for(var i = 0; i< Object.keys(data).length ; i++){
+                var body = "<img id='"+data[i].id+"' src='http://150.95.130.43/img/background/characterImg/"+data[i].img_src+"' class='character_list'>";
+                $("div[name='character-view']").append(body);
+            }
+            character_info(data);
+        }//success-end
+    });//ajax-end 
+
+    
+    //소설의 배경설정의 사물들을 가져온다
+    $.ajax({
+        url:"http://150.95.130.43/get_settings/itemsInfo",
+        type:'get',
+        success:function(data){
+            for(var i = 0; i< Object.keys(data).length ; i++){
+                var body = "<img id='"+data[i].id+"' src='http://150.95.130.43/img/background/itemImg/"+data[i].img_src+"' class='item_list'>";
+                $("div[name='item-view']").append(body);
+            }
+            item_info(data);
+        }//success-end
+    });//ajax-end 
+    
+
+    //소설의 배경설정의 인물들을 가져와서 관계도를 그려준다.
+    $.ajax({
+        url:"http://150.95.130.43/get_settings/charactersInfo",
+        type:'get',
+        success:function(data){ 
+            var chaInfos = data;
+            var nodes = {};
+    		var rel = {};            
+          
+            $.ajax({
+            url:"http://150.95.130.43/get_settings/relationsInfo",
+            type:'get',
+            success:function(data){ 
+                    var links = data;
+                    
+                    links.forEach(function(link) {
+            			link.id = "rel" + link.relnum;
+        
+        				link.source = nodes[link.source] ||
+        						(nodes[link.source] = {chaId: link.source});
+        				link.target = nodes[link.target] ||
+        						(nodes[link.target] = {chaId: link.target});
+        				link.relationship = link.relationship;
+    			    });
+                
+            		// svg크기 정의 div크기에서 어느정도 여백
+        			var width = 900;
+        			var height = 500;
+        
+        
+        			//********************************************************************//
+        			// 											force 레이아웃 정의
+        			//********************************************************************//
+        			var force = d3.layout.force()
+        					.nodes(d3.values(nodes))
+        					.links(links)
+        			 		.size([400, 400])
+        					.linkDistance(250)
+        					.charge(-800)
+        					.on("tick", tick);
+        
+        			// 드래그를 시작할 때 함수 적용(노드 고정)
+        			var drag = force.drag().on("dragstart", dragstart);
+        
+        			// #for-div 내 svg 생성
+        			var svg = d3.select("#force-div").append("svg")
+        					.attr("width", width)
+        					.attr("height", height)
+        					.attr("class", "mind-area");
+    
+    
+        			// 노드의 이미지 패턴 정의
+        			var defs = svg.append("defs").attr("id", "imgdefs");
+        			chaInfos.forEach(function(chainfo){
+        				var catpattern = defs.append("pattern")
+        															.attr("id", "pattern" + chainfo.id)
+        															.attr("height", 1)
+        															.attr("width", 1)
+        															.attr("x", "0")
+        															.attr("y", "0");
+        				catpattern.append("image")
+        					 .attr("height", 70)
+        					 .attr("width", 70)
+        					 .attr("xlink:href", "http://150.95.130.43/img/background/characterImg/" + chainfo.img_src);
+        			});
+        
+        
+        			//********************************************************************//
+        			// 											노드, 링크 요소 추가
+        			//********************************************************************//
+        			// 화살표 생성
+        			var marker = svg.append("svg:defs").selectAll("marker");
+        			marker = marker.data(["end"])
+        			marker.exit().remove();
+        			marker.enter().append("svg:marker")
+        					.attr("id", String)
+        					.attr("viewBox", "0 -5 10 10")
+        					.attr("refX", 38)
+        					.attr("refY", -1)
+        					.attr("markerWidth", 14)
+        					.attr("markerHeight", 14)
+        					.attr("orient", "auto")
+                            .attr("style", "fill:blue;")
+        					.append("svg:path")
+        					.attr("d", "M0,-5L10,0L0,5");
+                            
+        
+        
+        			// 연결선 생성 및 svg 적용, + 연결선마다 화살표 적용
+        			var path = svg.append("svg:g").selectAll("path");
+        
+        
+        			// relationship 데이터를 text로 생성
+        			var relTextArea = svg.append("svg:g");
+        			var mytext = relTextArea.selectAll("text");
+        
+        			// 노드 정의
+        			var node = svg.selectAll(".node");
+        
+        			restart();
+                    
+    
+    
+        			// 연결선 커브 및 크기변경 + 노드 위치이동
+        			var tf = true;
+                   
+        			function tick() {
+        					path.attr("d", function(d) {
+        							var dx = d.target.x - d.source.x,
+        									dy = d.target.y - d.source.y,
+        									dr = Math.sqrt(dx * dx + dy * dy);
+        
+        							var tickfunc = "M" +
+        									d.source.x + "," +
+        									d.source.y + "A" +
+        									dr + "," + dr + " 0 0,1 " +
+        									d.target.x + "," +
+        									d.target.y;
+        
+        							// if(tf == true){
+        							// 	alert(tickfunc);
+        							// 	tf = false;
+        							// }
+        
+        							return tickfunc;
+        					});
+        
+        
+        					node.attr("transform", function(d) {
+        									 return "translate(" + d.x + "," + d.y + ")"; });
+        			}
+        
+        			// 드래그 시작 시, 노드를 고정
+        			function dragstart(d){
+        				 d3.select(this).classed("fixed", d.fixed = true);
+        				//  console.log("nodes↓");
+        				//  console.log(nodes);
+        				//  console.log("links↓");
+        				//  console.log(links);
+        				//  console.log("path↓");
+        				//  console.log(path);
+        				//  console.log("nodes↓");
+        				//  console.log(rel);
+        			}
+        
+        			function restart(){
+                        // alert("asd");
+        				force.nodes(d3.values(nodes));
+        				force.links(links);
+        
+        				// 연결선 생성 및 svg 적용, + 연결선마다 화살표 적용
+        				path = path.data(links)
+        				path.remove();
+        				path = path.enter().append("svg:path")
+        						.attr("id", function(d) { return d.id; } )
+        						.attr("class", "link")
+        						.attr("marker-end", "url(#end)")
+                                .attr("style", "fill:none; stroke: steelblue; stroke-width: 1;");
+        
+        				mytext = mytext.data(links)
+        				mytext.remove();
+        				mytext = mytext.enter().append("text")
+        				.attr("dx", "100")
+        				.attr("dy", "-8")
+        				.attr("id", function(d) { return  "text" + d.id; })
+        				.append("textPath")
+        				.attr("xlink:href", function(d) { return "#" + d.id; })
+        				.attr("style", "fill:magenta; font-weight:bold; font-size:15")
+        				.text(function(d) { return d.relationship; } );
+        
+        				var relText = relTextArea.selectAll("text");
+        
+        				// 노드 정의
+        				node = node.data(d3.values(nodes));
+        				node.remove();
+        				node = node.enter().append("g")
+        				.attr("class", "node")
+        				.attr("xlink:href", function(d) { return d.chaId; })
+        				.call(force.drag);
+        
+        
+        				// 노드에 원형 추가
+        				node.append("circle")
+        						.attr("r", 35)
+        						.attr("fill", function(d) { return "url(#pattern" + d.chaId +")"; });
+        
+        				// 노드에 텍스트 추가 (name 데이터)
+        				node.append("text")
+        					 .attr("text-anchor", "middle")
+        					 .attr("dy","25")
+        						.attr("style", "fill:white; font-weight:bold; font-size:16")
+        						.text(function(d) { return getChaInfoById(d.chaId).name; });
+        
+        
+        				// force 재시작
+        				force.start();
+        			}
+                    
+                    // ID값으로 캐릭터의 정보를 가져옴
+        			function getChaInfoById(id){
+        				var chaInfose = chaInfos;
+        				var chaInfo = null;
+                    
+        				chaInfose.some(function(info){
+        					if(info.id == id){
+                                
+        						chaInfo = info;
+        						return;
+        					}
+        				});
+        				return chaInfo;
+        			}			                             
+           
+                }//success-end
+            });   
+         
+        }//success-end
+    });//ajax-end 
+    
+    
+    
+    //소설의 배경설정의 지도들을 가져온다
+    $.ajax({
+        url:"http://150.95.130.43/get_settings/mapsInfo",
+        type:'get',
+        success:function(data){
+            for(var i = 0; i< Object.keys(data).length ; i++){
+                var body = "<img id='"+data[i].id+"' src='http://150.95.130.43/img/background/mapImg/mapCover/"+data[i].cover_src+"' class='map_list'>";
+                $("div[name='map-view']").append(body);
+            }
+            map_info(data);
+        }//success-end
+    });//ajax-end 
+
+}
+
+
+

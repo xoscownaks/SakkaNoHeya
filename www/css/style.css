@@ -34,9 +34,11 @@ ons-list-header {
 .topContents-text1{
     font-size: 26px;
     font-weight: bold;
+    margin-top: 10px;
 }
 .topContents-text2{
     font-size: 20px;
+    margin-top: 5px;
 }
 .topContents-text3{
     font-size: 18px;
@@ -45,16 +47,22 @@ ons-list-header {
     margin-top: 10px;
 }
 
+/*글씨가 들어가는 왼쪽*/
 .topContents-align-left{
     width: 50%;
     float: left;
-}
 
+}
+/*이미지가 들어갈 오른쪽*/
 .topContents-align-right{
     width: 50%;
     float: left;
+   
 }
-
+/*전체적인 틀 부분*/
+.contents{
+    border-bottom: 1px solid #e0e0e0;
+}
 
 
 

@@ -1,0 +1,52 @@
+/* This is a CSS file */
+
+/*배경설정 중 사건들의 css*/
+div[name=event_list] > a{
+    text-decoration: none;
+    border: 1px solid gray;
+    background-color: white;
+    border-radius: 10px;
+}
+
+div[name=event_list] > a:hover{
+    background-color: #def2b5;
+}
+div[name=event_list] > a:active{
+    width: 110%;
+    height: 110%;
+}
+
+/*배경설정 중 인물들의 css*/
+.character_list{
+    width: 46%;
+    margin: 5px;
+}
+
+.character_list:hover{
+    border: 2px solid red;
+}
+
+/*배경설정 중 사물들의 css*/
+.item_list{
+    width: 46%;
+    margin: 5px;
+}
+
+.item_list:hover{
+    border: 2px solid red;
+}
+
+/*배경 설정 중 지도의 css*/
+.map_list{
+    width: 46%;
+    margin: 5px;
+}
+
+.map_list:hover{
+    border: 2px solid red;
+}
+
+div[name=map-info] > img{
+    width: 95%;
+    margin: 5px;
+}

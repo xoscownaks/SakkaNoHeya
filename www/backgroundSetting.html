@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/backgroundSetting.css">
+    
+    <script src="components/loader.js"></script>
+</head>
+<body>
+    <!--상단 탑의 배경설정 관련 메뉴바-->
+    <ons-tabbar position="top">
+      <ons-tab page="novelHistory.html" label="evnents" icon="ion-ios-clock-outline" active="true"></ons-tab>
+      <ons-tab page="novelCharacter.html" label="characters" icon="ion-android-person"></ons-tab>
+      <ons-tab page="novelItem.html" label="items" icon="ion-ios-cart"></ons-tab>
+      <ons-tab page="novelRelation.html" label="relations" icon="ion-ios-people"></ons-tab>
+      <ons-tab page="novelMap.html" label="map" icon="ion-map"></ons-tab>
+    </ons-tabbar>
+    
+    
+    <!--소설 사건 표시 하기 -->
+    <ons-template id="novelHistory.html">
+    
+        <!--소설 사건의 그래프가 출력되는 부분-->
+        <div id="timeline" style="width:95%; margin:7px; height:100px;">
+            
+            
+        </div>
+        <div id="timetableList" style="margin-top:20px;margin-left:15px;font-size:30px;">
+            
+            
+        </div>
+        
+        <!--소설 사건의 제목이 출력되는 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">제목</div>
+        <div name="event-name" style="margin-top:5px;font-size:20px;">
+            
+        </div>
+        
+        <!--소설 사건의 내용이 출력되는 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">내용</div>
+        <div name="event-content" style="margin-top:5px;font-size:20px;">
+            
+        </div>
+        
+        <!--소설 사건의 설정이 출력되는 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">설정</div>
+        <div name="event-refer_info" style="margin-top:5px;font-size:20px;">
+            
+        </div>
+        
+        <!--소설 사건의 기타 내용이 출력되는 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">기타</div>
+        <div name="event-other" style="margin-top:5px;font-size:20px;">
+            
+        </div>
+        
+        <!--소설 사건의 기간이 출력되는 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">기간</div>
+        <div name="event-day" style="margin-top:5px;font-size:20px;">
+            
+        </div>
+        
+        <!--소설 사건과 관계가 있는 인물들이 출력되는 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">등장인물</div>
+        <div name="event-character" style="margin-top:5px;font-size:20px;">
+            
+        </div>
+        
+        <!--소설 사건과 관계가 있는 사물들이 출력되는 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">등장사물</div>
+        <div name="event-item" style="margin-top:5px;font-size:20px;">
+            
+        </div>
+        
+        <!--소설 사건과 관계가 배경 지도 이름이 출력되는 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">배경 장소</div>
+        <div name="event-map" style="margin-top:5px;font-size:20px;">
+            
+        </div>
+    </ons-template>
+    
+    
+    <!--배경설정의 소설 인물-->
+    <ons-template id="novelCharacter.html">
+        <!--인물 사진-->
+        <div name="character-view">
+            
+        </div>
+        
+        <!--이름 출력 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">이름 : </div>
+        <div name="character-name">
+            
+        </div>
+        
+        <!--나이 출력 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">나이 : </div>
+        <div name="character-age">
+            
+        </div>
+        
+        <!--성별 출력 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">성별 : </div>
+        <div name="character-gender">
+            
+        </div>
+        
+        <!--정보 출력 부분 -->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">정보 : </div>
+        <div name="character-info">
+            
+        </div>
+        
+        <!--설정 정보 출력-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">작가 설정 : </div>
+        <div name="character-refer_info">
+            
+        </div>
+        
+    
+    </ons-template>
+    
+    <!--소설 아이템-->
+    <ons-template id="novelItem.html">
+        <!--사물 사진-->
+        <div name="item-view">
+            
+        </div>
+        
+        <!--이름 출력 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">이름 : </div>
+        <div name="item-name">
+            
+        </div>
+        
+        <!--내용 출력 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">내용 : </div>
+        <div name="item-info">
+            
+        </div>
+        
+        <!--분류 출력 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">내용 : </div>
+        <div name="item-category">
+            
+        </div>
+        
+        <!--작가 설정 부분-->
+        <div style="margin-top:20px;font-size:20px;font-weight:bold;">작가 설정 : </div>
+        <div name="item-refer-info">
+            
+        </div>
+      
+    </ons-template>
+    
+    <!--소설 관계도-->
+    <ons-template id="novelRelation.html">
+        <div id="force-div" class="col-md-12"> 
+        
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
+    </ons-template>
+    
+    <!--소설 지도-->
+    <ons-template id="novelMap.html">
+        <div name="map-view">
+            
+            
+            
+        
+        </div>
+     
+        <div name="map-info">
+            
+            
+        </div>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    </ons-template>
+    
+
+
+
+</body>
+</html>

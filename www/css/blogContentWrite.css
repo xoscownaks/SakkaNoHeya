@@ -1,0 +1,100 @@
+
+/* 게시물 등록 버튼 */
+.writeButton {
+    font-size:15px;
+    font-weight: bold;
+    float:right;
+    line-height: 30px;
+    height: 30px;
+    width: 10px;
+}
+
+/* 게시물 글 제목  */
+.contentTitleWrite {
+    margin: 30px 0 0 30px;
+    font-size: 30px;
+     border-bottom: 1px solid #ccc;
+    width: 85%;
+}
+
+.contentTitleWriteArea{
+    resize:none;
+    line-height:30px;
+    width:100%;
+    overflow-y:hidden;
+    height:30px;
+}
+
+/* 게시물 쓰기 */
+.contentWrite {
+    margin: 45px 0 0 30px;
+    font-size: 20px;
+    width: 85%;
+}
+
+.contentWriteArea{
+    resize:none;
+    line-height:30px;
+    width:100%;
+    overflow-y:hidden;
+    height:30px;
+
+}
+/* 글꼴선택버튼 */
+.fontChoice {
+    border-right: 1px solid #ccc;
+    width: 25%;
+    float: left;
+    display: block;
+    position: relative;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 0 0 0;
+    color: rgba(30, 22, 54, 0.6);
+    cursor: default;
+}
+
+/* 글꼴정렬버튼 */
+.fontAlign {
+    border-right: 1px solid #ccc;
+    width: 25%;
+    float: left;
+    display: block;
+    position: relative;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 0 0 0;
+    color: rgba(30, 22, 54, 0.6);
+    cursor: default;
+}
+
+/* 사진선택버튼 */
+.photoChoice {
+    border-right: 1px solid #ccc;
+    width: 24%;
+    float: left;
+    display: block;
+    position: relative;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 0 0 0;
+    color: rgba(30, 22, 54, 0.6);
+    cursor: default;
+}
+
+/* 링크버튼 */
+.linkChoice {
+    width: 24%;
+    float: left;
+    display: block;
+    position: relative;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 0 0 0;
+    color: rgba(30, 22, 54, 0.6);
+    cursor: default;
+}
