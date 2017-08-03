@@ -984,8 +984,8 @@ window.showNovel = function(id){
                             
                             //만약 데이터에 있는 에피소드가 공지가 아니라면 
                             if(data[i].is_notice == "0" ){
-                                episode_count = episode_count+1;                            
-                                
+                                episode_count = episode_count+1;
+                            
                                 //if(Object.keys(data).length > 6){
                                         var body = "<ons-list-item class='list-item-container' onclick='isFree("+data[i].is_charge+","+data[i].id+")'>";
                                         body += "<ons-row>";
@@ -993,32 +993,23 @@ window.showNovel = function(id){
                                                 body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' class='thumbnail'>";
                                             body += "</ons-col>";
                                             body += "<ons-col>";
-                                                body += "<div class='location'>";
-                                                    body += "<div>"+episode_count+"화</div>";
-                                                    body += "<div style='width:60px'>댓글</div>";
-                                                    body += "<div>"+data[i].created_at+"</div>";
+                                                body += "<div class='episodeLocation'>";
+                                                    body += "<div class='episodeLocationCount'>"+episode_count+"화</div>";
+                                                    body += "<div class='episodeComment'>댓글</div>";
+                                                    body += "<div class='episodeCreated'>"+data[i].created_at+"</div>";
                                                 body += "</div>";
-                                                body += "<div class='name'>";
+                                                body += "<div class='episodeTitle'>";
                                                     body += data[i].episode_title;
                                                 body += "</div>";
                                             body += "</ons-col>";
                                             if(data[i].is_charge == "1"){
                                                 body += "<div class='ketImg'><i class='fa fa-lock fa-2x'></i></div>";
                                             }else{
-                                                body += "";
+                                                body += "<div class='ketImg'></div>";
                                             }
                                         body += "</ons-row>";
                                         body += "</ons-list-item>";
                                         $('.chapterListDiv').append(body);
-                                        // if(episode_count == 5){
-                                        //     $('.details').append("<a class='addButton' this.onclick=;>"+
-                                        //     "<div class='addButtonDiv' onclick='moreList("+data[i].id+"); this.onclick=null'>더보기<i class='fa fa-chevron-down'></i></div></a>");
-                                        //     break;
-                                        // }
-                                      
-                        
-                                //}                        
-                                           
                             }//if-end
                         }//for-end   
                         //공지사항 리스트 출력 

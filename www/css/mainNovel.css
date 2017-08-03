@@ -664,19 +664,51 @@
 }
 
 /* 배경설정 list 부분 */
-.NovelSeetingsListItem {
-    line-height: 0;
-  padding: 0px 0px 0px 5px;
-  border-bottom: 1px solid #ccc;
-}
-.NovelSettingsListNumber {
-    padding-left: 50px;
+.episodeLocation {
+    font-size: 12px;
+    width: 95%;
+    height: 50%;
+    margin-right: 0;
 }
 
-.NovelSettingsListName {
-    text-align: center;
-    padding-left: 120px;
+/* 에피소드 회차 */
+.episodeLocationCount {
+    float: left;
+    width: 15%;
+    margin-top: 8px;
 }
+/* 댓글 */
+.episodeComment {
+    float: left;
+    margin: 0;
+    width: 28%;
+    margin-top: 8px;
+}
+
+/* 에피소드 날짜 */
+.episodeCreated {
+    float: left;
+    width: 52%;
+    margin-top: 8px;
+}
+/* 에피소드 타이틀 */
+.episodeTitle {
+    clear: both;
+    width: 90%;
+    height: 40%;
+    line-height: 30px;
+    font-size: 16px;
+}
+
+/* 유무료 자물쇠 이미지 */
+.ketImg {
+    text-align: center;
+    width: 8%;
+    height: 65px;
+    line-height: 80px;
+    padding-right: 1px;
+}
+
 
 /* 배경설정 detail 부분 */
 .NovelDatailSettingItem {
