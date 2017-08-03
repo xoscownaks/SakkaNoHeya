@@ -758,58 +758,7 @@ window.searchCancel = function(){
             
         }
         
-        
-  /******************************************
-     * 더보기 클릭시
-     * ****************************************/
-function moreList(id){
-    $.ajax({
-        type:"get",
-        url: "http://150.95.130.43/get_novel",
-        data: {
-            id : id
-        },
-        success: function(data){
-            var noticeid = data[0].id;
-            $.ajax({
-                type: "get",
-                url: "http://150.95.130.43/get_novel/get_episodes",
-                data: {
-                    id : noticeid
-                },
-                success: function(data){
-                    var content="";
-                    for(var j =5; j< Object.keys(data).length ;j++){
-                        if(data[j].is_notice == "0" ){            
-                        var episode_count = j+1;
-                            content +=
-                            "<ons-list-item class='list-item-container' onclick='showMainReadNovel("+data[j].id+")'>"+
-                            "<ons-row>"+
-                            "<ons-col width='75px'><img class='thumbnail' src='http://150.95.130.43/upload/images/"+data[j].cover_img_src+"'>"+
-                            "</ons-col>"+
-                            "<ons-col>"+
-                            "<div class='location'>"+
-                            "<div>"+episode_count+"화"+"</div><div style='width:60px'>"+"댓글"+"</div><div>"+data[j].created_at+"</div>"+
-                            "</div>"+
-                            "<div class='name'>"+data[j].episode_title+
-                            "</div>"+
-                            "</ons-col>"+
-                            "</ons-row>"+
-                            "</ons-list-item>";
-                        }//if-end
-                    }//for-end
-                /*나중에 쓸 js*/ /*content+="<tr id='addbtn'><td colspan='5'><div class='btns'><a href='javascript:moreList();' class='btn'>더보기</a></div>  </td></tr>";*/
-                    
-                $(content).appendTo(".chapterListDiv");
     
-            
-                }//success-end
-            
-            })//ajax-end
-            
-        }//success-end
-    })//ajax-end
-}
     /***********************************
      * 소설읽는 화면의 뷰어를 설정하는 기능
      * ***********************************/
@@ -1038,7 +987,7 @@ window.showNovel = function(id){
                                 episode_count = episode_count+1;                            
                                 
                                 //if(Object.keys(data).length > 6){
-                                        var body = "<ons-list-item class='list-item-container' onclick='showMainReadNovel("+data[i].id+")'>";
+                                        var body = "<ons-list-item class='list-item-container' onclick='isFree("+data[i].is_charge+","+data[i].id+")'>";
                                         body += "<ons-row>";
                                             body += "<ons-col width='75px'>";
                                                 body += "<img src='http://150.95.130.43/upload/images/"+data[i].cover_img_src+"' class='thumbnail'>";
@@ -1066,7 +1015,8 @@ window.showNovel = function(id){
                                         //     "<div class='addButtonDiv' onclick='moreList("+data[i].id+"); this.onclick=null'>더보기<i class='fa fa-chevron-down'></i></div></a>");
                                         //     break;
                                         // }
-    
+                                      
+                        
                                 //}                        
                                            
                             }//if-end
@@ -1512,36 +1462,50 @@ window.buyPoint = function(){
                 //예
                 if(answer ==  1)
                 {
+                    //기존의 포인트 가있는지 가져오기
                     $.ajax({
                         type:'get',
-                        url:"http://150.95.130.43/set_point/set_point",
+                        url:"http://150.95.130.43/get_point/get_point",
                         data:{
-                            user_id:localStorage.getItem('current_id'),
-                            point:point
+                            user_id:localStorage.getItem('current_id')
                         },
                         success:function(data){
-                            alert('감사합니다.');
-                            
                             $.ajax({
                                 type:'get',
-                                url:"http://150.95.130.43/get_point/get_point",
+                                url:"http://150.95.130.43/set_point/set_point",
                                 data:{
-                                    user_id:localStorage.getItem('current_id')
+                                    user_id:localStorage.getItem('current_id'),
+                                    point:point,
+                                    current_point: data[0].point
                                 },
                                 success:function(data){
-                                    console.log(data);
-                                    if(data[0].point){
-                                        $('.showPoint:eq(1)').text("0");
-                                    }
-                                    else{
-                                        $('.showPoint:eq(1)').text(data[0].point);
-                                    }
-                                    myNavigator.popPage();
-                                }//success-end
+                                    alert('감사합니다.');
+                                    
+                                    $.ajax({
+                                        type:'get',
+                                        url:"http://150.95.130.43/get_point/get_point",
+                                        data:{
+                                            user_id:localStorage.getItem('current_id')
+                                        },
+                                        success:function(data){
+                                            console.log(data);                           
+                               
+                                            if(data[0].point == 0){
+                                                $('.showPoint:eq(1)').text("0");
+                                            }
+                                            else{
+                                                $('.showPoint:eq(1)').text(data[0].point);
+                                            }
+                                            myNavigator.popPage();
+                                        }//success-end
+                                    })//ajax-end
+                                    
+                                }
                             })//ajax-end
-                            
-                        }
+
+                        }//success-end
                     })//ajax-end
+                    
                         
                 }//if-end 
             }//callback-end
@@ -1549,6 +1513,95 @@ window.buyPoint = function(){
        
     }    
 }
+
+/***********************
+ * 포인트 사용 
+ * **********************/
+window.usePoint = function(){
+    var user_id = localStorage.getItem('current_id');
+    $.ajax({
+        type:'get',
+        url:"http://150.95.130.43/get_point/get_point",
+        data:{
+            user_id:user_id
+        },
+        success:function(data){
+            $.ajax({
+                type:'get',
+                url:"http://150.95.130.43/set_point/set_point_again",
+                data:{
+                    current_point:data[0].point,
+                    user_id : user_id
+                },
+                success:function(data){
+                    if(data[0].point == 0){
+                        $('.showPoint:eq(1)').text("0");
+                    }
+                    else{
+                        $('.showPoint:eq(1)').text(data[0].point);
+                    }
+                }
+            })//ajax-end
+
+        }//success-end
+    })//ajax-end
+    
+    
+    
+}
+
+
+/**************************************
+ * 해당 에피소드가 무료인지 유료인지 판단
+ * **********************************/
+window.isFree = function(charge,episode_id){
+        //유료
+        if(charge == 1){
+            if(localStorage.getItem('current_id') == null){
+                alert('로그인이 필요합니다.');
+                return;
+            }else{
+                ons.notification.confirm({
+                    title:'',
+                    message: '유료 작품입니다.     포인트를 사용하시겠습니까?',
+                    buttonLabels:['아니요','예'],
+                    callback: function(answer)
+                    {
+                        //아니요
+                        if(answer ==  0)
+                        {
+                            return;
+                        }  
+                        //예
+                        if(answer ==  1)
+                        {
+                            showMainReadNovel(episode_id);
+                            usePoint();
+                           
+                        }//if-end 
+                    }//callback-end
+                });//confirm-end
+            }
+        }
+        //무료
+        else{
+            showMainReadNovel(episode_id);
+            return;
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /******************************************
  * 소설의 배경설정 정보를 출력 
