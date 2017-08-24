@@ -10,26 +10,18 @@
                 <ons-back-button id="blogBackButton">back</ons-back-button>
             </div>
             <div class="center">
-                <div class="blogCategorySelect">
-                    <select id="CategoryInfo">
-
-                    </select>
-                </div>
+                독자 게시판
             </div>
             <div class="right">
                 <div class="writeButtonDiv">
                     <ons-icon icon="ion-compose" size="30px" style="margin-left:10px;margin-right:20px;">
-                        <div class="writeButton" onClick="writeOnClick();">등록</div>
+                        <div class="writeButton" onClick="UserWriteOnClick();">등록</div>
                     </ons-icon>
                 </div>
             </div>
         </ons-toolbar>
 
         <form action="">
-            <div class="noticeCheckBoxDiv">
-                <input type="checkbox" id="noticeCheck" name="interest" value="noticeCheck">
-                    <label for="notice">공지사항</label>
-            </div>
             <div class="contentTitleWrite">
                 <textarea name="title" id="contentTitleWriteArea"
                     onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';"
@@ -41,7 +33,7 @@
                     placeholder="글을 써 주세요."></textarea>
             </div>
         </form>
-
+    
         <ons-bottom-toolbar id="novelFooter">
             <div class="fontChoice">
                 <ons-icon icon="ion-social-tumblr" size="30px" style="color:#424141;"></ons-icon>

@@ -1,0 +1,59 @@
+/* This is a CSS file */
+
+/* This is a CSS file */
+
+.userContentReadButtonDiv{
+    margin-right: 10px;
+}
+
+/* 독자게시판 글쓰기이동 버튼 */
+.userContentReadButton{
+    font-size:15px;
+    font-weight: bold;
+    float:right;
+    line-height: 30px;
+    height: 30px;
+    width: 10px;
+    margin-right: 8px;
+}
+
+/* 블로그 게시물 divbox css */
+.userContent {
+    width: 100%;
+    height: 120px;
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 블로그 게시물  */
+.userContentTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0 0 20px;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.2em;
+    height: 2.4em;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* 블로그 게시물 작성 유저 이름 */
+.contentWriteUserName{
+    width: 50%;
+    margin-left: 20px;
+}
+
+/* 블로그 게시물 시간 */
+.userContentsTime {
+     width: 80%;
+     float: left;
+     margin-left: 20px;
+     margin-top: 10px;
+}

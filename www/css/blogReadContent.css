@@ -14,7 +14,7 @@
 /* 글 제목 */
 .blogReadContentTitle {
     clear: both;
-    font-size: 30px;
+    font-size: 35px;
     margin-left: 15px;
     width: 90%;
 }
@@ -50,6 +50,7 @@
 /* 글 내용 */
 .blogReadContent {
     clear: both;
+    font-size: 20px;
     border-top: 1px solid #ccc;
     margin: 20px;
     padding-top: 35px;
@@ -91,11 +92,15 @@
 
 /* 맨위로 버튼 */
 .topGo {
-    width: 95%;
-    height: 60px;
+    height: 50px;
     line-height: 60px;
     text-align: center;
     font-size: 25px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    margin-bottom: 3px;
 }
 
 /* 게시글 좋아요 */

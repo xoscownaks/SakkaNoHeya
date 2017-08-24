@@ -561,17 +561,14 @@ window.searchCancel = function(){
       document.getElementById('mainNovelPopover').show(target);
     };
     
-     /******************************************
-     * 블로그 페이지 툴바 드랍다운메뉴
+/******************************************
+     * 블로그에 작가 정보 가져오기
      * ****************************************/
-    var blogShowPopover = function(target) {
-      document.getElementById('BlogPopover').show(target);
-    };
-    
     //소설의 id값을 받아 해당 작가의 블로그로 이동
     window.blogMove = function(id){
         myNavigator.pushPage('blog.html');
         var novel_id = id;
+        //집필한소설의 작가가 맞는지 확인 ajax
         $.ajax({
             type: "get",
             url : "http://150.95.130.43/get_novel/UserIdOfNovel",
@@ -579,22 +576,395 @@ window.searchCancel = function(){
                 id : novel_id
             },
             success: function(data){
-                var userid = data[0].user_id;
-                $.ajax({
-                    type: "get",
-                    url : "http://150.95.130.43/get_user/getUserInfo",
-                    data: {
-                        id : userid
-                    },
-                    success: function(data){
-                    $('.blogToolbar > .center').html(data[0].name+" 님의 블로그");
-                    $('.blogerName').html(data[0].name+" 블로그");
-                    }
+                    var blogerName = data[0].name;
+                    $('.blogToolbar > .center').html(blogerName+" 님의 블로그");
+                    var bloguserid = data[0].user_id;
+
+                    $.ajax({
+                        //작가의 블로그 가져오기 ajax
+                        type: "get",
+                        url : "http://150.95.130.43/get_blog/UserIdOfBlog",
+                        data: {
+                            id : bloguserid
+                        },
+                        success: function(data){
+                            var blogId = data[0].id;
+                            console.log(data[0].id);
+                           //블로그 정보 불러오기
+                           var body = "<div class='todayHit'>";
+                                    body+="<ons-icon icon='ion-ios-paw' size='20px'></ons-icon>&nbsp";
+                                        body+="today ";
+                                        body+=data[0].today_hit;
+                                body+="</div>";
+                                body+="<div class='totalHit'>";
+                                    body+="<ons-icon icon='ion-man' size='20px'></ons-icon>&nbsp";
+                                        body+="total ";
+                                        body+=data[0].total_hit;
+                                body+="</div>";
+                                body+="<img class='blogMainImg' src='http://cfile10.uf.tistory.com/image/1465C84B5000D2D92A6B12'>";
+                                body+="<div class='blogerName'>";
+                                    body+="<img class='blogerImg' src='http://cfile24.uf.tistory.com/image/127209364FF97791054A1B'>&nbsp";
+                                body+="</div>";
+                                body+="<div class='blogIntro'>";
+                                    body+=data[0].blog_introduce;
+                                body+="</div>";
+                                body+="<div class='userBlogInfo'>";
+                                    body+="<div class='contentNum'>";
+                                        body+="<ons-icon icon='ion-ios-copy' size='20px'></ons-icon>&nbsp";
+                                            body+="게시물 수 111개";
+                                    body+="</div>";
+                                    body+="<div class='blogLike'>";
+                                        body+="<ons-icon icon='ion-happy-outline' size='20px'></ons-icon>&nbsp";
+                                            body+="구독자 수 100명";
+                                    body+="</div>";
+                                    body+="<div class='NovelNum'>";
+                                        body+="<ons-icon icon='ion-ios-book' size='20px'></ons-icon>&nbsp";
+                                            body+="연재편 수 3편";
+                                    body+="</div>";
+                                    body+="<div class='userBoardButton' onclick='UserBoardMove("+data[0].id+")';>";
+                                        body+="<ons-icon icon='ion-person-stalker' size='20px' style='color:#424141;'></ons-icon>&nbsp";
+                                            body+="독자 게시판";
+                                    body+="</div>";
+                                    body+="<div class='contentWriteButton' onclick='ContentWriteMove("+data[0].id+")';>";
+                                        body+="<ons-icon icon='ion-android-create' size='20px' style='color:#424141;'></ons-icon>&nbsp";
+                                            body+="게시물 쓰기";
+                                    body+="</div>";
+                                    body+="<div class='blogPageSetting'><ons-icon icon='ion-android-settings' size='25px' style='color:#424141;'></ons-icon></div>";
+                                body+="</div>";
+
+                                $('.blogUserInfo').append(body);
+                                $('.blogerName').html(blogerName+" 블로그");
+
+                            $.ajax({
+                                type: "get",
+                                url: "http://150.95.130.43/get_blog/BlogOfMenuJoin",
+                                data : {
+                                    id : data[0].id //blogs id
+                                },
+                                success: function(data){
+                                    $.ajax({
+                                        type: "get",
+                                        url: "http://150.95.130.43/get_blog/MenuOfBoardJoin",
+                                        success: function(data){
+
+                                            for(var i = 0; i<Object.keys(data).length; i++){
+                                                if(data[i].is_notice == 'off'){
+                                                //게시판에서 컨텐츠 목록 가져오기
+                                                var content = "<div class='blogContent' onclick='ContentReadMove("+data[i].id+","+blogerName+")';>";
+                                                        content+="<div class='blogNoticeContentsTime'>";
+                                                            content+=data[i].created_at;
+                                                        content+="</div>";
+                                                        content +="<div class='blogContentTitle'>";
+                                                            content+=data[i].board_title;
+                                                        content+="</div>";
+                                                        content+="<div class='blogContentName'>";
+                                                            content+=data[i].board_content;
+                                                        content+="</div>";
+                                                     content+="</div>";
+                                                            $('.blogContentDiv').append(content);
+                                                }else if(data[i].is_notice == 'on'){
+                                                    $('.blogNoticeItem').append("<p class='blogNoticeId'>"+data[i].board_title+"</p>");
+                                                }
+                                            }
+                                            $('.blogNoticeItem > p').each(function(){ // #example안의 각 li 요소들을 돌면서..
+                                            $(this).detach().appendTo('.blogNoticeItem'); // 해당 li를 떼어내서 #example의 처음에 끼운다.
+                                            $('.blogNoticeId').nextAll().remove();// 다른 형제 노드 다 삭제
+                                            })
+                                            $('.blogNoticeItem').attr("onclick", "BlogNoticeMove("+blogId+","+blogerName+");");
+                                        }
+                                    })
+                                }
+                            })
+                        }
+
                 })
-                
+
             }
         })
     }
+
+    /******************************************
+     * 블로그 컨텐츠 읽기
+     * ****************************************/
+     window.ContentReadMove = function(id, name){
+        myNavigator.pushPage('blogReadContent.html');
+        var board_id = id;
+        var user_name = name;
+        $.ajax({
+            type: "get",
+            url: "http://150.95.130.43/get_blog/ContentReadInfo",
+            data: {
+                id : board_id
+            },
+            success: function(data){
+                if(data[0].is_notice == 'on'){
+                    $('.contentReadTitle').text("<공지사항>");
+                }else if(data[0].is_notice == 'off'){
+                    $('.contentReadTitle').append(data[0].board_title);
+                    $.ajax({
+                    type: "get",
+                    url: "http://150.95.130.43/get_blog/BoardOfMenuInfo",
+                    data: {
+                        id : board_id
+                    },
+                    success: function(data){
+                        $('.blogReadCategoryTitle').append(data[0].menu_title);
+
+                    }
+                })
+                }
+                $('.blogReadContentTitle').append(data[0].board_title);
+                $('.blogReadContentTime').append(data[0].created_at);
+                $('.blogReadContent').append(data[0].board_content);
+                $('.blogReadBlogerName').append(user_name);
+
+
+
+            }
+        })
+    }
+
+
+
+    /******************************************
+     * 블로그 카테고리 불러오기
+     * ****************************************/
+    window.ContentWriteMove = function(id){
+        myNavigator.pushPage('blogContentWrite.html');
+        //블로그와 메뉴 조인하기
+        var blog_id = id;
+        $.ajax({
+            type: "get",
+            url: "http://150.95.130.43/get_blog/BlogOfMenuJoin",
+            data: {
+                id : blog_id
+            },
+            success: function(data){
+                for(var i = 0; i < Object.keys(data).length; i++){
+                    $('#CategoryInfo').append("<option value="+data[i].id+">"+data[i].menu_title+"</option>");
+                }
+            }
+        })
+    }
+
+    /******************************************
+     * 블로그 글쓰기
+     * ****************************************/
+    window.writeOnClick = function(){
+        var contentTitleFocus = document.getElementById("contentTitleWriteArea");
+        var contentFocus = document.getElementById("contentWriteArea");
+        var contentTitleValue = contentTitleFocus.value;
+        var contentValue = contentFocus.value;
+        var noticeCheck = document.getElementById('noticeCheck');
+        var noticeCheckResult = $(noticeCheck).is(":checked");
+        if(contentTitleValue == ""){
+            alert("제목을 입력하세요.");
+            contentTitleFocus.focus();
+            return ;
+        }else if(contentValue == ""){
+            alert("내용을 입력하세요.");
+            contentFocus.focus();
+            return;
+        }else if(!noticeCheckResult){ //공지사항 여부
+            var noticeCheckInfo =  "off"; //공지사항이 아님
+        }else{
+            var noticeCheckInfo =  "on"; //공지사항임
+        }
+        if(contentTitleValue != "" && contentValue != ""){
+            var writeInfo = {"titleVal" : contentTitleValue, "contentVal" : contentValue, "CheckResult" : noticeCheckInfo};
+                $.ajax({
+                    type: "get",
+                    url: "http://150.95.130.43/set_blog/BoardWrite",
+                    data: writeInfo,
+                    success: function(data){
+                        var blogMenuId = $("#CategoryInfo option:selected").val();
+                        var writeId = data[0].id;
+
+                        $.ajax({
+                            type: "get",
+                            url: "http://150.95.130.43/set_blog/MenuOfBoardJoin",
+                            data: {
+                                menuId : blogMenuId,
+                                boardId : writeId
+                            },
+                            success: function(data){
+                                alert('글쓰기 완료');
+                                $('#blogBackButton').trigger('click');
+                            }
+                        })
+                    }
+                })
+        }
+    }
+
+
+    /******************************************
+     * 블로그 유저게시판 컨텐츠 리스트 불러오기
+     * ****************************************/
+    window.UserBoardMove = function(id){
+        myNavigator.pushPage('userBoard.html');
+        var blogId = id;
+        $.ajax({
+            type: "get",
+            url: "http://150.95.130.43/get_blog/blogOfCommunicationMenuJoin",
+            data: {
+                id : blogId
+            },
+            success: function(data){
+                var menuId = data[0].id
+                $.ajax({
+                    type: "get",
+                    url: "http://150.95.130.43/get_blog/CommunicationMenuOfBoardsJoin",
+                    success: function(data){
+                        for(var i = 0; i<Object.keys(data).length; i++){
+                        var content = "<div class='userContent' onclick='UserContentReadMove("+data[i].id+")';>";
+                                content+="<div class='userContentTitle'>제목 : ";
+                                    content+=data[i].board_title;
+                                content+="</div>";
+                                content+="<div class='contentWriteUserName'>작성자 : ";
+                                    content+=data[i].writer_name;
+                                content+="</div>";
+                                content+="<div class='userContentsTime'>작성일 : ";
+                                    content+=data[i].created_at;
+                                content+="</div>";
+                                content+="</div>";
+                                $('.userContentDiv').append(content);
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    /******************************************
+     * 블로그 유저게시판 글쓰기
+     * ****************************************/
+    window.UserWriteOnClick = function(){
+        var userContentTitleFocus = document.getElementById("contentTitleWriteArea");
+        var userContentFocus = document.getElementById("contentWriteArea");
+        var userContentTitleValue = userContentTitleFocus.value;
+        var userContentValue = userContentFocus.value;
+        var userName = "yerriel";
+        if(userContentTitleValue == ""){
+            alert("제목을 입력하세요.");
+            contentTitleFocus.focus();
+            return ;
+        }else if(userContentValue == ""){
+            alert("내용을 입력하세요.");
+            contentFocus.focus();
+            return;
+        }else if(userContentTitleValue != "" && userContentValue != ""){
+            var writeInfo = {"titleVal" : userContentTitleValue, "contentVal" : userContentValue, "userName" : userName};
+                $.ajax({
+                    type: "get",
+                    url: "http://150.95.130.43/set_blog/UserBoardWrite",
+                    data: writeInfo,
+                    success: function(data){
+                        var userBoardMenuId = 1;
+                        var writeId = data[0].id;
+                        $.ajax({
+                            type: "get",
+                            url: "http://150.95.130.43/set_blog/CommunicationMenuOfBoardRelations",
+                            data: {
+                                menuId : userBoardMenuId,
+                                boardId : writeId
+                            },
+                            success: function(data){
+                                alert('글쓰기 완료');
+                                $('#blogBackButton').trigger('click');
+                            }
+                        })
+                    }
+                })
+        }
+    }
+
+    /******************************************
+     * 블로그 유저컨텐츠 읽기
+     * ****************************************/
+     window.UserContentReadMove = function(id, name){
+        myNavigator.pushPage('blogReadContent.html');
+        var board_id = id;
+        var user_name = name;
+        $.ajax({
+            type: "get",
+            url: "http://150.95.130.43/get_blog/UserContentReadInfo",
+            data: {
+                id : board_id
+            },
+            success: function(data){
+
+                $('.contentReadTitle').append(data[0].board_title);
+                $('.blogReadContentTitle').append(data[0].board_title);
+                $('.blogReadContentTime').append(data[0].created_at);
+                $('.blogReadContent').append(data[0].board_content);
+                $('.blogReadBlogerName').append(data[0].writer_name);
+
+            }
+        })
+     }
+
+     /******************************************
+     * 블로그 공지사항 목록 출력
+     * ****************************************/
+    window.BlogNoticeMove = function(id, name){
+        myNavigator.pushPage('blogNotice.html');
+        var blogid = id;
+        var blogerName = name;
+        $.ajax({
+            type: "get",
+            url: "http://150.95.130.43/get_blog/BlogOfMenuJoin",
+            data : {
+                id : blogid
+            },
+            success: function(data){
+                $.ajax({
+                    type: "get",
+                    url: "http://150.95.130.43/get_blog/MenuOfBoardJoin",
+                    success: function(data){
+
+                        for(var i = 0; i<Object.keys(data).length; i++){
+                            if(data[i].is_notice == 'off'){
+                                continue;
+                            }else if(data[i].is_notice == 'on'){
+                            //게시판에서 컨텐츠 목록 가져오기
+                            var content = "<div class='blogContent' onclick='ContentReadMove("+data[i].id+","+blogerName+")';>";
+                                    content+="<div class='blogNoticeContentsTime'>";
+                                        content+=data[i].created_at;
+                                    content+="</div>";
+                                    content +="<div class='blogContentTitle'>";
+                                        content+=data[i].board_title;
+                                    content+="</div>";
+                                    content+="<div class='blogContentName'>";
+                                        content+=data[i].board_content;
+                                    content+="</div>";
+                                 content+="</div>";
+                                        $('.blogNoticeContentDiv').append(content);
+                            }
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -668,7 +1038,6 @@ window.searchCancel = function(){
         /***********************
          * 관심등록 기능 
          * ********************/
-        
         var favorite = false;
         window.addFavorite = function(id){
             var user_id = localStorage.getItem('current_id');
@@ -708,7 +1077,8 @@ window.searchCancel = function(){
                       } 
                     }
                   });
-                }
+                }//관심등록 부분
+                
                 if(favorite == true){
                     ons.notification.confirm({
                         title:'',
@@ -742,7 +1112,7 @@ window.searchCancel = function(){
                     }//if-end
                     }//callback-fucntion-end
                   });//ons-notification-end
-                }
+                }//관심등록 해제 부분 
             }//else-end
         }
         /************************
@@ -1134,9 +1504,11 @@ window.showMainReadNovel = function(id){
           $.ajax({
               type:"get",
               url: "http://150.95.130.43/get_user/id_check",
-              data: { id : idJoin},
+              data: { 
+                  id : idJoin
+              },
               success: function(msg){
-                  if(msg == 1){
+                  if(msg >= 1){
                       alert("이미 있는 아이디 입니다.");
                       idFocus.focus();
                       return;
@@ -1144,21 +1516,29 @@ window.showMainReadNovel = function(id){
                     var joinInfo = {"user_id" : idJoin, "nickname" : nickJoin, "email" : emailJoin, "user_pw" : pwJoin};
                     $.ajax({
                       type: "get",
-                       url: "http://150.95.130.43/get_user/write_join",
+                       url: "http://150.95.130.43/set_user/write_join",
                          data: joinInfo,
                          success: function(data){
-                             alert('가입되었습니다.');
-                             myNavigator.pushPage('login.html');
-                         },
-                         error : function(jqXHR, textStatus, errorThrown){
-                             alert("가입되지 않았습니다."+ textStatus + " : " + errorThrown);
+                            alert('가입되었습니다.');
+                            //회원가입 성공하면 해당 유저의 포인트 정보를 생성하고 0으로 기본 세팅
+                            $.ajax({
+                                url:"http://150.95.130.43/set_point/set_point",
+                                data:{
+                                    user_id: idJoin,
+                                    first:0
+                                },
+                                success:function(data){
+                                }
+                            })//ajax-end
                              
-                 }
-          })
-      }
-              }
-          })
-      } 
+                             
+                            myNavigator.pushPage('login.html');
+                         }
+                    })//ajax-end
+                  }//else if-end
+              }//success-end
+          })//ajax-end
+    }//else-end
       
      
  }
@@ -1204,13 +1584,7 @@ window.showMainReadNovel = function(id){
                                     user_id:localStorage.getItem('current_id')
                                 },
                                 success:function(data){
-                                    console.log(data);
-                                    if(!data[0].point){
-                                        $('.showPoint:eq(1)').text("0");
-                                    }
-                                    else{
-                                        $('.showPoint:eq(1)').text(data[0].point);
-                                    }
+                                    $('.showPoint:eq(1)').text(data[0].point);                                    
                                 }
                             })
 
@@ -1453,7 +1827,7 @@ window.buyPoint = function(){
                 //예
                 if(answer ==  1)
                 {
-                    //기존의 포인트 가있는지 가져오기
+                    //기존의 포인트가 있는지 가져오기
                     $.ajax({
                         type:'get',
                         url:"http://150.95.130.43/get_point/get_point",
@@ -1467,7 +1841,8 @@ window.buyPoint = function(){
                                 data:{
                                     user_id:localStorage.getItem('current_id'),
                                     point:point,
-                                    current_point: data[0].point
+                                    current_point: data[0].point,
+                                    first:1
                                 },
                                 success:function(data){
                                     alert('감사합니다.');
@@ -1478,8 +1853,7 @@ window.buyPoint = function(){
                                         data:{
                                             user_id:localStorage.getItem('current_id')
                                         },
-                                        success:function(data){
-                                            console.log(data);                           
+                                        success:function(data){                  
                                
                                             if(data[0].point == 0){
                                                 $('.showPoint:eq(1)').text("0");
@@ -1645,223 +2019,239 @@ window.showBackgroundSettings = function(id){
     
 
     //소설의 배경설정의 인물들을 가져와서 관계도를 그려준다.
-    $.ajax({
-        url:"http://150.95.130.43/get_settings/charactersInfo",
-        type:'get',
-        success:function(data){ 
-            var chaInfos = data;
-            var nodes = {};
-    		var rel = {};            
-          
+    // $.ajax({
+    //     url:"http://150.95.130.43/get_settings/charactersInfo",
+    //     type:'get',
+    //     success:function(data){ 
+    //         var chaInfos = data;
+    //         var nodes = {};
+    // 		var rel = {};            
+    //       
             $.ajax({
             url:"http://150.95.130.43/get_settings/relationsInfo",
             type:'get',
             success:function(data){ 
-                    var links = data;
-                    
-                    links.forEach(function(link) {
-            			link.id = "rel" + link.relnum;
-        
-        				link.source = nodes[link.source] ||
-        						(nodes[link.source] = {chaId: link.source});
-        				link.target = nodes[link.target] ||
-        						(nodes[link.target] = {chaId: link.target});
-        				link.relationship = link.relationship;
-    			    });
-                
-            		// svg크기 정의 div크기에서 어느정도 여백
-        			var width = 900;
-        			var height = 500;
-        
-        
-        			//********************************************************************//
-        			// 											force 레이아웃 정의
-        			//********************************************************************//
-        			var force = d3.layout.force()
-        					.nodes(d3.values(nodes))
-        					.links(links)
-        			 		.size([400, 400])
-        					.linkDistance(250)
-        					.charge(-800)
-        					.on("tick", tick);
-        
-        			// 드래그를 시작할 때 함수 적용(노드 고정)
-        			var drag = force.drag().on("dragstart", dragstart);
-        
-        			// #for-div 내 svg 생성
-        			var svg = d3.select("#force-div").append("svg")
-        					.attr("width", width)
-        					.attr("height", height)
-        					.attr("class", "mind-area");
-    
-    
-        			// 노드의 이미지 패턴 정의
-        			var defs = svg.append("defs").attr("id", "imgdefs");
-        			chaInfos.forEach(function(chainfo){
-        				var catpattern = defs.append("pattern")
-        															.attr("id", "pattern" + chainfo.id)
-        															.attr("height", 1)
-        															.attr("width", 1)
-        															.attr("x", "0")
-        															.attr("y", "0");
-        				catpattern.append("image")
-        					 .attr("height", 70)
-        					 .attr("width", 70)
-        					 .attr("xlink:href", "http://150.95.130.43/img/background/characterImg/" + chainfo.img_src);
-        			});
-        
-        
-        			//********************************************************************//
-        			// 											노드, 링크 요소 추가
-        			//********************************************************************//
-        			// 화살표 생성
-        			var marker = svg.append("svg:defs").selectAll("marker");
-        			marker = marker.data(["end"])
-        			marker.exit().remove();
-        			marker.enter().append("svg:marker")
-        					.attr("id", String)
-        					.attr("viewBox", "0 -5 10 10")
-        					.attr("refX", 38)
-        					.attr("refY", -1)
-        					.attr("markerWidth", 14)
-        					.attr("markerHeight", 14)
-        					.attr("orient", "auto")
-                            .attr("style", "fill:blue;")
-        					.append("svg:path")
-        					.attr("d", "M0,-5L10,0L0,5");
-                            
-        
-        
-        			// 연결선 생성 및 svg 적용, + 연결선마다 화살표 적용
-        			var path = svg.append("svg:g").selectAll("path");
-        
-        
-        			// relationship 데이터를 text로 생성
-        			var relTextArea = svg.append("svg:g");
-        			var mytext = relTextArea.selectAll("text");
-        
-        			// 노드 정의
-        			var node = svg.selectAll(".node");
-        
-        			restart();
-                    
-    
-    
-        			// 연결선 커브 및 크기변경 + 노드 위치이동
-        			var tf = true;
-                   
-        			function tick() {
-        					path.attr("d", function(d) {
-        							var dx = d.target.x - d.source.x,
-        									dy = d.target.y - d.source.y,
-        									dr = Math.sqrt(dx * dx + dy * dy);
-        
-        							var tickfunc = "M" +
-        									d.source.x + "," +
-        									d.source.y + "A" +
-        									dr + "," + dr + " 0 0,1 " +
-        									d.target.x + "," +
-        									d.target.y;
-        
-        							// if(tf == true){
-        							// 	alert(tickfunc);
-        							// 	tf = false;
-        							// }
-        
-        							return tickfunc;
-        					});
-        
-        
-        					node.attr("transform", function(d) {
-        									 return "translate(" + d.x + "," + d.y + ")"; });
-        			}
-        
-        			// 드래그 시작 시, 노드를 고정
-        			function dragstart(d){
-        				 d3.select(this).classed("fixed", d.fixed = true);
-        				//  console.log("nodes↓");
-        				//  console.log(nodes);
-        				//  console.log("links↓");
-        				//  console.log(links);
-        				//  console.log("path↓");
-        				//  console.log(path);
-        				//  console.log("nodes↓");
-        				//  console.log(rel);
-        			}
-        
-        			function restart(){
-                        // alert("asd");
-        				force.nodes(d3.values(nodes));
-        				force.links(links);
-        
-        				// 연결선 생성 및 svg 적용, + 연결선마다 화살표 적용
-        				path = path.data(links)
-        				path.remove();
-        				path = path.enter().append("svg:path")
-        						.attr("id", function(d) { return d.id; } )
-        						.attr("class", "link")
-        						.attr("marker-end", "url(#end)")
-                                .attr("style", "fill:none; stroke: steelblue; stroke-width: 1;");
-        
-        				mytext = mytext.data(links)
-        				mytext.remove();
-        				mytext = mytext.enter().append("text")
-        				.attr("dx", "100")
-        				.attr("dy", "-8")
-        				.attr("id", function(d) { return  "text" + d.id; })
-        				.append("textPath")
-        				.attr("xlink:href", function(d) { return "#" + d.id; })
-        				.attr("style", "fill:magenta; font-weight:bold; font-size:15")
-        				.text(function(d) { return d.relationship; } );
-        
-        				var relText = relTextArea.selectAll("text");
-        
-        				// 노드 정의
-        				node = node.data(d3.values(nodes));
-        				node.remove();
-        				node = node.enter().append("g")
-        				.attr("class", "node")
-        				.attr("xlink:href", function(d) { return d.chaId; })
-        				.call(force.drag);
-        
-        
-        				// 노드에 원형 추가
-        				node.append("circle")
-        						.attr("r", 35)
-        						.attr("fill", function(d) { return "url(#pattern" + d.chaId +")"; });
-        
-        				// 노드에 텍스트 추가 (name 데이터)
-        				node.append("text")
-        					 .attr("text-anchor", "middle")
-        					 .attr("dy","25")
-        						.attr("style", "fill:white; font-weight:bold; font-size:16")
-        						.text(function(d) { return getChaInfoById(d.chaId).name; });
-        
-        
-        				// force 재시작
-        				force.start();
-        			}
-                    
-                    // ID값으로 캐릭터의 정보를 가져옴
-        			function getChaInfoById(id){
-        				var chaInfose = chaInfos;
-        				var chaInfo = null;
-                    
-        				chaInfose.some(function(info){
-        					if(info.id == id){
-                                
-        						chaInfo = info;
-        						return;
-        					}
-        				});
-        				return chaInfo;
-        			}			                             
-           
-                }//success-end
-            });   
-         
-        }//success-end
-    });//ajax-end 
+                    for(var i = 0; i< Object.keys(data).length ; i++){
+                        var body = "<img id='"+data[i].title+"'src='http://150.95.130.43/img/background/relationImg/"+data[i].cover_src+"' class='relation_list'>";
+                        $("div[name='relation-view']").append(body);
+                        console.log(body);
+                    }
+                    relation_info(data);
+                }
+            });
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+    //                 var links = data;
+    //                 
+    //                 links.forEach(function(link) {
+    //         			link.id = "rel" + link.relnum;
+    //     
+    //     				link.source = nodes[link.source] ||
+    //     						(nodes[link.source] = {chaId: link.source});
+    //     				link.target = nodes[link.target] ||
+    //     						(nodes[link.target] = {chaId: link.target});
+    //     				link.relationship = link.relationship;
+    // 			    });
+    //             
+    //         		// svg크기 정의 div크기에서 어느정도 여백
+    //     			var width = 900;
+    //     			var height = 500;
+    //     
+    //     
+    //     			//********************************************************************//
+    //     			// 											force 레이아웃 정의
+    //     			//********************************************************************//
+    //     			var force = d3.layout.force()
+    //     					.nodes(d3.values(nodes))
+    //     					.links(links)
+    //     			 		.size([400, 400])
+    //     					.linkDistance(250)
+    //     					.charge(-800)
+    //     					.on("tick", tick);
+    //     
+    //     			// 드래그를 시작할 때 함수 적용(노드 고정)
+    //     			var drag = force.drag().on("dragstart", dragstart);
+    //     
+    //     			// #for-div 내 svg 생성
+    //     			var svg = d3.select("#force-div").append("svg")
+    //     					.attr("width", width)
+    //     					.attr("height", height)
+    //     					.attr("class", "mind-area");
+    // 
+    // 
+    //     			// 노드의 이미지 패턴 정의
+    //     			var defs = svg.append("defs").attr("id", "imgdefs");
+    //     			chaInfos.forEach(function(chainfo){
+    //     				var catpattern = defs.append("pattern")
+    //     															.attr("id", "pattern" + chainfo.id)
+    //     															.attr("height", 1)
+    //     															.attr("width", 1)
+    //     															.attr("x", "0")
+    //     															.attr("y", "0");
+    //     				catpattern.append("image")
+    //     					 .attr("height", 70)
+    //     					 .attr("width", 70)
+    //     					 .attr("xlink:href", "http://150.95.130.43/img/background/characterImg/" + chainfo.img_src);
+    //     			});
+    //     
+    //     
+    //     			//********************************************************************//
+    //     			// 											노드, 링크 요소 추가
+    //     			//********************************************************************//
+    //     			// 화살표 생성
+    //     			var marker = svg.append("svg:defs").selectAll("marker");
+    //     			marker = marker.data(["end"])
+    //     			marker.exit().remove();
+    //     			marker.enter().append("svg:marker")
+    //     					.attr("id", String)
+    //     					.attr("viewBox", "0 -5 10 10")
+    //     					.attr("refX", 38)
+    //     					.attr("refY", -1)
+    //     					.attr("markerWidth", 14)
+    //     					.attr("markerHeight", 14)
+    //     					.attr("orient", "auto")
+    //                         .attr("style", "fill:blue;")
+    //     					.append("svg:path")
+    //     					.attr("d", "M0,-5L10,0L0,5");
+    //                         
+    //     
+    //     
+    //     			// 연결선 생성 및 svg 적용, + 연결선마다 화살표 적용
+    //     			var path = svg.append("svg:g").selectAll("path");
+    //     
+    //     
+    //     			// relationship 데이터를 text로 생성
+    //     			var relTextArea = svg.append("svg:g");
+    //     			var mytext = relTextArea.selectAll("text");
+    //     
+    //     			// 노드 정의
+    //     			var node = svg.selectAll(".node");
+    //     
+    //     			restart();
+    //                 
+    // 
+    // 
+    //     			// 연결선 커브 및 크기변경 + 노드 위치이동
+    //     			var tf = true;
+    //                
+    //     			function tick() {
+    //     					path.attr("d", function(d) {
+    //     							var dx = d.target.x - d.source.x,
+    //     									dy = d.target.y - d.source.y,
+    //     									dr = Math.sqrt(dx * dx + dy * dy);
+    //     
+    //     							var tickfunc = "M" +
+    //     									d.source.x + "," +
+    //     									d.source.y + "A" +
+    //     									dr + "," + dr + " 0 0,1 " +
+    //     									d.target.x + "," +
+    //     									d.target.y;
+    //     
+    //     							// if(tf == true){
+    //     							// 	alert(tickfunc);
+    //     							// 	tf = false;
+    //     							// }
+    //     
+    //     							return tickfunc;
+    //     					});
+    //     
+    //     
+    //     					node.attr("transform", function(d) {
+    //     									 return "translate(" + d.x + "," + d.y + ")"; });
+    //     			}
+    //     
+    //     			// 드래그 시작 시, 노드를 고정
+    //     			function dragstart(d){
+    //     				 d3.select(this).classed("fixed", d.fixed = true);
+    //     				//  console.log("nodes↓");
+    //     				//  console.log(nodes);
+    //     				//  console.log("links↓");
+    //     				//  console.log(links);
+    //     				//  console.log("path↓");
+    //     				//  console.log(path);
+    //     				//  console.log("nodes↓");
+    //     				//  console.log(rel);
+    //     			}
+    //     
+    //     			function restart(){
+    //                     // alert("asd");
+    //     				force.nodes(d3.values(nodes));
+    //     				force.links(links);
+    //     
+    //     				// 연결선 생성 및 svg 적용, + 연결선마다 화살표 적용
+    //     				path = path.data(links)
+    //     				path.remove();
+    //     				path = path.enter().append("svg:path")
+    //     						.attr("id", function(d) { return d.id; } )
+    //     						.attr("class", "link")
+    //     						.attr("marker-end", "url(#end)")
+    //                             .attr("style", "fill:none; stroke: steelblue; stroke-width: 1;");
+    //     
+    //     				mytext = mytext.data(links)
+    //     				mytext.remove();
+    //     				mytext = mytext.enter().append("text")
+    //     				.attr("dx", "100")
+    //     				.attr("dy", "-8")
+    //     				.attr("id", function(d) { return  "text" + d.id; })
+    //     				.append("textPath")
+    //     				.attr("xlink:href", function(d) { return "#" + d.id; })
+    //     				.attr("style", "fill:magenta; font-weight:bold; font-size:15")
+    //     				.text(function(d) { return d.relationship; } );
+    //     
+    //     				var relText = relTextArea.selectAll("text");
+    //     
+    //     				// 노드 정의
+    //     				node = node.data(d3.values(nodes));
+    //     				node.remove();
+    //     				node = node.enter().append("g")
+    //     				.attr("class", "node")
+    //     				.attr("xlink:href", function(d) { return d.chaId; })
+    //     				.call(force.drag);
+    //     
+    //     
+    //     				// 노드에 원형 추가
+    //     				node.append("circle")
+    //     						.attr("r", 35)
+    //     						.attr("fill", function(d) { return "url(#pattern" + d.chaId +")"; });
+    //     
+    //     				// 노드에 텍스트 추가 (name 데이터)
+    //     				node.append("text")
+    //     					 .attr("text-anchor", "middle")
+    //     					 .attr("dy","25")
+    //     						.attr("style", "fill:white; font-weight:bold; font-size:16")
+    //     						.text(function(d) { return getChaInfoById(d.chaId).name; });
+    //     
+    //     
+    //     				// force 재시작
+    //     				force.start();
+    //     			}
+    //                 
+    //                 // ID값으로 캐릭터의 정보를 가져옴
+    //     			function getChaInfoById(id){
+    //     				var chaInfose = chaInfos;
+    //     				var chaInfo = null;
+    //                 
+    //     				chaInfose.some(function(info){
+    //     					if(info.id == id){
+    //                             
+    //     						chaInfo = info;
+    //     						return;
+    //     					}
+    //     				});
+    //     				return chaInfo;
+    //      			}			                             
+    //         
+    //              }//success-end
+    //         });   
+    //      
+    //     }//success-end
+    // });//ajax-end 
     
     
     

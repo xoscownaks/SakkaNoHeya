@@ -3,9 +3,8 @@
 /*배경설정 중 사건들의 css*/
 div[name=event_list] > a{
     text-decoration: none;
-    border: 1px solid gray;
     background-color: white;
-    border-radius: 10px;
+    width: 20%;
 }
 
 div[name=event_list] > a:hover{
@@ -35,6 +34,21 @@ div[name=event_list] > a:active{
 .item_list:hover{
     border: 2px solid red;
 }
+/*배경 설정 중 관계도의 css*/
+.relation_list{
+    width: 46%;
+    margin: 5px;
+}
+
+.relation_list:hover{
+    border: 2px solid red;
+}
+
+div[name=relation-info] > img{
+    width: 95%;
+    margin: 5px;
+}
+
 
 /*배경 설정 중 지도의 css*/
 .map_list{

@@ -1,30 +1,9 @@
 /*사이드 메뉴 헤더 부분*/
 ons-list-header {
-    font-size: 20px !important;
+    font-size: 23px !important;
     font-weight: bold !important;
     border-bottom: solid gray  !important;
 }
-/*
-.test1{ 
-    background:
-    linear-gradient(
-    	limegreen,
-		transparent
-	),
-	linear-gradient(
-		90deg,
-		skyblue,
-		transparent
-	),
-	linear-gradient(
-		-90deg,
-		coral,
-		transparent
-	);
-	
-    background-blend-mode: screen;
-  
-}*/
 
 .topContents-text1,.topContents-text2,.topContents-text3{
     margin-left: 10px;
@@ -73,7 +52,8 @@ ons-list-header {
 
 /*사이드 메뉴 내용 부분*/
 ons-list-item{
-    font-size: 15px !important;
+    font-size: 17px !important;
+    
 }
 /*사이드 메뉴 로고*/
 ons-list > img{
@@ -93,7 +73,7 @@ ons-list > img{
     background-color: white;
     float: left;
     margin: 0px;
-    border-right: 1px solid gray;
+    border-right: 1px solid #dcdcdc;
 }
 #logoutBtn{
     width: 100%;
@@ -102,7 +82,7 @@ ons-list > img{
     background-color: white;
     float: left;
     margin: 0px;
-    border-right: 1px solid gray;
+   
 }
 #joinBtn{
     display:inline-block; 
