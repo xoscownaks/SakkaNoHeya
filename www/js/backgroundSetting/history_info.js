@@ -22,6 +22,8 @@ function history_info(data) {
 
                         $("div[name=history-info]").show();
 
+                        
+                        
                         $refer_str = data[$arrayId]['refer_info'];
                         
                         $refer_str = String($refer_str);

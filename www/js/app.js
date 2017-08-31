@@ -538,7 +538,7 @@ window.pwSearch = function(){
  window.logoutClick = function(){
     localStorage.clear();
     $('#slide-top').children().first().remove();
-    $('#slide-top').prepend("<img class='logo' src='img/logo.bmp'>");
+    $('#slide-top').prepend("<img class='logo' src='img/logo.png'>");
     $('.showPoint:eq(1)').text("");
     alert("로그아웃 되었습니다.");
     document.getElementById("loginBtn").style.display = "";
@@ -2034,7 +2034,6 @@ window.showBackgroundSettings = function(id){
                     for(var i = 0; i< Object.keys(data).length ; i++){
                         var body = "<img id='"+data[i].title+"'src='http://150.95.130.43/img/background/relationImg/"+data[i].cover_src+"' class='relation_list'>";
                         $("div[name='relation-view']").append(body);
-                        console.log(body);
                     }
                     relation_info(data);
                 }
