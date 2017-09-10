@@ -1575,7 +1575,7 @@ window.showMainReadNovel = function(id){
                             //로고 있는 부분에 사용자 닉네임 출력 
                             $('#slide-top').prepend("<div class='slide-top-name'>"+localStorage.getItem('current_name')+"</div>");
                             
-                            alert("로그인 완료");
+                            alert("ログイン成功");
                             
                             $.ajax({
                                 type:'get',
