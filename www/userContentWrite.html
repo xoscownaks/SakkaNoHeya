@@ -10,12 +10,12 @@
                 <ons-back-button id="blogBackButton">back</ons-back-button>
             </div>
             <div class="center">
-                독자 게시판
+                読者の掲示板
             </div>
             <div class="right">
                 <div class="writeButtonDiv">
                     <ons-icon icon="ion-compose" size="30px" style="margin-left:10px;margin-right:20px;">
-                        <div class="writeButton" onClick="UserWriteOnClick();">등록</div>
+                        <div class="writeButton" onClick="UserWriteOnClick();">登録</div>
                     </ons-icon>
                 </div>
             </div>
@@ -25,15 +25,15 @@
             <div class="contentTitleWrite">
                 <textarea name="title" id="contentTitleWriteArea"
                     onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';"
-                    placeholder="제목"></textarea>
+                    placeholder="タイトル"></textarea>
             </div>
             <div class="contentWrite">
                 <textarea name="comment" id="contentWriteArea"
                     onkeyup="this.style.height='30px'; this.style.height = this.scrollHeight + '1px';"
-                    placeholder="글을 써 주세요."></textarea>
+                    placeholder="文を書いてください。"></textarea>
             </div>
         </form>
-    
+
         <ons-bottom-toolbar id="novelFooter">
             <div class="fontChoice">
                 <ons-icon icon="ion-social-tumblr" size="30px" style="color:#424141;"></ons-icon>

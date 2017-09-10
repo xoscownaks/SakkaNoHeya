@@ -15,7 +15,7 @@
     <script src="lib/onsenui/js/onsenui.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/d3.v3.js"></script>
-    
+
     <script src="js/backgroundSetting/character_info.js"></script>
     <script src="js/backgroundSetting/history_info.js"></script>
     <script src="js/backgroundSetting/item_info.js"></script>
@@ -42,59 +42,59 @@
   <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable swipe-target-width="5px">
     <ons-page>
       <ons-list id="slide-list">
-      
+
       <!--가장 위의 로고, 로그인 부분-->
         <div id="slide-top">
-            <img class='logo' src='img/logo.png'>          
+            <img class='logo' src='img/logo.png'>
         </div>
       <!--My Page-->
         <ons-list-header>My Page</ons-list-header>
             <ons-list-item onclick="menuClose();showFavoriteNovel();" tappable>
-              관심등록 소설
+            興味のある小説
             </ons-list-item>
             <ons-list-item onclick="myNavigator.pushPage('wantGenre.html');menuClose()" tappable>
-              선호장르 선택
+            選考のジャンルの選択
             </ons-list-item>
             <ons-list-item tappable>
                 <div class="showPoint" style="float:left">
-                  포인트
-                </div>   
+                  ポイント
+                </div>
                 <div class="showPoint" style="float:left;margin-left:50%;">
-                  
-                </div> 
+
+                </div>
             </ons-list-item>
             <ons-list-item tappable>
-              내 블로그
+            自分のブログ
             </ons-list-item>
-        
+
         <!--ITEM-->
         <ons-list-header>ITEM</ons-list-header>
             <ons-list-item onclick="menuClose();showPointBuyPage();" tappable>
-              포인트 구매
+              ポイント購買
             </ons-list-item>
-        
+
         <!--고객 센터-->
-        <ons-list-header>고객센터</ons-list-header>
+        <ons-list-header>お問い合わせ</ons-list-header>
             <ons-list-item onclick="" tappable>
-              공지사항
+              お知らせ
             </ons-list-item>
             <ons-list-item onclick="" tappable>
-              고객센터
+              お問い合わせ
             </ons-list-item>
             <ons-list-item onclick="" tappable>
-              이벤트
+              イベント
             </ons-list-item>
- 
-        <button id="loginBtn" onclick="myNavigator.pushPage('login.html');menuClose()">로그인</button>
-        <button id="logoutBtn" onclick="logoutClick()" style="display:none">로그아웃</button>
-        <button id="joinBtn" onclick="myNavigator.pushPage('join.html');menuClose()">회원가입</button>
-           
+
+        <button id="loginBtn" onclick="myNavigator.pushPage('login.html');menuClose()">ログイン</button>
+        <button id="logoutBtn" onclick="logoutClick()" style="display:none">ログアウト</button>
+        <button id="joinBtn" onclick="myNavigator.pushPage('join.html');menuClose()">ユーザ登録</button>
+
       </ons-list>
     </ons-page>
   </ons-splitter-side>
   <ons-splitter-content>
       <ons-navigator id="myNavigator" page="home.html" animation="lift">
-          
+
       </ons-navigator>
   </ons-splitter-content>
 </ons-splitter>
@@ -102,7 +102,7 @@
 
 <ons-template id="home.html">
 
-    <!--상단 네이게이션 부분 -->    
+    <!--상단 네이게이션 부분 -->
      <ons-toolbar>
           <div class="left">
             <span class="toolbar-button toolbar-button--material" onclick="fn.open()">
@@ -122,145 +122,145 @@
     <!--내용 본문 부분 -->
         <!--상단 이미지 슬라이드 부분 -->
         <ons-page>
-     
-            <div class="contents" > 
-               
+
+            <div class="contents" >
+
             </div>
-          
-            <!--중간 인기 또는 요일 별 보여주기 위한 버튼-->                
-            
+
+            <!--중간 인기 또는 요일 별 보여주기 위한 버튼-->
+
             <div class="tab-bar tab-bar--top tab-bar--top-border">
               <label class="tab-bar__item tab-bar--top-border__item">
                 <input type="radio" name="top-tab-bar-b"  onclick="bodyChange('popular')" checked="checked">
                 <button class="tab-bar__button tab-bar--top-border__button">
-                  인기
+                  人気のある小説
                 </button>
               </label>
-            
+
               <label class="tab-bar__item tab-bar--top-border__item">
                 <input type="radio" name="top-tab-bar-b" onclick="bodyChange('week')">
                 <button class="tab-bar__button tab-bar--top-border__button">
-                  요일
+                  曜日別
                 </button>
               </label>
-            
+
             </div>
-            
+
             <!--인기 순 보여주기-->
 
             <div id="popular" style="height:200px;">
-            
+
                 <ons-list-header style="border:none !important;">
-                    Today's Best                    
-                </ons-list-header>        
+                    Today's Best
+                </ons-list-header>
                 <div class="todayBest">
-                  
+
                 </div>
-            
-                
+
+
                 <ons-list-header style="border:none !important;">
-                    Fantasy's Best                    
-                </ons-list-header>  
-                
+                    Fantasy's Best
+                </ons-list-header>
+
                 <div class="fantasyBest">
 
                 </div>
 
                 <ons-list-header style="border:none !important;">
-                    Romance's Best                    
-                </ons-list-header>        
+                    Romance's Best
+                </ons-list-header>
                 <div class="romanceBest">
 
                 </div>
-            </div>    
-            
+            </div>
+
             <!--요일 별로 버튼 보여주기 -->
            <div id="week" style="display:none;">
                 <div class="tab-bar tab-bar--top tab-bar--top-border">
                   <label class="tab-bar__item tab-bar--top-border__item" onclick="weekChange('monday')">
                     <input type="radio" name="top-tab-bar-b-week" checked="checked">
                     <button class="tab-bar__button tab-bar--top-border__button">
-                      월
+                      月
                     </button>
                   </label>
-                
+
                   <label class="tab-bar__item tab-bar--top-border__item">
                     <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('tuesday')">
                     <button class="tab-bar__button tab-bar--top-border__button">
-                      화
+                      火
                     </button>
                   </label>
-                
+
                   <label class="tab-bar__item tab-bar--top-border__item">
                     <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('wednesday')">
                     <button class="tab-bar__button tab-bar--top-border__button">
-                      수
+                      水
                     </button>
                   </label>
-                  
+
                    <label class="tab-bar__item tab-bar--top-border__item">
                     <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('thursday')">
                     <button class="tab-bar__button tab-bar--top-border__button">
-                      목
+                      木
                     </button>
                   </label>
-                  
+
                    <label class="tab-bar__item tab-bar--top-border__item">
                     <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('friday')">
                     <button class="tab-bar__button tab-bar--top-border__button">
-                      금
+                      金
                     </button>
                   </label>
-                  
+
                    <label class="tab-bar__item tab-bar--top-border__item">
                     <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('saturday')">
                     <button class="tab-bar__button tab-bar--top-border__button">
-                      토
+                      土
                     </button>
                   </label>
-                  
+
                    <label class="tab-bar__item tab-bar--top-border__item">
                     <input type="radio" name="top-tab-bar-b-week" onclick="weekChange('sunday')">
                     <button class="tab-bar__button tab-bar--top-border__button">
-                      일
+                      日
                     </button>
                   </label>
                 </div>
             </div>
-            
-            
+
+
             <!--월요일-->
             <div id="monday" style="display:none;">
-           
+
             </div>
             <!--화요일-->
             <div id="tuesday" style="display:none;">
-                
+
             </div>
             <!--수요일-->
             <div id="wednesday" style="display:none;">
-                
+
             </div>
             <!--목요일-->
             <div id="thursday" style="display:none;">
-                
+
             </div>
             <!--금요일-->
             <div id="friday" style="display:none;">
-                
+
             </div>
             <!--토요일-->
             <div id="saturday" style="display:none;">
-              
+
             </div>
             <!--일요일-->
             <div id="sunday" style="display:none;">
-            
+
             </div>
-            
-            
+
+
         </ons-page>
-        
+
 </ons-template>
 
     <script type="text/javascript" src="slick/slick.min.js"></script>

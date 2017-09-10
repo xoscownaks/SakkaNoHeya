@@ -46,17 +46,17 @@
                                     body += "</div>";
                                     body += "<div class='topContents-text3'>";
                                         if(data[i].genre == 'fantasy'){
-                                            body += '판타지';
+                                            body += 'ファンタジー';
                                         }else if(data[i].genre == 'romance'){
-                                            body += '로맨스';
+                                            body += '恋愛';
                                         }else if(data[i].genre == 'scifi'){
                                             body += 'SF';
                                         }else if(data[i].genre == 'martial'){
-                                            body += '무협';
+                                            body += '歴史';
                                         }else if(data[i].genre == 'detective'){
-                                            body += '추리';
+                                            body += '推理';
                                         }else if(data[i].genre == 'horror'){
-                                            body += '호러';
+                                            body += 'ホラー';
                                         }
                                     body += "</div>";
                                 body += "</div>";
@@ -470,11 +470,11 @@ window.idSearch = function(){
     var emailJoin = emailFocus.value;
     var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
     if(emailJoin == ""){
-        alert("이메일을 입력하세요.");
+        alert("メールを入力してください。");
         emailFocus.focus();
         return;
     }else if(!regEmail.test(emailJoin)){
-        alert("이메일 주소를 똑바로 입력해 주세요.");
+        alert("メールの形式に合うように入力してください。");
         emailFocus.focus();
         return;
     }else{
@@ -485,10 +485,10 @@ window.idSearch = function(){
                 email : emailJoin  
             },
             success: function(data){
-                alert("아이디는 "+ data[0].user_id + "입니다.");
+                alert("IDは "+ data[0].user_id + "です。");
             },
             error : function(jqXHR, textStatus, errorThrown){
-                alert("아이디를 찾지 못했습니다."+ textStatus + " : " + errorThrown);
+                alert("IDの情報がありません。"+ textStatus + " : " + errorThrown);
             }
         })
     }
@@ -504,15 +504,15 @@ window.pwSearch = function(){
     var emailJoin = emailFocus.value;
     var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
     if(idJoin == ""){
-        alert("아이디를 입력하세요.");
+        alert("IDを入力してください。");
         idFocus.focus();
         return;
     }else if(emailJoin == ""){
-        alert("이메일을 입력하세요.");
+        alert("メールを入力してください。");
         emailFocus.focus();
         return;
     }else if(!regEmail.test(emailJoin)){
-        alert("이메일 주소를 똑바로 입력해 주세요.");
+        alert("メールの形式に合うように入力してください。");
         emailFocus.focus();
         return;
     }else{
@@ -524,10 +524,10 @@ window.pwSearch = function(){
                 email : emailJoin  
             },
             success: function(data){
-                alert("비밀번호는 "+ data[0].password + "입니다.");
+                alert("パスワードは "+ data[0].password + "です。");
             },
             error : function(jqXHR, textStatus, errorThrown){
-                alert("해당 이메일과 아이디의 비밀번호를 찾지 못했습니다."+ textStatus + " : " + errorThrown);
+                alert("入力したIDのパスワードがありません。"+ textStatus + " : " + errorThrown);
             }
         })
     }
@@ -540,7 +540,7 @@ window.pwSearch = function(){
     $('#slide-top').children().first().remove();
     $('#slide-top').prepend("<img class='logo' src='img/logo.png'>");
     $('.showPoint:eq(1)').text("");
-    alert("로그아웃 되었습니다.");
+    alert("ログアウトしました。");
     document.getElementById("loginBtn").style.display = "";
     document.getElementById("joinBtn").style.display = "";
     document.getElementById("logoutBtn").style.display = "none";
@@ -577,7 +577,7 @@ window.searchCancel = function(){
             },
             success: function(data){
                     var blogerName = data[0].name;
-                    $('.blogToolbar > .center').html(blogerName+" 님의 블로그");
+                    $('.blogToolbar > .center').html(blogerName+"のブログ");
                     var bloguserid = data[0].user_id;
 
                     $.ajax({
@@ -611,29 +611,29 @@ window.searchCancel = function(){
                                 body+="<div class='userBlogInfo'>";
                                     body+="<div class='contentNum'>";
                                         body+="<ons-icon icon='ion-ios-copy' size='20px'></ons-icon>&nbsp";
-                                            body+="게시물 수 111개";
+                                            body+="書き込み 111個";
                                     body+="</div>";
                                     body+="<div class='blogLike'>";
                                         body+="<ons-icon icon='ion-happy-outline' size='20px'></ons-icon>&nbsp";
-                                            body+="구독자 수 100명";
+                                            body+="購読者 100人";
                                     body+="</div>";
                                     body+="<div class='NovelNum'>";
                                         body+="<ons-icon icon='ion-ios-book' size='20px'></ons-icon>&nbsp";
-                                            body+="연재편 수 3편";
+                                            body+="小説の数 3札";
                                     body+="</div>";
                                     body+="<div class='userBoardButton' onclick='UserBoardMove("+data[0].id+")';>";
                                         body+="<ons-icon icon='ion-person-stalker' size='20px' style='color:#424141;'></ons-icon>&nbsp";
-                                            body+="독자 게시판";
+                                            body+="読者掲示板";
                                     body+="</div>";
                                     body+="<div class='contentWriteButton' onclick='ContentWriteMove("+data[0].id+")';>";
                                         body+="<ons-icon icon='ion-android-create' size='20px' style='color:#424141;'></ons-icon>&nbsp";
-                                            body+="게시물 쓰기";
+                                            body+="文書く";
                                     body+="</div>";
                                     body+="<div class='blogPageSetting'><ons-icon icon='ion-android-settings' size='25px' style='color:#424141;'></ons-icon></div>";
                                 body+="</div>";
 
                                 $('.blogUserInfo').append(body);
-                                $('.blogerName').html(blogerName+" 블로그");
+                                $('.blogerName').html(blogerName+"　ブログ");
 
                             $.ajax({
                                 type: "get",
@@ -698,7 +698,7 @@ window.searchCancel = function(){
             },
             success: function(data){
                 if(data[0].is_notice == 'on'){
-                    $('.contentReadTitle').text("<공지사항>");
+                    $('.contentReadTitle').text("<お知らせ>");
                 }else if(data[0].is_notice == 'off'){
                     $('.contentReadTitle').append(data[0].board_title);
                     $.ajax({
@@ -758,11 +758,11 @@ window.searchCancel = function(){
         var noticeCheck = document.getElementById('noticeCheck');
         var noticeCheckResult = $(noticeCheck).is(":checked");
         if(contentTitleValue == ""){
-            alert("제목을 입력하세요.");
+            alert("タイトルを入力してください。");
             contentTitleFocus.focus();
             return ;
         }else if(contentValue == ""){
-            alert("내용을 입력하세요.");
+            alert("内容を入力してください。");
             contentFocus.focus();
             return;
         }else if(!noticeCheckResult){ //공지사항 여부
@@ -788,7 +788,7 @@ window.searchCancel = function(){
                                 boardId : writeId
                             },
                             success: function(data){
-                                alert('글쓰기 완료');
+                                alert('成功');
                                 $('#blogBackButton').trigger('click');
                             }
                         })
@@ -818,13 +818,13 @@ window.searchCancel = function(){
                     success: function(data){
                         for(var i = 0; i<Object.keys(data).length; i++){
                         var content = "<div class='userContent' onclick='UserContentReadMove("+data[i].id+")';>";
-                                content+="<div class='userContentTitle'>제목 : ";
+                                content+="<div class='userContentTitle'>タイトル : ";
                                     content+=data[i].board_title;
                                 content+="</div>";
-                                content+="<div class='contentWriteUserName'>작성자 : ";
+                                content+="<div class='contentWriteUserName'>作成者 : ";
                                     content+=data[i].writer_name;
                                 content+="</div>";
-                                content+="<div class='userContentsTime'>작성일 : ";
+                                content+="<div class='userContentsTime'>作成日 : ";
                                     content+=data[i].created_at;
                                 content+="</div>";
                                 content+="</div>";
@@ -846,11 +846,11 @@ window.searchCancel = function(){
         var userContentValue = userContentFocus.value;
         var userName = "yerriel";
         if(userContentTitleValue == ""){
-            alert("제목을 입력하세요.");
+            alert("タイトルを入力してください。");
             contentTitleFocus.focus();
             return ;
         }else if(userContentValue == ""){
-            alert("내용을 입력하세요.");
+            alert("内容を入力してください。");
             contentFocus.focus();
             return;
         }else if(userContentTitleValue != "" && userContentValue != ""){
@@ -870,7 +870,7 @@ window.searchCancel = function(){
                                 boardId : writeId
                             },
                             success: function(data){
-                                alert('글쓰기 완료');
+                                alert('成功');
                                 $('#blogBackButton').trigger('click');
                             }
                         })
@@ -977,8 +977,8 @@ window.searchCancel = function(){
             if(good == false){
                 ons.notification.confirm({
                 title:'',
-                message: '추천 하시겠습니까',
-                buttonLabels:['아니요','예'],
+                message: 'お勧めしますか。',
+                buttonLabels:['いいえ','はい'],
                 callback: function(answer) {
                   if(answer ==  0)
                   {
@@ -1009,8 +1009,8 @@ window.searchCancel = function(){
             if(good == true){
                 ons.notification.confirm({
                 title:'',
-                message: '추천을 취소 하시겠습니까',
-                buttonLabels:['아니요','예'],
+                message: 'お勧めを取り消しますか。',
+                buttonLabels:['いいえ','はい'],
                 callback: function(answer) {
                   if(answer ==  0)
                   {
@@ -1044,13 +1044,13 @@ window.searchCancel = function(){
             var novel_id = id;
             var favoriteIcon = $('#novelFavoriteIcon');
             if(user_id == null){
-                alert('로그인이 필요합니다.');
+                alert('ログインが必要です。');
             }else{
                 if(favorite == false){
                     ons.notification.confirm({
                     title:'',
-                    message: '관심도서로 등록하시겠습니까?',
-                    buttonLabels:['아니요','예'],
+                    message: '興味登録しますか。',
+                    buttonLabels:['いいえ','はい'],
                     callback: function(answer) {
                     if(answer ==  0)
                     {
@@ -1082,8 +1082,8 @@ window.searchCancel = function(){
                 if(favorite == true){
                     ons.notification.confirm({
                         title:'',
-                        message: '관심등록을 취소하시겠습니까?',
-                        buttonLabels:['아니요','예'],
+                        message: '興味登録を取り消しますか。',
+                        buttonLabels:['いいえ','はい'],
                         callback: function(answer){
                         if(answer ==  0)
                         {   
@@ -1122,7 +1122,7 @@ window.searchCancel = function(){
             var bookMarkIcon = $('#novelBookMarkIcon');
             bookMarkIcon.attr('style','color:orange;');
             bookMarkIcon.attr('size','40px');
-            alert('북마크 등록');
+            alert('ブックマーク登録');
               
               
             
@@ -1243,22 +1243,22 @@ window.searchCancel = function(){
                             body += "<div class='right-1'>"+data[i].title+"</div>";
                             body += "<div class='right-2'>"+data[i].name+"</div>";
                             if(data[i].genre == 'fantasy'){
-                                body += "<div class='right-3'> 장르: 판타지</div>";
+                                body += "<div class='right-3'> ジャンル: ファンタジー</div>";
                             }
                             else if(data[i].genre == 'romance'){
-                                body += "<div class='right-3'> 장르: 로맨스</div>";
+                                body += "<div class='right-3'> ジャンル: 恋愛</div>";
                             }
                             else if(data[i].genre == 'scifi'){
-                                body += "<div class='right-3'> 장르: SF</div>";
+                                body += "<div class='right-3'> ジャンル: SF</div>";
                             }
                             else if(data[i].genre == 'horror'){
-                                body += "<div class='right-3'> 장르: 호러</div>";                            
+                                body += "<div class='right-3'> ジャンル: ホラー</div>";                            
                             }
                             else if(data[i].genre == 'martial'){
-                                body += "<div class='right-3'> 장르: 무협</div>";  
+                                body += "<div class='right-3'> ジャンル: 歴史</div>";  
                             }
                             else if(data[i].genre == 'detective'){
-                                body += "<div class='right-3'> 장르: 추리</div>";  
+                                body += "<div class='right-3'> ジャンル: 推理</div>";  
                             }
                             body += "<div class='right-3'>"+data[i].summary_intro+"</div>";
                         body += "</div>";                
@@ -1308,22 +1308,22 @@ window.showNovel = function(id){
             $('.main_novel_novelInfo_contentsEx').html(data[0].intro);
             //현재 db에 영어로 저장되어 있는 장르를 한글로 바꾼다.
             if(data[0].genre == 'fantasy'){
-                $('.novelGenre').text("장르 : 판타지");
+                $('.novelGenre').text("ジャンル　:　ファンタジー");
             }
             else if(data[0].genre == 'romance'){
-                $('.novelGenre').text("장르 : 로맨스");
+                $('.novelGenre').text("ジャンル　:　恋愛");
             }
             else if(data[0].genre == 'scifi'){
-                $('.novelGenre').text("장르 : SF");
+                $('.novelGenre').text("ジャンル　:　SF");
             }
             else if(data[0].genre == 'horror'){
-                $('.novelGenre').text("장르 : 호러");
+                $('.novelGenre').text("ジャンル　:　ホラー");
             }
             else if(data[0].genre == 'martial'){
-                $('.novelGenre').text("장르 : 무협");
+                $('.novelGenre').text("ジャンル　:　歴史");
             }
             else if(data[0].genre == 'detective'){
-                $('.novelGenre').text("장르 : 추리");
+                $('.novelGenre').text("ジャンル　:　推理");
             }
             $('.mainNovelDropListSetting').attr('onclick','showBackgroundSettings('+data[0].id+')');
 
@@ -1346,8 +1346,8 @@ window.showNovel = function(id){
                             }
                             
                         }
-                        $('.episodeCount').prepend ("연재 중 |");
-                        $('.episodeCount').append(" 총 "+total_episode_count+"회");
+                        $('.episodeCount').prepend ("連載中　|　");
+                        $('.episodeCount').append(total_episode_count+"話");
 
                         var episode_count = 0;
                         for(var i =0; i< Object.keys(data).length ;i++){
@@ -1364,8 +1364,8 @@ window.showNovel = function(id){
                                             body += "</ons-col>";
                                             body += "<ons-col>";
                                                 body += "<div class='episodeLocation'>";
-                                                    body += "<div class='episodeLocationCount'>"+episode_count+"화</div>";
-                                                    body += "<div class='episodeComment'>댓글</div>";
+                                                    body += "<div class='episodeLocationCount'>"+episode_count+"話</div>";
+                                                    body += "<div class='episodeComment'>コメント</div>";
                                                     body += "<div class='episodeCreated'>"+data[i].created_at+"</div>";
                                                 body += "</div>";
                                                 body += "<div class='episodeTitle'>";
@@ -1474,30 +1474,30 @@ window.showMainReadNovel = function(id){
     var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
     if(idJoin == ""){
-    alert("아이디를 입력하세요");
+    alert("IDを入力してください。");
         idFocus.focus();
         return ;
     }else if(nickJoin == ""){
-        alert("닉네임을 입력하세요");    
+        alert("ニックネームを入力してください。");    
         nickFocus.focus();
     }else if(pwJoin == ""){
-        alert("비밀번호를 입력하세요");
+        alert("パスワードを入力してください。");
         pwFocus.focus();
         return;
     }else if(pwJoinRe == ""){
-        alert("비밀번호 확인을 입력하세요");
+        alert("パスワードを確認してください。");
         pwFocusRe.focus();
         return;
     }else if(emailJoin == ""){
-        alert("이메일을 입력하세요");
+        alert("メールを入力してください");
         emailFocus.focus();
         return;
     }else if(!regEmail.test(emailJoin)){
-        alert("이메일 주소를 형식에 맞게 입력하세요");
+        alert("メールを形式に合うように入力してください");
         emailFocus.focus();
         return;
     }else if(pwJoin != pwJoinRe){
-        alert("패스워드가 서로 일치하지 않습니다.");
+        alert("パスワードが一致していません。");
         pwFocusRe.focus();
         return;
     }else{
@@ -1509,7 +1509,7 @@ window.showMainReadNovel = function(id){
               },
               success: function(msg){
                   if(msg >= 1){
-                      alert("이미 있는 아이디 입니다.");
+                      alert("登録されているIDです。");
                       idFocus.focus();
                       return;
                   }else if(idJoin != "" && nickJoin != "" && pwJoin != "" && pwJoinRe != "" && emailJoin != ""){
@@ -1519,7 +1519,7 @@ window.showMainReadNovel = function(id){
                        url: "http://150.95.130.43/set_user/write_join",
                          data: joinInfo,
                          success: function(data){
-                            alert('가입되었습니다.');
+                            alert('登録出来ました。');
                             //회원가입 성공하면 해당 유저의 포인트 정보를 생성하고 0으로 기본 세팅
                             $.ajax({
                                 url:"http://150.95.130.43/set_point/set_point",
@@ -1553,11 +1553,11 @@ window.showMainReadNovel = function(id){
         var idValue = idFocus.value;
         var pwValue = pwFocus.value;
         if(idValue == ""){
-            alert("아이디를 입력하세요.");
+            alert("IDを入力してください。");
             idFocus.focus();
             return ;
         }else if(pwValue == ""){
-            alert("비밀번호를 입력하세요.");
+            alert("パスワードを入力してください。");
             pwFocus.focus();
             return;
         }else{
@@ -1656,7 +1656,7 @@ window.moveEpisode = function(data){
     if(data == 'back'){
         var i = $('#showAnotherEpisode option:selected').prev().val();
         if(!i){
-            alert("첫 페이지 입니다.");
+            alert("最初の話です。");
             return
         }else{
             $.ajax({
@@ -1703,7 +1703,7 @@ window.moveEpisode = function(data){
     else{
         var i = $('#showAnotherEpisode option:selected').next().val();
         if(!i){
-            alert("마지막 페이지 입니다.");
+            alert("最終の話です。");
             return
         }else{
             $.ajax({
@@ -1761,7 +1761,7 @@ window.showMainReadNovelByMainNumber = function(){
 window.showFavoriteNovel = function(){
     //로그인 여부 확인 
     if(localStorage.getItem('current_id') == null){
-        alert('로그인이 필요합니다.');
+        alert('ログインが必要です。');
     }else{
         myNavigator.pushPage('favorite.html');
         var user_id = localStorage.getItem('current_id')
@@ -1799,7 +1799,7 @@ window.showFavoriteNovel = function(){
 //포인트 구매 페이지로 이동
 window.showPointBuyPage = function(){
     if(localStorage.getItem('current_id') == null){
-        alert('로그인이 필요합니다.');
+        alert('ログインが必要です。');
     }else{
         myNavigator.pushPage('pointBuyPage.html');
     }
@@ -1810,13 +1810,13 @@ window.showPointBuyPage = function(){
 window.buyPoint = function(){
     var point = $(":input:radio[name=pointValue]:checked").val();
     if(!point){
-        alert('구매할 포인트를 선택하세요');
+        alert('購買するポイントを選んでください。');
         return;
     }else{
         ons.notification.confirm({
             title:'',
-            message: '포인트를 구매하시겠습니까?',
-            buttonLabels:['아니요','예'],
+            message: '選んだポイントをかいますか',
+            buttonLabels:['いいえ','はい'],
             callback: function(answer)
             {
                 //아니요
@@ -1845,7 +1845,7 @@ window.buyPoint = function(){
                                     first:1
                                 },
                                 success:function(data){
-                                    alert('감사합니다.');
+                                    alert('成功。');
                                     
                                     $.ajax({
                                         type:'get',
@@ -1923,13 +1923,13 @@ window.isFree = function(charge,episode_id){
         //유료
         if(charge == 1){
             if(localStorage.getItem('current_id') == null){
-                alert('로그인이 필요합니다.');
+                alert('ログインが必要です。');
                 return;
             }else{
                 ons.notification.confirm({
                     title:'',
-                    message: '유료 작품입니다.     포인트를 사용하시겠습니까?',
-                    buttonLabels:['아니요','예'],
+                    message: '有料作品です。    ポイントを使いますか。',
+                    buttonLabels:['いいえ','はい'],
                     callback: function(answer)
                     {
                         //아니요

@@ -12,7 +12,7 @@
               <ons-back-button></ons-back-button> 
           </div>
           <div class="center">
-            아이디 / 비밀번호 찾기
+            ID / パスワード 探し
           </div>
           <div class="right">
             <span class="toolbar-button toolbar-button--material" onclick="myNavigator.pushPage('search.html')" style="margin-right:10px;">
@@ -28,11 +28,11 @@
         <div class="idPw-button-bar" style="width:80%;margin:5% 10%;margin-top:20%;">
           <div class="idPw-button-bar__item">
             <input type="radio" name="segment-b" checked onclick="idPwChange('id')">
-            <div class="idPw-button-bar__button">아이디 찾기</div>
+            <div class="idPw-button-bar__button">ID 探し</div>
           </div>
           <div class="idPw-button-bar__item">
             <input type="radio" name="segment-b" onclick="idPwChange('pw')">
-            <div class="idPw-button-bar__button">비밀번호 찾기</div>
+            <div class="idPw-button-bar__button">パスワード 探し</div>
           </div>
         </div>
         
@@ -40,11 +40,11 @@
         <!--아이디 찾기 -->
         <div id="idSearch">
             <div style="margin-top:60px">
-                <input type="email" id="idSearchEmailInput" placeholder="이메일 입력">
+                <input type="email" id="idSearchEmailInput" placeholder="メールを入力">
             </div>
             <div class="idPw-cancelSubmit-btn-bar" style="margin-top:80px">
-                <ons-button class="idPwBtn" modifier="middle--quiet" onclick="searchCancel()">취소</ons-button>
-                <ons-button class="idPwBtn" modifier="middle--quiet" onclick="idSearch()">확인</ons-button>
+                <ons-button class="idPwBtn" modifier="middle--quiet" onclick="searchCancel()">取り消す</ons-button>
+                <ons-button class="idPwBtn" modifier="middle--quiet" onclick="idSearch()">確認</ons-button>
             </div>            
         </div>
         
@@ -52,12 +52,12 @@
         <!--비밀번호 찾기-->
         <div id="pwSearch" style="display:none;">
             <div id="" style="margin-top:60px">
-                    <input type="text" id="pwSearchIdInput" placeholder="아이디 입력">
-                    <input type="email" id="pwSearchEmailInput" placeholder="이메일 입력">
+                    <input type="text" id="pwSearchIdInput" placeholder="IDを入力">
+                    <input type="email" id="pwSearchEmailInput" placeholder="メールを入力">
             </div>
             <div class="idPw-cancelSubmit-btn-bar" style="margin-top:80px">
-                <ons-button class="idPwBtn" modifier="middle--quiet" onclick="searchCancel()">취소</ons-button>
-                <ons-button class="idPwBtn" modifier="middle--quiet" onclick="pwSearch()">확인</ons-button>
+                <ons-button class="idPwBtn" modifier="middle--quiet" onclick="searchCancel()">取り消す</ons-button>
+                <ons-button class="idPwBtn" modifier="middle--quiet" onclick="pwSearch()">確認</ons-button>
             </div>            
         </div>
     </div>

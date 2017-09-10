@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
-  
+
     <script src="components/loader.js"></script>
     <script src="lib/onsenui/js/onsenui.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
@@ -16,67 +16,67 @@
     <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
     <link rel="stylesheet" href="css/mainReadNovel.css">
-    
+
  </head>
 <body>
         <ons-toolbar id="novelHeader">
           <div class="left">
-              <ons-back-button></ons-back-button> 
+              <ons-back-button></ons-back-button>
           </div>
           <div class="center">
-            
+
           </div>
           <div class="right">
             <ons-icon class="novelGoodIcon" size="30px" icon="ion-ios-heart-outline" onclick="isGood()"></ons-icon>
             <ons-icon class="readNovelIcons" id="novelBookMarkIcon" size="30px" icon="ion-bookmark" onclick="bookMark()" style="margin-left:15px;"></ons-icon>
           </div>
         </ons-toolbar>
-        
-        
-           
-            <div id="novelArea">   
+
+
+
+            <div id="novelArea">
                 <div id="novelAreaText">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
+
+
+
                 </div>
             </div>
 
-        
+
         <ons-bottom-toolbar id="novelFooter">
             <div id="viewSettings">
                 <ons-icon class="readNovelIcons" size="25px" icon="ion-gear-b"></ons-icon>
-                뷰어설정
+                ビューア設定
             </div>
             <div id="novelComment">
                 <ons-icon class="readNovelIcons" size="25px" icon="ion-chatbox-working" onclick="myNavigator.pushPage('novelComment.html')"></ons-icon>
-        
+
             </div>
-               
+
             <div id="novelMove">
                 <ons-icon class="readNovelIcons" size="40px" icon="ion-arrow-left-b" onclick="moveEpisode('back')"></ons-icon>
                     <select id="showAnotherEpisode" onChange="changeEpisode(this)">
-                       
-                       
-                       
-                       
-                    </select>                
+
+
+
+
+                    </select>
                 <ons-icon class="readNovelIcons" size="40px" icon="ion-arrow-right-b" onclick="moveEpisode('forward')"></ons-icon>
             </div>
         </ons-bottom-toolbar>
-        
-        
-        
+
+
+
         <!--뷰어 설정 창 -->
-        <ons-bottom-toolbar id="viewSettingForm" style="height:50%;display:none;"> 
+        <ons-bottom-toolbar id="viewSettingForm" style="height:50%;display:none;">
             <div class="viewSettingBar">
                 <div class="view_font_button-bar__item" onclick="mainReadNovelSettings('init')">
-                    <ons-icon id="viewerInitIcon" size="20px" icon="md-refresh">초기화</ons-icon>
+                    <ons-icon id="viewerInitIcon" size="20px" icon="md-refresh">リセット</ons-icon>
                 </div>
                 <div class="view_font_button-bar__item" >
                     <ons-icon id= "viewerClose" size="30px" icon="md-close" style="margin-left:70% !important;"></ons-icon>
@@ -84,7 +84,7 @@
             </div>
             <div class="viewSettingBar">
                   <div class="view_font_button-bar__item">
-                    폰트
+                    フォント
                   </div>
                   <div class="view_font_button-bar__item" onclick="mainReadNovelSettings('nanum')">
                     <input type="radio" name="segment-font" >
@@ -98,10 +98,10 @@
                     <input type="radio" name="segment-font">
                     <button class="view_font_button-bar__button" style="font-family:Hanna;">한나</button>
                   </div>
-            </div>           
+            </div>
             <div class="viewSettingBar">
                 <div class="view_font_button-bar__item">
-                    글크기
+                    字のサイズ
                 </div>
                 <div class="view_font_button-bar__item" onclick="mainReadNovelSettings('size20')">
                     <input type="radio" name="segment-size" >
@@ -118,12 +118,12 @@
                 <div class="view_font_button-bar__item" onclick="mainReadNovelSettings('size26')">
                     <input type="radio" name="segment-size" >
                     <button class="view_font_button-bar__button">26px</button>
-                </div>             
-                
+                </div>
+
             </div>
             <div class="viewSettingBar">
                 <div class="view_font_button-bar__item">
-                    줄간격
+                    列の間隔
                 </div>
                 <div class="view_font_button-bar__item" onclick="mainReadNovelSettings('line160')">
                     <input type="radio" name="segment-line" >
@@ -148,7 +148,7 @@
             </div>
             <div class="viewSettingBar">
                 <div class="view_font_button-bar__item">
-                    글자색
+                    文字色
                 </div>
                 <div class="view_font_button-bar__item" onclick="mainReadNovelSettings('fontColor-white')">
                     <button style="width:30px; height:30px; border:1px solid black;background-color:white;"></button>
@@ -159,7 +159,7 @@
             </div>
             <div class="viewSettingBar">
                 <div class="view_font_button-bar__item">
-                    배경색
+                    背景色
                 </div>
                 <div class="view_font_button-bar__item" onclick="mainReadNovelSettings('backgroundColor-white')">
                     <button style="width:30px; height:30px; border:1px solid black;background-color:white;"></button>
@@ -182,4 +182,3 @@
 
 </body>
 </html>
-

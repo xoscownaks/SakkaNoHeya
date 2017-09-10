@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta charset="utf-8">
-    
+
 </head>
 <body>
     <!-- 특정 소설 페이지 헤더 -->
@@ -11,7 +11,7 @@
             <ons-back-button>back</ons-back-button>
           </div>
           <div class="center">
-            
+
           </div>
           <div class="right">
           <!-- 즐겨찾기, 좋아요 버튼 -->
@@ -20,19 +20,19 @@
                 <ons-icon icon="ion-android-more-vertical" class="mainNovelDropListIcon" onclick="mainNovelShowPopover(this);" size="30px" style="margin-left:10px;margin-right:20px;"></ons-icon>
           </div>
     </ons-toolbar>
-    
+
         <!-- 특정 소설 페이지 툴바 드랍다운메뉴-->
         <ons-popover direction="down" id="mainNovelPopover" style="width:140px; padding-right:10px;" cancelable>
              <div>
                 <ul class="mainNovelDropList">
                     <li class="mainNovelDropListBlog mainNovelDropListArrow--chevron">
-                        <div class="mainNovelDropListCenter" onclick="blogMove()">블로그</div>
+                        <div class="mainNovelDropListCenter" onclick="blogMove()">ブログ</div>
                     </li>
                     <li class="mainNovelDropListReview mainNovelDropListArrow--chevron">
-                        <div class="mainNovelDropListCenter">리뷰</div>
+                        <div class="mainNovelDropListCenter">レビュー</div>
                     </li>
                     <li  class="mainNovelDropListSetting mainNovelDropListArrow--chevron">
-                        <div class="mainNovelDropListCenter">배경 설정 보기</div>
+                        <div class="mainNovelDropListCenter">背景設定</div>
                     </li>
                 </ul>
              </div>
@@ -43,12 +43,12 @@
     <div class="main_novel_novelInfo">
                 <img class="main_novel_novelInfo_contentsImg" >
                     <div class="main_novel_novelInfo_contents">
-                        회차 &nbsp &nbsp
+                        話 &nbsp &nbsp
                         <select id="novelNumber">
 
                         </select>
-                            &nbsp &nbsp<button class="main_novel_novelInfo_contents_button" onclick="showMainReadNovelByMainNumber()">보기</button>
-                        <p>조회수:2400</p><p>추천:413</p>
+                            &nbsp &nbsp<button class="main_novel_novelInfo_contents_button" onclick="showMainReadNovelByMainNumber()">移動</button>
+                        <p>ヒット　:　2400</p><p>お勧めの数　:　413</p>
                         <p class="novelGenre"></p>
                         <p class="episodeCount"></p>
                     </div>
@@ -58,33 +58,31 @@
                 </div>
     </div>
 
-    
+
     <!-- 공지사항, 챕터 리스트 -->
 
     <ul class="main_novel_chapterContainer">
         <!-- 공지사항 -->
         <li class="main_novel_notice" onclick="showNoticeList()">
             <div class="main_novel_notice_left">
-                <img class="list__item__thumbnail" src="http://m.ebse.co.kr/new2014/images/Comm/icon_sidem_notice.png">
+                <img class="list__item__thumbnail" src="http://www.indexhome.co.jp/DATA/img-data/oshirase2.gif">
             </div>
             <div class="main_novel_notice_center">
                 <div class="list__item__title">
-                    
+
                 </div>
             </div>
-            
+
         </li>
         <div class="chapterListDiv">
         <!-- 챕터 리스트 -->
-        
-    
+
+
         </div>
     </ul>
     <div class="details">
-        
-    
+
+
     </div>
 </body>
 </html>
-
-
