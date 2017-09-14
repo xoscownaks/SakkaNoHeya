@@ -1143,16 +1143,16 @@ window.searchCancel = function(){
             $('#novelArea').css('background-color','white');
         }
         //나눔고딕
-        if(settings == "nanum"){
-             $('#novelAreaText').css('font-family','Nanum Gothic');
+        if(settings == "Noto Sans"){
+             $('#novelAreaText').css('font-family','Noto Sans Japanese');
         }
         //돋움
-        if(settings == "Jeju"){
-            $('#novelAreaText').css('font-family','Jeju Myeongjo');
+        if(settings == "Kokoro"){
+            $('#novelAreaText').css('font-family','Kokoro');
         }
         //궁서
-        if(settings == "Hanna"){
-            $('#novelAreaText').css('font-family','Hanna');
+        if(settings == "Sawarabi Mincho"){
+            $('#novelAreaText').css('font-family','Sawarabi Mincho');
         }
         //글씨 크기 20
         if(settings == "size20"){
